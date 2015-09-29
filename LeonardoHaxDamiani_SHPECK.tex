@@ -22,6 +22,8 @@
 \usepackage{mhchem} 	% pacote para usar chemistry formulae
 \usepackage{chemfig}
 \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{multirow}
 \usepackage{acronym}
@@ -113,6 +115,15 @@
 % palavras-chave
 % iniciar todas com letras minúsculas, exceto no caso de abreviaturas
 %
+\keyword{Geochemical Modelling}
+\keyword{Chemical Equilibrium}
+\keyword{Geochemical Speciation}
+\keyword{Geochemistry}
+\keyword{Multiphase System}
+\keyword{Geochemical Simulations}
+\keyword{Software Engineering}
+\keyword{Computer Science}
+
 
 %
 % inicio do documento
@@ -124,6 +135,8 @@
     <{\egroup}%
 }
 \newcommand*\rot{\multicolumn{1}{R{50}{1em}}}% no optional argument here, please!
+
+
 
 
 \begin{document}
@@ -230,7 +243,6 @@ The principles of chemical equilibrium calculation rely on the law of conservati
 The system of equations will drive and represent all the interactions between the components of the simulation. Newton's method (also known as Newton-Raphson method) uses the previous guess for the equilibrium calculation in a subsequent step, recursively until find a suitable solution that satisfies the system and the convergences criterias. One must note that the initial guess is generated automatically and used as a seed for the iterations. This method requires the usage of a Jacobian matrix and a residual vector during the algebraic calculations. Geochemical modelling speciation has an important application in processes that occurs in turbidite reservoirs. The process of the water coming from the salt dome contains a high concentration of salts as sodium (\ce{Na^+}), chlorine (\ce{Cl^-}) and potassium (\ce{K^+}). Compactation, cementation, dissolution or recrystalization can be observed inside turbidites when this process happens. These processes might change drastically, for example, the porosity of the rock and, therefore, the storage capacity of oil and gas.
 
 %OBJECTIVES OF THIS WORK
-
 \section{Objectives of this work}
 This work has as purpose two main objetives:
 \begin{enumerate}
@@ -242,15 +254,13 @@ Soils and aquifers are heterogeneous, subsurface systems composed of a large num
 \subsection{Implementation and validation of \emph{SHPECK}}
 The idea of our own geochemical speciation software has emerged as an application where it would be possible to apply all the physical, chemical aqueous, geochemists and linear algebra concepts and develop a useful tool with intuitive and interactive interface. The most usual approach to the geochemical modelling area is a geochemical modeller that develop a solution to solve his particular problems and generates his code/algorithm - a solution that most of the times is not very reliable and has no scalability. In our case, the computer science team made the necessary efforts to understand and learn all the complex aspects of a geochemical speciation model and from this knowledge, develop a software that will be able to use all the processing power of nowadays computers combined with a solid knowledge in computer architecture, algorithms and software engineering. 
 
-%STRUCTURE OF THIS WORK
-
+%STRUCTURE OF THIS WORK - TO BE VERIFIED AT THE END OF THE WORK
 \section{Structure of this work} 
-The rest of this work is structured as follow. In chapter 2, an overview of the basic concepts needed and technical concepts involved in this work. Chapter 3 shows a thoroughly analysis and review of the commercial software available. Chapter 4 deals with the \emph{SHPECK} implementation, precisely and carefully describing the whole system: design options; mathematical treatment and details; implementation and user interface (UI) details; algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. In chapter 5, it is presented a study case with an interesting and relevant scenario; the results that validates \emph{SHPECK} and a broad comparison between solutions previously addressed in this work. Chapter 6 brings the conclusion of this work. Finally, this work contains an Appendix A, which is a presentation and an analysis of a linear algebra library used for the development of \emph{SHPECK} called \emph{Armadillo C++}.
+The rest of this work is structured as follow. In chapter 2, an overview of the basic concepts needed and technical concepts involved in this work. Chapter 3 shows a thoroughly analysis and review of the commercial software available. Chapter 4 deals with the \emph{SHPECK} implementation, precisely and carefully describing the whole system: design options; mathematical treatment and details; implementation and user interface (UI) details; algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. In chapter 5, it is presented a study case with an interesting and relevant scenario; the results that validates \emph{SHPECK} and a broad comparison between solutions previously addressed in this work. Chapter 6 brings the conclusion of this work. Finally, this work contains an Appendix A, which is a presentation and an analysis of a linear algebra library used for the development of \emph{SHPECK} called \emph{Armadillo C++}. -- THIS NEEDS TO BE VERIFIED LATER
 
 \newpage
 
 %SUMMARY OF THIS WORK
-
 \section{Summary}
 \begin{itemize}
 \item The importance of geochemical speciation modelling and simulations: Geochemistry deals with the chemical composition and chemical changes/reactions in the solid Earth and its various components (lithosphere, hydrosphere and atmosphere). Modelling and computer simulation is a valuable tool that can be used to gain understanding of geochemical processes both to interpret laboratory experiments and field data as well as to make predictions of long term behavior. 
@@ -258,6 +268,11 @@ The rest of this work is structured as follow. In chapter 2, an overview of the 
 \item Objectives, differential and contribution of this work: Modelling hydrogeology is sometimes considered not only a science, but also an art. The importance of geochemical modelling and the need for a solid contribution in this area is something are extremely high - proportional to the computing power that had evolved so much in the last couple of decades. \emph{SHPECK} is a watershed that brings together the up-to-date technologies and computing power with the geochemical speciation modelling. In this work we bring a computation approach to push the state-of-art of geochemical speciation modelling by showing that is possible to have an interactive and intuitive interface as well as a structured database consistent with the computational reality of today.
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%
+%                                                                %
+% BASIC CONCEPTS INTRODUCTION   %
+%                                                                %
+%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Basic Concepts}
 \label{chapter:basic}
 
@@ -265,14 +280,17 @@ At this point, it is important to understand all the different multidisciplinary
 
 To develop this work, we had to delineate common goals for the different profiles that would take part on it along the way. All of them with a clear view of their roles and with a noiseless communication in any direction. Furthermore, it is vital and benefits crucially the whole work to be able to take advantage of all the different point of views from the diverse professionals profiles participating in this work. All of the mentioned above are fundamental factors to a successful multidisciplinary work.
 
-Therefore, we present a meticulous and detailed review of all the basic concepts for the different field of studies necessary to follow the development of this work. 
+Therefore, we present a meticulous and detailed review of all the basic concepts necessary to follow the development of this work, both from the computer science side and also from the hydrogeochemistry.
+
+% BASIC CONCEPTS COMPUTER SCIENCE 
 
 \section{Computer Science}
 
+% BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
+
 \section{Hydrogeochemistry Principles}
 
-\subsection{Sampling and analysis of water, solid and gases}
-Sampling is important in any geochemical investigation due to the fact that when integrity of water or solid phase samples is compromised, results of interpretation and modelling might be incorrect. A principal objective is to obtain a water sample with the same chemical composition as those of water in its original environment (regardless if it comes from an aquifer or if it is a surface water). 
+% INTRODUCTION TO THERMODYNAMICS
 \subsection{Introductions to Thermodynamics}
 In thermodynamics, equilibrium is a state of dynamic balance where the ratio of the product and the reactant concentrations is constant. There are three general approaches to calculating the composition of a solution at equilibrium \cite{Petrucci:07}.
 \begin{enumerate}
@@ -283,22 +301,25 @@ In thermodynamics, equilibrium is a state of dynamic balance where the ratio of 
 
 Stoichiometric approaches have two general advantages over non-stoichiometric: in the case of real systems and for multiphase problems - in which singularities can occur in the linear equations \cite{Smith:80}. It is important to remind the reader that any of the methods described above are equivalent and can be verified in \cite{Zeggeren:70}
 
+It is important to mention that any analysis resulting from a water sample must be carefully taken. Any geochemical investation is useless if the integrity of the water of the solid phase is compromised. Results of interpretation and modelling might be incorrect if the sampling was not done properly. A principal objective is to obtain a water sample with the same chemical composition as those of water in its original environment, for example an aquifer or a surface water. \cite{Deutsch:97}
 
-\subsubsection{Chemical Reactions}
-There are mainly two ways to describe reactions: equilibrium and kinetic. Both of them work with a closed system and try to describe the position of the maximum thermodynamic equilibrium - at this moment (equilibrium) there is no chemical energy available to alter the distribution of mass between reactants and products inside a reaction. When there is no equilibrium yet the energy available will be responsible for spontaneously change the system and allow the reaction to progress. The way to model a reaction depends on its rate: an equilibrium reaction is relatively fast on the mass transport process while the kinetic reaction is slow. Therefore, when applying an equilibrium model to a reaction it is assumed that the whole mass transfer happens immediately after the reactant and product are putted together and this will output a equilibrium situation. If the rate is slower, it requires kinetic description. Most geochemical work involves equilibrium models since it has more basic data concerning the order and rate of the reactions. Another point that influences the greater use of equilibrium models is the ability to apply concepts of chemical thermodynamics to estimate equilibrium and other constants as a function of temperature. \cite{Nordstrom:86}
-\begin{itemize}
+% THERMODYNAMIC EQUILIBRIUM
+\subsubsection{Thermodynamic Equilibrium}
+There are mainly two ways to describe thermodynamic equilibrium reactions: Equilibrium and Kinetic. Both of them formulates a closed system and describe the position of the maximum thermodynamic equilibrium. Equilibrium is the moment where there is no more chemical energy to alter the distribution of mass between reactants and products in the system. The way to model a reaction depends on its rate: an equilibrium reaction is relatively fast on the mass transport process while the kinetic reaction is slow. Therefore, when applying an equilibrium model to a reaction is assumed that the whole mass transfer happens at the same time when the reactant and product are putted together, and this will configurate an equilibrium situation. If the reaction rate is slow, it requires a kinetic description of the reaction. On this work, it will be addressed only equilibrium reactions.  \cite{Nordstrom:86}
 
-\item Equilibrium reactions :Consider the following situation, where A, B, C and D are ions and form a reaction as 
-\begin{eqnarray}
-aA + bB &=& cC + dD
-\end{eqnarray}
-with a, b, c and d representing the number of moles of each constituent. \emph{The Law of Mass Action} describes the equilibrium distribution between reactants and products as 
-\begin{eqnarray}
-K &=& \frac{(C)^c (D)^d}{(A)^a(B)^b}
-\end{eqnarray}
-where K is the \emph{thermodynamical equilibrium constant} or the \emph{stability constant} and \emph{(A), (B), (C) and (D)} are the molar concentrations for reactants and products. It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reaction and the concentrations of the products of the reaction. The law of mass action states that any reaction will proceed to the right (dissolution) or to the right (precipitation) until the mass-action equilibrium is achieved, important to keep in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed toward this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details later on this chapter.
+Assuming the independent equilibrium reactions:
+\begin{equation}\label{reaction}
+0 \ce{<=>} \sum\limits_{i=1}^N  v_{ji} \alpha_i \hspace{35pt}    (j = 1, ... , M)
+\end{equation}
+where $v_{ji}$ is the stoichiometric coefficient of the \emph{i-th} species in the \emph{j-th} reaction; and $M$ represents the number of reactions and $N$ the number of species, with $M < N$. The sign convention is to assign the stoichiometric coefficient negative for reactants and positive for products. Assuming that all the reactions in the system are in equilibrium, the chemical system must also satisfy the mass-action equations:
+\begin{equation}\label{equilibrium_reaction}
+K_j =  \prod\limits_{i=1}^N  a_i^{v_{ij}} \hspace{35pt}    (j = 1, ... , M)
+\end{equation}
+where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ denotes the activity of the \emph{i-th} chemical species. The equilibrium constant depends on the temperature of the system; therefore, the equilibrium constant needs to be calculated according to the temperature of the system. 
 
-\item Kinetic reactions: Kinetic descriptions is applicable to any reaction but it is needed necessary to describe  reactions that are slow in relation to mass transport.  The following reaction has a $k_1$ and $k_2$ rates for the forward and reverse reactions, respectively 
+It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reaction and the concentrations of the products of the reaction. The law of mass action states that any reaction will proceed to the right (dissolution) or to the right (precipitation) until the mass-action equilibrium is achieved, important to keep in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed toward this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details later on this chapter.
+
+Kinetic descriptions is applicable to any reaction but it is needed necessary to describe  reactions that are slow in relation to mass transport.  The following reaction has a $k_1$ and $k_2$ rates for the forward and reverse reactions, respectively 
 \begin{eqnarray}
 aA + bB \underset{k_1}{\overset{k_2}{=}} dD + eE 
 \end{eqnarray}
@@ -313,15 +334,59 @@ r_A &=& - k_1 (A)^{n1}(B)^{n2} + k_2 (D)^{m1}(E)^{m2}
 where $n1, n2, m1$ and $m2$ are empirical stoichiometric coefficients. When there are reactions in parallel or series the rate laws are even more complex.
 The dissolution rate constant (\ce{k_diss}) of a chemical reaction depends on temperatue. The relation between constant and temperature is given by the \emph{Arrhenius equation}, described as
 \begin{eqnarray}
-k_diss = A * exp (-E_a / R*T)
+k_diss = A * exp(\frac{-E_a}{R*T})
 \end{eqnarray}
 where \ce{k_0} is the pre-exponential (Arrhenius) factor, $E_a$ is the activation energy, R is the universal gas constant, and T is the temperature in Kelvin.
 During the development of \emph{SHPECK}, we will not deal with kinetic reactions.
-\end{itemize}
 
-\subsubsection{Master variables}
-These are pH, redox potential (Eh) and ionic strength. They determine speciation (e.g. distribution of total concentrations among free ions and complexes) and the behavior of dissolved species. 
+%EQUILIBRIUM CONSTANT
+\subsubsection{Thermodynamic Equilibrium Constant}
+The \emph{equilibrium constant} (\emph{K}), also known as \emph{stability constant}, is the value of the reaction quotient when the reaction has reached equilibrium, as stated in equation ~\ref{equilibrium_reaction}. \emph{K} depends only on the temperature and on the ionic strength of the solution. According to known reactions' equilibrium constant value, it is possible to determine the value for at any temperature by a polynomial fitting technique or polynomial regression.
+In geochemical modelling, the usage of polynomial regression is specifically to calculate the equilibrium constant of the compound at the desired temperature. Polynomial regression is one of several methods of curve fitting, which is a process of constructing a curve that hast the best fit to a series of data points. The polynomial regression is a statistic method that is a form of linear regression in which the relationship between the independent variable \emph{x} and the dependent variable \emph{y} is modelled as an \emph{nth} degree polynomial. In our case, the polynomial regression is necessary in order to acchieve the equilibrium constant for compounds found in the solution system.
+Polynomial regression is considered to be a special case of multiple linear regression. A polynomial is a function that takes the form 
 
+\begin{equation} \label{eq:polynomialForm}
+f(x) = c_0 + c_1 * x + c_2 * x^2 + ... + c_n * x^n
+\end{equation}
+
+where \emph{n} is the degree of the polynomial and \emph{c} is a set of coefficients. Polynomial regression models are usually solved using the method of least squares. Likewise performing polynomial regression with a degree 0 on a set of data returns a single constant value. It is the same as the mean average of that data. This makes sense because the average is an approximation of all the data points, as shown in figure \ref{fig:degree0}. The average line mostly follows the path of the data points. Thus the mean average is a form of curve fitting and likely the most basic.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree0.png}
+\caption{Example of Linear regression}
+\label{fig:degree0}
+\end{figure}
+
+Linear regression is polynomial regression of degree 1, and generally takes the form
+
+\begin{equation} \label{eq:polynomialFormSmall}
+f(x) = c_0 + c_1 * x
+\end{equation}
+
+where \emph{$c_0$} is the y-intercept and \emph{$c_1$} being the slope. Figure \ref{fig:degree1} shows clearly that the linear regression line running along the data points approximate the data. Mean average and linear regression are the most commom forms of polynomial regression, but not the only.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree1.png}
+\caption{Example of Linear regression}
+\label{fig:degree1}
+\end{figure}
+
+The next step of polynomial would be the quadratic regression, now the regression becomes non-linear and the data is not restricted to straight lines. With figure \ref{fig:degree2} is possible to visualize a data with a quadratic regression trend line. Basically, the idea is simple: find a line that best fits 
+the data which is find the coefficients to a polynomial that best fits the data.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree2.png}
+\caption{Example of Polynomial Regression}
+\label{fig:degree2}
+\end{figure}
+
+Polynomial regression is an overdetermined system of equations that uses least squares as a method of approximating an answer. To understand this, some linear algebra is required. 
+
+
+%ACTIVITY OF A SOLUTE
 \subsubsection{Activity of a solute}
 Activity (\ce{a_i}) is \emph{"thermodynamic concentration"} (or informally known as \emph{"effective concentration"}). It is calculated as a product of activity coefficient and concentration (where \emph{i} means the solute involved):
 \begin{equation}\label{activityEq}
@@ -329,15 +394,25 @@ a_i = \gamma_i * m_i
 \end{equation}
 Activity coefficient ($\gamma_i$) is a function of ionic strenght (I), which is a measure of the concentration of ions in the solution.  
 
+%IONIC STRENGTH
 \subsubsection{Ionic strength}
 Mathematically the ionic strength of the solution is calculated according to
 \begin{equation} \label{eq:ionicStrength}
 I = 0.5 \sum{M_i z_i^2}
 \end{equation}
 where \emph{M} is the molar concentration of the specie \emph{i} having a charge \emph{z}.When \emph{I} increases, activity coefficients decrease. In very diluted solutions activity coefficient is equals to \emph{1.0} and activity is equal to concentration. The decreasing trend is related to the "cage" of opposite charge particles around ions. There is reversal of the trend in extremely concentrated solutions (brines) because beyond ionic strenght of about $1 mol/L$ there is an increase of activity coefficients with increasing ionic strength. This is related to decreasing amount of free water because most of water is already bound around dissolved species.
+For a matter of explanation, we will calculate the ionic strength of a \ce{CaCl_2} solution (composed by $0.5 mol$ of \ce{Ca^{+2}} and $1 mol$ \ce{Cl^{-1}}):
+\begin{eqnarray}
+I = \frac{1}{2}  (z^2_{Ca}[Ca^{+2}]) + \frac{1}{2}  (z^2_{Cl}[Cl^{-1}]) \\
+I = \frac{1}{2}  (2^2_{Ca}[Ca^{+2}] +  (-1)^2_{Cl}[Cl^{-1}]) \\
+I = \frac{1}{2} (4 * 0.5 + 1 * 1) \\
+I = 1.5 mol/L
+\end{eqnarray}
 
-\subsubsection{Activity Coefficients} 
-We can calculate $\gamma$ for ions with different methods:
+
+%ACTIVITY COEFFICIENT
+\subsubsection{Activity Coefficient} 
+There are different methods to calculate $\gamma$ for ions:
 \begin{itemize}
 \item Debie-Hueckel: They assumed that ions behave like spheres with charges located at their center points. The ions interact with each other by coulombic forces and the result of their analysis is as follows
 \begin{eqnarray} \label{eq:debyeEq}
@@ -358,6 +433,7 @@ Important to mention that there are other methods available to calculate activit
 Each one of the methods has its advantages and limitations. Debye-Hueckel equations are simple to apply and extensible to include new species in the solution due to the fact that it requires a low number of arguments and specific arguments. Besides, Debye-Hueckel can be applied to the most important temperatures in the field of aqueous geochemist. Important to keep in mind that it works poorly when regarding moderate or high ionic strength.
 Regarding dissolution and precipitation there is clearly a reaction happening during these processes, which means that some reactions are not in equilibrium. 
 
+%SATURATION INDEX
 \subsubsection{Saturation Index}
 The saturation index (\emph{SI}) indicates the degree of saturation with respect to a given mineral, in other words, it defines if a reaction will be in equilibrium or not. \emph{SI} is expressed as
 \begin{eqnarray} \label{eq:siEq}
@@ -374,17 +450,17 @@ where [A], [B], [C] and [D] are activitys of each ion. The interpretation of \em
 \item IAP = K : The reaction is in equilibrium, there is no flow neither to the right nor to the left. In a ground water solution, the water and the mineral are in equilibrium.
 \item IAP < K : The reaction is progressim from left to right, producing more reactants. In a ground water solution, the water is undersaturated.
 \end{itemize}
-Interesting to mention that there are reactions which never attain equilibrium and reactants are gradually transformed into products. An example is the oxidation of organic matter:
-\begin{equation}
-\ce{CH_2O} + \ce{O_2} \rightarrow \ce{CO_2} + \ce{H_2O}
-\end{equation}
-In this reaction, organic matter is consumed and even when concentration of products such as \ce{CO_2} increases, organic matter cannot be re-created. This means that this type of reaction requires kinetic description. Only some mineral dissolve and precipitates relatively fast and they are called \emph{reactive minerals}. In this case we can apply thermodynamic approach. Among the list of reactive mineral we can mention: calcite; \ce{CaCO_3}; Dolomite; Siderite; \ce{FeCO_3}; \ce{CaSO_4}; and Alunite;
 
+WRITE ABOUT SI = 0 , SI < 0 and SI > 0
+
+%HYDROGEOCHEMISTRY COMMON UNITS
 \subsubsection{Hydrogeochemistry common units}
 Molarity (\emph{M}), defined as mass in moles in 1 liter of solution and molality (\emph{m}), defined as mass in moles in 1 kilogram of solution. In dilute solution molarity is approximately equal to molality. Concentration in miliequivalents per liter is concentration in milimoles per liter multiplied by charge of an ion.
 
+%HYDROCHEMICAL PROCESSES
 \subsection{Hydrochemical processes}
 
+%ACID-BASE REACTIONS
 \subsubsection{Acid-Base Reactions}
 The importance of acid-base reactions is cleary when it is understood its influence on the pH. The pH is a master variable in charge of controlling chemical systems and is described as
 \begin{eqnarray}
@@ -402,26 +478,30 @@ Acid_1 + Base_2 &=& Acid_2 + Base_1
 \end{eqnarray}
 The reaction must be understood as that in the forward reaction, the proton lost by $Acid_1$ is gained by $Base_2$ and in the reverse reaction the proton lost by $Acid_2$ is gained by $Base_1$.  The strength of an acid or base refers to the proportion of its protons are lost or gained. 
 
+%COMPLEXATION AND SPECIATION
 \subsubsection{Complexation and Speciation}
 A complexation is when an ion that forms by combining simpler cations, anions and sometimes molecules, this process facilitates the transport of potentially toxic substances and form what is called a complex. Due to the importance of this process in contamination problems it has acquired a huge importance in practical and commercial fields. A simple example of complexation is the following
-\begin{eqnarray}
+\begin{eqnarray}\label{complexation_reaction}
 Mn^{2+} + Cl^- &=& MnCl^+
 \end{eqnarray}
-Calculation of distribution of metals mong complexes involves the solution of a series of mass-law trasnport equations. The mass law equation of the reaction on top is described bellow
+Calculation of distribution of metals mong complexes (\emph{speciation}) involves the solution of a series of mass-law transport equations. The mass law equation of the reaction ~\ref{complexation_reaction} is described bellow
 \begin{eqnarray}
 K_{MnCl^+} &=& \frac{[MnCl^+]}{[Mn^{2+}][Cl^-]}
 \end{eqnarray}
 Each one of the complex has a variable associated called stability constant ($\beta_i$)  and it contains the basic information necessary to determine how the total concentration of a metal in a solution is distributed as a metal ion and the other various complexes possible. 
 
+%OXIDATION-REDUCTION REACTIONS
 \subsubsection{Oxidation-Reduction Reactions}
 Groundwater environemnt's reactions involve transfer of electrons between its components (gaseous, dissolved or solid constituents). As result, there are changes in the oxidation states of the reactants and products. It is important to stress that the oxidation number is a hypothetical charge that an atom would have if the ion or molecule were to dissociate. This state can be different according to the solution. 
 During this work, \emph{redox reactions} (as oxidation-reduction reactions are also known) are not going to be addressed. In order to get deeper understanding on this topic, we refer to \cite{Petrucci:07}
 
+%ADSORPTION AND ION EXCHANGE
 \subsubsection{Adsorption and ion exchange}
 Adsorption systems treat water by adding a substance, such as activated carbon or aluminia, to the water supply. Adsorbents attract contaminants by chemical and physical processes that cause them to \emph{stick} to their surfaces for later disposal. This mechanism is often used to remove contaminants like \emph{arsenic} or \emph{fluoride} (mostly organic contaminants) from water reservoir.
 Ion exchange work simillarly but it is focused in inorganic contaminants in a particle-free water. Ion exchange is most often used to remove hardness or nitrate (mostly inorganic soluble molecules). 
 During this work, adsorption and ion exchange are not going to be addressed. In order to get deeper understanding on this topic, we refer to \cite{Freeze:79}
 
+% GEOCHEMICAL MODELLING
 \section{Geochemical Modelling}
 The geochemical modelling is the design of the geochemical reactions responsible for the migration of dissolved species. Geochemical models can be divided into two groups:
 \begin{itemize}
@@ -429,10 +509,11 @@ The geochemical modelling is the design of the geochemical reactions responsible
 \item Geochemical Kinetic Models: It takes into account also kinetic reactions and includes the time factor. As kinetic data is measured experimentally, there is still a lack of kinetic data available for many geochemical processes. 
 \end{itemize}
 
-Due to time constraints, this work will focus on the first one - \emph{geochemical equilibrium models}.
+As mentioned before, this work will focus on the first one - \emph{geochemical equilibrium models}.
 
 Inside geochemical equilibrium models we can mention three divisions: speciation models; inverse models (also called mass balance models); forward models (also called reaction path models); and reactive transport (coupled) models. Regarding the relation to spatial coordinates, geochemical equilibrium models are considered \emph{batch models} - which are basically closed vessels or reactors.
 
+%GEOCHEMICAL SPECIATION MODELLING
 \subsection{Geochemical Speciation Modelling}
 Speciation represents modelling based in the equilibrium of the system. A geochemical speciation modelling program calculates the distribution of dissolved species between free ions and aqueous complexes and also saturation indexes for different minerals. Sodium, for example, can be present in water as free ion \ce{Na^+}, and also in the form of complexes with anions:
 
@@ -448,26 +529,35 @@ Common problems solved using speciation programs are:
 \item There is a sample with high concentration of dissolved sodium and we need to know the distribution of sodium between \ce{Na^+} and different complexes (for example, \ce{{NaCl}_{aq}} or \ce{NaOH}) because different forms of sodium have different characteristics;
 \item There are ground water samples that had been in contact with granitic masses and we want to verify the possibility of precipitation of minerals like \emph{Albite} (a plagioclase feldspar mineral whose formula is \emph{\ce{NaAlSi_{3}O_{8}}}).
 \end{itemize}
-Note that the details of several available programs are going to be presented and discussed in ~\ref{chapter:review}).
+Note that the details of several available programs are going to be presented and discussed in chapter ~\ref{chapter:review}).
 
 The development of our software \emph{SHPECK}, which is a geochemical speciation modelling software will be detailed, presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. Also important to mention that this work is the first work that will completely guide anyone to generate a geochemical speciation modelling software from the ground.
 
+%OTHER TYPES OF GEOCHEMICAL MODELLING
 \subsection{Other Types Of Geochemical Modelling}
-
-\subsubsection{Inverse geochemical modeling}
+%INVERSE GEOCHEMICAL MODELLING
+\subsubsection{Inverse geochemical modelling}
 This type of models, also known as mass balance models, are used when chemistry of groundwater and solid phase composition are already known, and reactions that have already happened should be determined. It is used when we have access to 2 hydraulically connected points and composition of solid phase between these points; with these data in hand, it is possible to calculate and produce the reactions that will explain the changes of the water's chemistry. This approach leads to some uncertainties: Stoichiometry of minerals in solid phase is not often well known; solution may be non-unique; and programs can produce several possible models for the same input;
 An interesting work about inverse geochemical modelling can be verified in \cite{Sharif:07}.
-
-\subsubsection{Forward geochemical modeling}
+%FORWARD GEOCHEMICAL MODELLING
+\subsubsection{Forward geochemical modelling}
 This type of models, also called reaction path models, are used for prediction of water chemistry evolution along a flowline. Initial water chemistry is known and the aim of the program is to predict water chemistry at some point along flow path. This kind of modelling introduce problems regarding kinetic and adsorption data, which are ofter missing and frequently limited. 
 
+%SUMMARY
 \section{Summary}
 \begin{itemize}
-\item  Multidisciplinary problem (this chapter needs to make people from different fields talk)
+\item Importance of multidisciplinary problems:
 \item  Analysis of the basic concepts necessary from the geochemical point of view
 \item Analysis of the basic concepts necessary from the CS point of view
 \item Summary
 \end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%                                                                 %
+% COMMERCIAL SOFTWARES REVIEW  %
+%                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Commercial softwares review}
 \label{chapter:review}
@@ -475,7 +565,7 @@ This type of models, also called reaction path models, are used for prediction o
 \begin{itemize}
 \item Geochemical's software analysis/review: The idea is to do a table comparison of softwares and tech details. Also interesting to mention who maintain (OR NOT) the programs. The software analysis and comparison will be only between:
 \begin{itemize}
-\item EQ3/6 (GWB): Large database, general screening, info is not exactly about what you want. difficult to use and people don't really understand how it is put together. Their algorithm/input/output is old.
+\item EQ3/6 (GWB): Large database, general screening, info is not exactly about what you want. difficult to use and people don't really understand how it is put together. Their algorithm/input/output is old. 
 \item PHREEQC: shitty interface, poor input/output, old, defferent way of defining the problem.
 \item MINTEQ: Much simpler options on raction treatment, developed by the United States' Environment Protection Agency (EPA). 
 \item SOLMINEQ: its database is focused on organic materials.
@@ -484,6 +574,12 @@ This type of models, also called reaction path models, are used for prediction o
 \item Emphasize again the CONTRIBUTION of my approach
 \item Summary
 \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%
+%                                                        %
+% SHPECK - SPECIATION MODEL  %
+%                                                        %
+%%%%%%%%%%%%%%%%%%%
 
 \chapter{\emph{SHPECK} - Speciation Model}
 \label{chapter:SHPECK}
@@ -501,6 +597,12 @@ This type of models, also called reaction path models, are used for prediction o
 \item	Summary
 \end{itemize}
 
+%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                       %
+% CASE STUDY, RESULTS, COMPARISON   %
+%                                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Case Study, Results and Comparison}
 \begin{itemize}
 \item Explanation of the data that will be used to compare the results
@@ -508,8 +610,13 @@ This type of models, also called reaction path models, are used for prediction o
 \item	Summary
 \end{itemize}
 
+%%%%%%%%%%%
+%                            %
+% CONCLUSION   %
+%                            %
+%%%%%%%%%%%
 
-\chapter{Discussion and Conclusion}
+\chapter{Conclusion}
 \begin{itemize}
 \item Review of the results emphasizing our approach and advantages
 \item  Geological explanations for the results
@@ -521,6 +628,8 @@ This type of models, also called reaction path models, are used for prediction o
 %This work provides three important steps of the development of a geochemical modeling speciation software with the purpose of increasing the quality in such field of softwares. The development of a new software is intended to raise and optimize in every possible way the concept of geochemical modelling always taking into account the computer science priorities and theory. The difference between all the options and this work's approach is that the computer science's side is taken more responsibly and strategically thought since the beginning. What have been notested from all existing softwares studied is that they were created by geochemists, chemicals, geologists to solve their daily challenge and questions - our approach is different: it is done by computer science specialists with the support of geologists and geochemicals. Naturally some challenges are faced, for example, the base concepts are sometimes misunderstood and it is mandatory that the basic concepts are well stablished in order to have a solid and useful software in the end of the process. During the process of developing this work aspects of physical chemistry, aqueous geochemistry, linear algebra, complex coupled systems and computational simulatosrs are going to be studied and learned.
 
 % references
+
+
 
 \makeglossaries
 
@@ -599,8 +708,11 @@ This type of models, also called reaction path models, are used for prediction o
 \bibitem[SMITH, 1980]{Smith:80} SMITH, W. R. 
 \textbf{The Computation of Chemical Equilibria in Complex Systems}: Americam Chemical Society
 
-\bibitem[ALLAN, 2015]{Allan:14} LEAL, M. M. ALLAN, ET. AL.
+\bibitem[ALLAN, 2015]{Allan:15} LEAL, M. M. ALLAN, ET. AL.
 \textbf{A chemical kinetics algorithm for geochemical modelling}: Applied Geochemistry
+
+\bibitem[DEUTSCH, 1997]{Deutsch:97} DEUTSCH, J. WILLIAN,
+\textbf{Groundwater Geochemistry: fundamentals and applications to contamination}: CRC Press
 
 \bibitem[SHARIF, 2007]{Sharif:07} SHARIF, M. U. ET. AL. 
 \textbf{Inverse geochemical modeling of groundwater evolution with emphasis on arsenic in the Mississippi River Valey alluvial aquifer, Arkansas (USA)}: Journal of Hidrology
