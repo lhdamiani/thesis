@@ -118,9 +118,7 @@
 \keyword{Geochemical Modelling}
 \keyword{Chemical Equilibrium}
 \keyword{Geochemical Speciation}
-\keyword{Geochemistry}
 \keyword{Multiphase System}
-\keyword{Geochemical Simulations}
 \keyword{Software Engineering}
 \keyword{Computer Science}
 
@@ -285,7 +283,8 @@ Therefore, we present a meticulous and detailed review of all the basic concepts
 % BASIC CONCEPTS COMPUTER SCIENCE 
 
 \section{Computer Science}
-
+UNDER CONSTRUCTION
+\
 % BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
 
 \section{Hydrogeochemistry Principles}
@@ -342,7 +341,13 @@ During the development of \emph{SHPECK}, we will not deal with kinetic reactions
 %EQUILIBRIUM CONSTANT
 \subsubsection{Thermodynamic Equilibrium Constant}
 The \emph{equilibrium constant} (\emph{K}), also known as \emph{stability constant}, is the value of the reaction quotient when the reaction has reached equilibrium, as stated in equation ~\ref{equilibrium_reaction}. \emph{K} depends only on the temperature and on the ionic strength of the solution. According to known reactions' equilibrium constant value, it is possible to determine the value for at any temperature by a polynomial fitting technique or polynomial regression.
-In geochemical modelling, the usage of polynomial regression is specifically to calculate the equilibrium constant of the compound at the desired temperature. Polynomial regression is one of several methods of curve fitting, which is a process of constructing a curve that hast the best fit to a series of data points. The polynomial regression is a statistic method that is a form of linear regression in which the relationship between the independent variable \emph{x} and the dependent variable \emph{y} is modelled as an \emph{nth} degree polynomial. In our case, the polynomial regression is necessary in order to acchieve the equilibrium constant for compounds found in the solution system.
+
+Equilibrium constants are determined by measurements of the relevant concentrations of the species under differing experimental conditions. Concentrations of species can be measured in multiple ways, and the use of these values in modelling requires adjustment to the conditions in the system being modelled. These adjustments, as well as the differences in conditions and different methods for determination, can lead to uncertainty in chemical speciation constants.
+
+Several thermodynamics database are available and really popular nowadays. They include reaction constants, reaction descriptions, solutes, species, enthalpy values, activity coefficient parameters, etc. During the development of \emph{SHPECK} we selected the \emph{Geochemist's Work Bench's} (\emph{GWB}) database - it contains also the values of a $8^th$ degree polynomial which allows the user to calculate the equilibrium constant to any temperature. Also another source of data used along this work is \cite{Palandri:04}.
+
+In geochemical modelling, the usage of polynomial regression is specifically to calculate the equilibrium constant of the compound at the desired temperature. 
+Polynomial regression is one of several methods of curve fitting, which is a process of constructing a curve that hast the best fit to a series of data points. The polynomial regression is a statistic method that is a form of linear regression in which the relationship between the independent variable \emph{x} and the dependent variable \emph{y} is modelled as an \emph{nth} degree polynomial. In our case, the polynomial regression is necessary in order to acchieve the equilibrium constant for compounds found in the solution system.
 Polynomial regression is considered to be a special case of multiple linear regression. A polynomial is a function that takes the form 
 
 \begin{equation} \label{eq:polynomialForm}
@@ -544,7 +549,7 @@ An interesting work about inverse geochemical modelling can be verified in \cite
 This type of models, also called reaction path models, are used for prediction of water chemistry evolution along a flowline. Initial water chemistry is known and the aim of the program is to predict water chemistry at some point along flow path. This kind of modelling introduce problems regarding kinetic and adsorption data, which are ofter missing and frequently limited. 
 
 %SUMMARY
-\section{Summary}
+\section{Summary - TO BE DONE}
 \begin{itemize}
 \item Importance of multidisciplinary problems:
 \item  Analysis of the basic concepts necessary from the geochemical point of view
@@ -605,10 +610,12 @@ This type of models, also called reaction path models, are used for prediction o
 
 \chapter{Case Study, Results and Comparison}
 \begin{itemize}
-\item Explanation of the data that will be used to compare the results
-\item Results comparison
+\item Explanation of the data that will be used to compare the results: 
+\item Results comparison 
 \item	Summary
 \end{itemize}
+
+Results from initial studies indicated that the uncertainty for thermodynamic values is much greater around the very dilute range and the more concentrated range, where data for the thermodynamic constants are comparatively sparse. 
 
 %%%%%%%%%%%
 %                            %
@@ -617,6 +624,10 @@ This type of models, also called reaction path models, are used for prediction o
 %%%%%%%%%%%
 
 \chapter{Conclusion}
+
+Geochemical speciation is critical for understanding the form of chemicals of interest in natural systems. It is crucial in many different aspects of our daily life nowadays: assessing bioavailability, risk to humans and ecosystems. Geochemical speciation models are generaly determined through analytical methods that measure free ions or total concentrations, used in conjunction with thermodynamically based models. As presented on this work, these models rely on the local equilibrium assumption, and on experimentally determined reaction constants. It is clear, though, that if the chemical system does not achieve equilibrium state or if the equilibrium constants are not certain, the geochemical speciation model's prediction show significant uncertainty.
+This emphasizes the clear need for a proper computation approach while treating with such influential information like a geochemical speciation model. The information flow is tightly connected and any mistake will propagate errors and carry that wrong information until the very end of the model.
+
 \begin{itemize}
 \item Review of the results emphasizing our approach and advantages
 \item  Geological explanations for the results
@@ -713,6 +724,9 @@ This type of models, also called reaction path models, are used for prediction o
 
 \bibitem[DEUTSCH, 1997]{Deutsch:97} DEUTSCH, J. WILLIAN,
 \textbf{Groundwater Geochemistry: fundamentals and applications to contamination}: CRC Press
+
+\bibitem[PALANDRI, 2004]{Palandri:04} PALANDRI, L. JAMES, KHARAKA, K. YOUSIF,
+\textbf{A compilation of rate parameters of water-mineral interaction kinetics for application to geochemical modeling}: U.S. Geological Survey
 
 \bibitem[SHARIF, 2007]{Sharif:07} SHARIF, M. U. ET. AL. 
 \textbf{Inverse geochemical modeling of groundwater evolution with emphasis on arsenic in the Mississippi River Valey alluvial aquifer, Arkansas (USA)}: Journal of Hidrology
