@@ -591,7 +591,7 @@ Ion exchange work simillarly but it is focused in inorganic contaminants in a pa
 During this work, adsorption and ion exchange are not going to be addressed. In order to get deeper understanding on this topic, we refer to \cite{Freeze:79}
 
 % GEOCHEMICAL MODELLING
-\section{Geochemical Modelling}
+\subsection{Geochemical Modelling}
 The geochemical modelling is the design of the geochemical reactions responsible for the migration of dissolved species. Geochemical models can be divided into two groups:
 \begin{itemize}
 \item Geochemical Equilibrium Models: Based on the assumption of thermodynamic equilibrium reached in a relatively short time (no time factor is included in calculation). It takes in consideration only equilibrium reactions.
@@ -603,7 +603,7 @@ As mentioned before, this work will focus on the first one - \emph{geochemical e
 Inside geochemical equilibrium models we can mention three divisions: speciation models; inverse models (also called mass balance models); forward models (also called reaction path models); and reactive transport (coupled) models. Regarding the relation to spatial coordinates, geochemical equilibrium models are considered \emph{batch models} - which are basically closed vessels or reactors.
 
 %GEOCHEMICAL SPECIATION MODELLING
-\subsection{Geochemical Speciation Modelling}
+\subsubsection{Geochemical Speciation Modelling}
 Speciation represents modelling based in the equilibrium of the system. A geochemical speciation modelling program calculates the distribution of dissolved species between free ions and aqueous complexes and also saturation indexes for different minerals. Sodium, for example, can be present in water as free ion \ce{Na^+}, and also in the form of complexes with anions:
 
 \begin{equation}
@@ -623,14 +623,16 @@ Note that the details of several available programs are going to be presented an
 The development of our software \emph{SHPECK}, which is a geochemical speciation modelling software will be detailed, presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. Also important to mention that this work is the first work that will completely guide anyone to generate a geochemical speciation modelling software from the ground.
 
 %OTHER TYPES OF GEOCHEMICAL MODELLING
-\subsection{Other Types Of Geochemical Modelling}
+\subsubsection{Other Types Of Geochemical Modelling}
+\begin{itemize}
 %INVERSE GEOCHEMICAL MODELLING
-\subsubsection{Inverse geochemical modelling}
+\item Inverse geochemical modelling
 This type of models, also known as mass balance models, are used when chemistry of groundwater and solid phase composition are already known, and reactions that have already happened should be determined. It is used when we have access to 2 hydraulically connected points and composition of solid phase between these points; with these data in hand, it is possible to calculate and produce the reactions that will explain the changes of the water's chemistry. This approach leads to some uncertainties: Stoichiometry of minerals in solid phase is not often well known; solution may be non-unique; and programs can produce several possible models for the same input;
 An interesting work about inverse geochemical modelling can be verified in \cite{Sharif:07}.
 %FORWARD GEOCHEMICAL MODELLING
-\subsubsection{Forward geochemical modelling}
+\item Forward geochemical modelling
 This type of models, also called reaction path models, are used for prediction of water chemistry evolution along a flowline. Initial water chemistry is known and the aim of the program is to predict water chemistry at some point along flow path. This kind of modelling introduce problems regarding kinetic and adsorption data, which are ofter missing and frequently limited. 
+\end{itemize}
 
 %SUMMARY
 \section{Summary - TO BE DONE}
