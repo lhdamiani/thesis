@@ -282,8 +282,59 @@ Therefore, we present a meticulous and detailed review of all the basic concepts
 
 % BASIC CONCEPTS COMPUTER SCIENCE 
 
-\section{Computer Science}
-UNDER CONSTRUCTION
+\section{Computer Science Principles}
+\subsection{Computer Processing}
+
+Algorithmic Complexity
+
+%SOFTWARE ARCHITECTURE AND DESIGN
+\subsection{Software Architecture and Design}
+%WHAT IS SOFTWARE ARCHITECTURE
+Software Architecture is the process of finding a structured solution that achieves all of the technical and operational requirements addressing also attributes as performance, security, value for the user and management. The architecture and design of a software is the \emph{art} of taking into account all of the several factors and take the best path available considering the impact on quality, interface, database structure, performance, maintainability and success of the software.
+%WHY SOFTWARE ARCHITECTURE
+The software architecture is responsible not only by the algorithms and the data structure, but also by the organization, communication, synchronization, functionality and design of the desired elements, scaling and performance. There is no well defined recipe for a good software architecture - it takes time, practice and efforts to start taking the right paths and weighting the options according to the needs. Recognizing paradigms and building relationships among systems can be handful in order to perform succesfully as a software architect.
+The software architect is responsible for structuring the software with a consolidated and dense foundation - anything other than this implies risk for the application. Studying the scenarios and requirements before designing the application is a must. Poor architecture results in deployment problems, instability, lack of support and the complete failure of the software (sometimes even the complete business).
+%GOALS OF SOFTWARE ARCHITECTURE
+A software architect aims to: 
+\begin{itemize}
+\item Catalog all the requirements of the application, as well as the use cases and scenarios;
+\item Analyze and reduce the risk either for the application and for the business (if there is one involved);
+\item Be able to adapt the design decisions around the reality - that will most likely change over time;
+\item Develop a structure where the tradeoffs of all attributes are clear and the impact of any change will be controlled;
+\end{itemize}
+
+During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} will be addressed with more details later on this chapter. For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA);
+
+Before defining the architecture of \emph{SHPECK} we have analyzed points as atribbutes, application type, technologies and deployment options. Only after this section was possible to define which of the design architectures would fit best to our needs - small refinements were done along the way but always building on top of a previous wisely took decision.
+
+%PRINCIPLES OF SOFTWARE ARCHITECTURE
+\subsubsection{Software Architecture Principles}
+The origin of software architecture principples is the need to minimize costs, address properly maintenance requirements and promote the \emph{Seven Basic Principles of Software Engineering} as in \cite{Boehm:83}, which are:
+\begin{enumerate}
+\item Manage using a phased life-cycle plan;
+\item Perform continuous validation;
+\item Maintain disciplined product control;
+\item Use modern programming practices;
+\item Maintain clear accountability for results;
+\item Use better and fewer people;
+\item Maintain a commitment to improve the process;
+\end{enumerate}
+Along these principles, it is mandatory that the software architect or designer to see the large picture of the software that is under his management. The large picture is responsible to make sure that no feature is overlaping (nor duplicating) with another - this will lead to a low coupling and highly cohesive software. 
+\subsubsection{Design Principles}
+Designing a software is composing a structure with different layers responsible for different tasks or properties. This layering must be consistent for any operation and must respect the hierarchy as well as the orientation of this structure. 
+These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsabilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs.
+Design patterns is also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
+
+
+
+\subsection{Software Development}
+Object Oriented Programming
+Database
+Software engineering
+Security
+User Interface
+User Interaction
+Documentation
 
 % BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
 
@@ -738,6 +789,9 @@ This emphasizes the clear need for a proper computation approach while treating 
 
 \bibitem[ALLEY, 1993]{Alley:93} ALLEY, WILLIAN M.
 \textbf{Regional Ground-Water Quality}
+
+\bibitem[BOEHM, 1983]{Boehm:83} BOEHM, BARRY W.,
+\textbf{Seven Basic Principles of Software Engineering}
 
 \end{thebibliography}
 
