@@ -280,7 +280,9 @@ At this point, it is important to understand all the different multidisciplinary
 
 To develop this work, we had to delineate common goals for the different profiles that would take part on it along the way. All of them with a clear view of their roles and with a noiseless communication in any direction. Furthermore, it is vital and benefits crucially the whole work to be able to take advantage of all the different point of views from the diverse professionals profiles participating in this work. All of the mentioned above are fundamental factors to a successful multidisciplinary work.
 
-Therefore, we present a meticulous and detailed review of all the basic concepts necessary to follow the development of this work, both from the computer science side and also from the hydrogeochemistry.
+Therefore, we present a meticulous and detailed review of all the basic concepts necessary to follow the development of this work, both from the computer science side and also from the hydrogeochemistry and geochemical modelling angle.
+
+Along this chapter, we will first address topics of computer science relevant to this work: computer processing and modelling, software architecture and design, and software development. After, we explain the fundamentals hydrogeochemystry principles: introduction to thermodynamics; and Hydrochemical processes; And to finish we focus on the geochemical modelling with a special section for it. If the reader feels confortable with these topics we recommend that you proceed to chapter ~\ref{chapter:review}.
 
 % BASIC CONCEPTS COMPUTER SCIENCE 
 
@@ -294,7 +296,7 @@ The advances in computer processing made possible scientific modelling, which is
 These models are based on a series of "orders" that the modeller had clearly expressed earlier. These stack of "orders" are known as algorithms - a series of instructions for how to do something. Instructions that tell the computer how to make decisions and when to do calculations - which are different according to the type of model.
 
 Among the many computer science areas, there is one that studies the complexity of algorithms. As algorithms are programs that perform a series of instructions, complexity analysis allows us to measure how fast a program is when it performs computations. The analysis allows us to explain how an algorithm behaves in the worst case scenario, for instance. 
-This information will come in hand when we analyze the complexity on \emph{SHPECK} on chapter ~\ref{chapter:SHPECK}.
+This information will come in hand when we analyze the complexity of \emph{SHPECK}'s algorithm on chapter ~\ref{chapter:SHPECK}.
 
 %SOFTWARE ARCHITECTURE AND DESIGN
 \subsection{Software Architecture and Design}
@@ -312,7 +314,7 @@ A software architect aims to:
 \item Develop a structure where the tradeoffs of all attributes are clear and the impact of any change will be controlled;
 \end{itemize}
 
-During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} will be addressed with more details later on this chapter. For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA);
+During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} will be addressed with more details later on this chapter. For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA); 
 
 Before defining the architecture of \emph{SHPECK} we have analyzed points as atribbutes, application type, technologies and deployment options. Only after this section was possible to define which of the design architectures would fit best to our needs - small refinements were done along the way but always building on top of a previous wisely took decision.
 
@@ -331,8 +333,7 @@ The origin of software architecture principples is the need to minimize costs, a
 Along these principles, it is mandatory that the software architect or designer to see the large picture of the software that is under his management. The large picture is responsible to make sure that no feature is overlaping (nor duplicating) with another - this will lead to a low coupling and highly cohesive software. 
 \subsubsection{Design Principles}
 Designing a software is composing a structure with different layers responsible for different tasks or properties. This layering must be consistent for any operation and must respect the hierarchy as well as the orientation of this structure. 
-These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsabilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs.
-Design patterns is also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
+These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsabilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs. Design patterns is also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
 
 
 
@@ -416,12 +417,12 @@ f(x) = c_0 + c_1 * x + c_2 * x^2 + ... + c_n * x^n
 
 where \emph{n} is the degree of the polynomial and \emph{c} is a set of coefficients. Polynomial regression models are usually solved using the method of least squares. Likewise performing polynomial regression with a degree 0 on a set of data returns a single constant value. It is the same as the mean average of that data. This makes sense because the average is an approximation of all the data points, as shown in figure \ref{fig:degree0}. The average line mostly follows the path of the data points. Thus the mean average is a form of curve fitting and likely the most basic.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=100mm]{degree0.png}
-\caption{Example of Linear regression}
-\label{fig:degree0}
-\end{figure}
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=100mm]{degree0.png}
+%\caption{Example of Linear regression}
+%\label{fig:degree0}
+%\end{figure}
 
 Linear regression is polynomial regression of degree 1, and generally takes the form
 
@@ -431,22 +432,22 @@ f(x) = c_0 + c_1 * x
 
 where \emph{$c_0$} is the y-intercept and \emph{$c_1$} being the slope. Figure \ref{fig:degree1} shows clearly that the linear regression line running along the data points approximate the data. Mean average and linear regression are the most commom forms of polynomial regression, but not the only.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=100mm]{degree1.png}
-\caption{Example of Linear regression}
-\label{fig:degree1}
-\end{figure}
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=100mm]{degree1.png}
+%\caption{Example of Linear regression}
+%\label{fig:degree1}
+%\end{figure}
 
 The next step of polynomial would be the quadratic regression, now the regression becomes non-linear and the data is not restricted to straight lines. With figure \ref{fig:degree2} is possible to visualize a data with a quadratic regression trend line. Basically, the idea is simple: find a line that best fits 
 the data which is find the coefficients to a polynomial that best fits the data.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=100mm]{degree2.png}
-\caption{Example of Polynomial Regression}
-\label{fig:degree2}
-\end{figure}
+%\begin{figure}[ht!]
+%\centering
+%\includegraphics[width=100mm]{degree2.png}
+%\caption{Example of Polynomial Regression}
+%\label{fig:degree2}
+%\end{figure}
 
 Polynomial regression is an overdetermined system of equations that uses least squares as a method of approximating an answer. To understand this, some linear algebra is required. 
 
