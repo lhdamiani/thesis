@@ -173,6 +173,8 @@
 \begin{listofabbrv}{SPMD}
         \item[DBH] Debie-Hueckel 
         \item[GUI] Graphical User Interface
+        \item[CPU] Central Processing Unit
+        \item[FLOPS] Floating-Point Operations per Second
         \item[GWB] The Geochemist's Workbench
         \item[K] Equilibrium Constant
         \item[$\beta_i$] Stability Constant 
@@ -283,9 +285,16 @@ Therefore, we present a meticulous and detailed review of all the basic concepts
 % BASIC CONCEPTS COMPUTER SCIENCE 
 
 \section{Computer Science Principles}
-\subsection{Computer Processing}
+\subsection{Computer Processing and Modelling}
+A processor is a small chip that resides in computers and electronic devices. Its job is to receive input, do something with it and provide the appropriate output. Modern processors, which are located inside the \emph{central processing unit} or \emph{CPU}, can handle trillions of calculations per second and even work together to solve really complex instructions. These processors are also known as \emph{cores} and is common to find \emph{dual-core}'s or even \emph{quad-core}'s processors nowadays. Within that \emph{CPU} is an eletronic clock responsible to create series of synchronized electrical pulses. Which are the key to integrate all the computer's components and perform calculations with the data pulled from the memory. In 2013 the supercomputer \emph{NUDT Tianhe-2} performed $33.86 Pflops$. $Pflops$ stands for Peta Floating-Point Operations Per Second and is the regular unit to measure computer performance. 
+This was pointed out here, in order to express clearly the power that we have available nowadays to build applications and model complex systems where countless factors influence and drive the process.
 
-Algorithmic Complexity
+The advances in computer processing made possible scientific modelling, which is generate part or feature of the real world to understand, define, quantify, visualize or simulate \cite{Humphreys:04}. Modelling such systems require a previous knowledge of all the characteristics, the behavior of this domain and what is the goal with this modelling allied with a big \emph{"piece"} of abstraction. Popular models are, for example, conceptual models, operational models, mathematical models, graphical models. The advantages of a model are: help us to communicate; allow us to clarify and test understanding; create credibility and accountability; organize the thoguhts; simplify and solve problems; 
+
+These models are based on a series of "orders" that the modeller had clearly expressed earlier. These stack of "orders" are known as algorithms - a series of instructions for how to do something. Instructions that tell the computer how to make decisions and when to do calculations - which are different according to the type of model.
+
+Among the many computer science areas, there is one that studies the complexity of algorithms. As algorithms are programs that perform a series of instructions, complexity analysis allows us to measure how fast a program is when it performs computations. The analysis allows us to explain how an algorithm behaves in the worst case scenario, for instance. 
+This information will come in hand when we analyze the complexity on \emph{SHPECK} on chapter ~\ref{chapter:SHPECK}.
 
 %SOFTWARE ARCHITECTURE AND DESIGN
 \subsection{Software Architecture and Design}
@@ -792,6 +801,9 @@ This emphasizes the clear need for a proper computation approach while treating 
 
 \bibitem[BOEHM, 1983]{Boehm:83} BOEHM, BARRY W.,
 \textbf{Seven Basic Principles of Software Engineering}
+
+\bibitem[HUMPHREYS, 2004]{Humphreys:04} HUMPHREYS, PAUL.
+\textbf{Extending Ourselves: Computational Science, Empiricism, and Scientific Method}
 
 \end{thebibliography}
 
