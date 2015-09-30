@@ -173,6 +173,7 @@
 \begin{listofabbrv}{SPMD}
         \item[DBH] Debie-Hueckel 
         \item[GUI] Graphical User Interface
+        \item[HCI] Human-Computer Interaction
         \item[CPU] Central Processing Unit
         \item[FLOPS] Floating-Point Operations per Second
         \item[GWB] The Geochemist's Workbench
@@ -282,7 +283,7 @@ To develop this work, we had to delineate common goals for the different profile
 
 Therefore, we present a meticulous and detailed review of all the basic concepts necessary to follow the development of this work, both from the computer science side and also from the hydrogeochemistry and geochemical modelling angle.
 
-Along this chapter, we will first address topics of computer science relevant to this work: computer processing and modelling, software architecture and design, and software development. After, we explain the fundamentals hydrogeochemystry principles: introduction to thermodynamics; and Hydrochemical processes; And to finish we focus on the geochemical modelling with a special section for it. If the reader feels confortable with these topics we recommend that you proceed to chapter ~\ref{chapter:review}.
+Along this chapter, we will first address topics of computer science relevant to this work: computer processing and modelling, software architecture and design, and software development. After, we explain the fundamentals hydro-geochemistry principles: an introduction to thermodynamics; and Hydrochemical processes; And to finish we focus on the geochemical modelling with a special section for it. If the reader feels comfortable with these topics, we recommend that you proceed to chapter ~\ref{chapter:review}.
 
 % BASIC CONCEPTS COMPUTER SCIENCE 
 
@@ -314,7 +315,8 @@ A software architect aims to:
 \item Develop a structure where the tradeoffs of all attributes are clear and the impact of any change will be controlled;
 \end{itemize}
 
-During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} will be addressed with more details later on this chapter. For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA); 
+During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO} or \emph{OOP}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} COMPLETAR AQUI
+For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA); 
 
 Before defining the architecture of \emph{SHPECK} we have analyzed points as atribbutes, application type, technologies and deployment options. Only after this section was possible to define which of the design architectures would fit best to our needs - small refinements were done along the way but always building on top of a previous wisely took decision.
 
@@ -331,25 +333,45 @@ The origin of software architecture principples is the need to minimize costs, a
 \item Maintain a commitment to improve the process;
 \end{enumerate}
 Along these principles, it is mandatory that the software architect or designer to see the large picture of the software that is under his management. The large picture is responsible to make sure that no feature is overlaping (nor duplicating) with another - this will lead to a low coupling and highly cohesive software. 
+
 \subsubsection{Design Principles}
 Designing a software is composing a structure with different layers responsible for different tasks or properties. This layering must be consistent for any operation and must respect the hierarchy as well as the orientation of this structure. 
 These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsabilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs. Design patterns is also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
 
-
-
+%SOFTWARE DEVELOPMENT 
 \subsection{Software Development}
-Object Oriented Programming
-Database
-Software engineering
-Security
-User Interface
-User Interaction
-Documentation
+Software development is a process that requires extremely careful planning and execution to meet the proposed goals. The proposed goal is a software, but sometimes people forget that to achieve this goal is necessary many hours of computer programming, documenting, testing, bug fixing and decisions making. Software development may include also research, new development, prototyping, modification, reuse, re-engineering and maintenance. The most interesting and relevant points are going to be discussed in the following sections.
+%LIFE CYCLE
+\subsubsection{Life Cycle of a Software Development Projet}
+This topic is relevant to make clear that lots of work is done before writting any line of code. We can mention tasks as: requirements definition; functional specification; architecture and design decisions; implementing and testing; software deploy; documentation; and maintenance;
+There may be additional tasks according to the reality of each software development but the idea of life cycle must be clear be a clear notion in the reader's mind. 
+
+%SOFTWARE ENGINEERING
+\subsubsection{Software Engineering}
+The importance of software engineering can be shown with by two definitions that contrast in time: \emph{``The establishment and use of sound engineering principles in order to obtain economically software that is reliable and works efficiently on real machines.''}, from \cite{Bauer:68}; and \emph{``Software engineering is the application of a systematic disciplined, quantifiable approach to the development, operation, and maintenance of software, and the study of these approaches; that is, the application of engineering to software.''} by the \emph{IEEE Computer Society's Software Engineering Body of Knowledge} from 2004.
+
+The understandment that overlaps in both quotes is that to achieve a \emph{software}, engineering principles (for example: management issues, directing teams, scheduling and budgeting) are necessary and will be fundamental to reach that goal.
+
+%DATABASE
+\subsubsection{Database}
+The database is responsible to organize, store and retrieve the data so it can be used efficiently and easily. It is composed by a collection of schemes in a way that it supports processes requiring information which are used by the application's internal operations. They are organized according to their organization approach: relational database; tabular database; distributed database; OO database; and flat file database; 
+
+Among several types of database, the software engineering previously done should identify which of them suits better the needs of the software. Details of \emph{SHPECK}'s database are presented in chapter ~\ref{chapter:SHPECK}.
+
+%USER INTERFACE
+\subsubsection{User Interface (\emph{UI}) and Human-Computer Interaction (\emph{HCI})}
+\emph{UI} and \emph{HCI} are area from the computer science that are influence by psychology, ergonomics, engineering, graphic design and others. Both areas take into account and are products of how humans interact with computers. 
+
+Good \emph{UI} are not user-expensive nor task-expensive, they behave naturally as the extension of the user's needs and desires. The software will easily bring more value to its users if the \emph{HCI} happens in a mutually benefitial way - by reaching the software's goal and not being an embarassment or annoyance for the user. Losses of productivity, efficiency, money and usability are expected consequences from a software that has skipped the preparation parts to the development of \emph{UI} and \emph{HCI}.
+
+\emph{UI} and \emph{HCI} were extensively studied and analysed along the software engineering of \emph{SHPECK}. 
+
+%DOCUMENTING AND GOOD PRACTICES
+\subsubsection{Documenting and Good Practices}
+
 
 % BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
-
 \section{Hydrogeochemistry Principles}
-
 % INTRODUCTION TO THERMODYNAMICS
 \subsection{Introductions to Thermodynamics}
 In thermodynamics, equilibrium is a state of dynamic balance where the ratio of the product and the reactant concentrations is constant. There are three general approaches to calculating the composition of a solution at equilibrium \cite{Petrucci:07}.
@@ -361,7 +383,7 @@ In thermodynamics, equilibrium is a state of dynamic balance where the ratio of 
 
 Stoichiometric approaches have two general advantages over non-stoichiometric: in the case of real systems and for multiphase problems - in which singularities can occur in the linear equations \cite{Smith:80}. It is important to remind the reader that any of the methods described above are equivalent and can be verified in \cite{Zeggeren:70}
 
-It is important to mention that any analysis resulting from a water sample must be carefully taken. Any geochemical investation is useless if the integrity of the water of the solid phase is compromised. Results of interpretation and modelling might be incorrect if the sampling was not done properly. A principal objective is to obtain a water sample with the same chemical composition as those of water in its original environment, for example an aquifer or a surface water. \cite{Deutsch:97}
+It is important to mention that any analysis resulting from a water sample must be carefully taken. Any geochemical investigation is useless if the integrity of the water of the solid phase is compromised. Results of interpretation and modelling might be incorrect if the sampling was not done properly. A principal objective is to obtain a water sample with the same chemical composition as those of water in its original environment, for example, an aquifer or a surface water. \cite{Deutsch:97}
 
 % THERMODYNAMIC EQUILIBRIUM
 \subsubsection{Thermodynamic Equilibrium}
@@ -664,7 +686,7 @@ This type of models, also called reaction path models, are used for prediction o
 \item	Complexity of the algorithm
 \item	Data-flow
 \item	User interface description and details
-\item	Database
+\item	Database: criterios de comparacao do pq usar um banco de dados estruturado; comparacao de tempo com o arquivo texto; simular pesquisa com os 2 formatos; consulatas elaboradas; concatenacao de elementos com queries; espaco, tempo e expressividade; uso de BD em area nao difundida.
 \item	Summary
 \end{itemize}
 
@@ -805,6 +827,9 @@ This emphasizes the clear need for a proper computation approach while treating 
 
 \bibitem[HUMPHREYS, 2004]{Humphreys:04} HUMPHREYS, PAUL.
 \textbf{Extending Ourselves: Computational Science, Empiricism, and Scientific Method}
+
+\bibitem[BAUER, 1968]{Bauer:68} BAUER, FRITZ
+\textbf{Software Engineering: A Report on a Conference Sponsored by NATO}: NATO
 
 \end{thebibliography}
 
