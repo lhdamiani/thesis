@@ -171,30 +171,30 @@
 
 
 \begin{listofabbrv}{SPMD}
-        \item[DBH] Debie-Hueckel 
-        \item[GUI] Graphical User Interface
-        \item[HCI] Human-Computer Interaction
-        \item[CPU] Central Processing Unit
-        \item[FLOPS] Floating-Point Operations per Second
-        \item[GWB] The Geochemist's Workbench
-        \item[K] Equilibrium Constant
-        \item[$\beta_i$] Stability Constant 
-        \item[IAP] Ion Activity Product 
-        \item[SI] Saturation Index 
-        \item[\ce{k_{diss}}] Dissolution rate constant
-        \item[\ce{k_0}] Pre-exponential (Arrhenius) factor
-        \item[\ce{E_a}] Activation Energy
-        \item[R] Universal Gas Constant
-        \item[T] Temperature
-        \item[$\gamma$] Activity coefficient
-        \item[a] Activity
-        \item[m] Molality
-        \item[M] Molarity
-        \item[pH] Power of Hydrogen
-        \item[I] Ionic Strength
-        \item[Eh] Redox Potencial
-        \item[CRUD] Create / Read / Update / Delete
-        \item[UI] User Interface
+\item[a] Activity
+\item[CRUD] Create / Read / Update / Delete
+\item[CPU] Central Processing Unit
+\item[DBH] Debie-Hueckel 
+\item[\ce{E_a}] Activation Energy
+\item[Eh] Redox Potencial
+\item[FLOPS] Floating-Point Operations per Second
+\item[GUI] Graphical User Interface
+\item[GWB] The Geochemist's Workbench
+\item[HCI] Human-Computer Interaction        
+\item[I] Ionic Strength
+\item[IAP] Ion Activity Product 
+\item[K] Equilibrium Constant        
+\item[\ce{k_{diss}}] Dissolution rate constant
+\item[\ce{k_0}] Pre-exponential (Arrhenius) factor
+\item[m] Molality
+\item[M] Molarity
+\item[pH] Power of Hydrogen
+\item[R] Universal Gas Constant
+\item[SI] Saturation Index 
+\item[T] Temperature
+\item[UI] User Interface
+\item[$\gamma$] Activity coefficient
+\item[$\beta_i$] Stability Constant         
 \end{listofabbrv}
 
 
@@ -277,7 +277,7 @@ The rest of this work is structured as follow. In chapter 2, an overview of the 
 \chapter{Basic Concepts}
 \label{chapter:basic}
 
-At this point, it is important to understand all the different multidisciplinary aspects that are present in the development of a geochemical speciation modelling software. By definition, applying Computer Science to solve problems and create solutions requires to redefine problems outside normal boundaries and generate a new understanding of complex situations by thinking across two or more academic disciplines. 
+At this point, it is important to understand all the different multidisciplinary aspects that are present in the development of a geochemical speciation modelling software. By definition, applying Computer Science to solve problems and create solutions requires to redefine obstacles outside normal boundaries and generate a new understanding of complex situations by thinking across two or more academic disciplines. 
 
 To develop this work, we had to delineate common goals for the different profiles that would take part on it along the way. All of them with a clear view of their roles and with a noiseless communication in any direction. Furthermore, it is vital and benefits crucially the whole work to be able to take advantage of all the different point of views from the diverse professionals profiles participating in this work. All of the mentioned above are fundamental factors to a successful multidisciplinary work.
 
@@ -285,27 +285,27 @@ Therefore, we present a meticulous and detailed review of all the basic concepts
 
 Along this chapter, we will first address topics of computer science relevant to this work: computer processing and modelling, software architecture and design, and software development. After, we explain the fundamentals hydro-geochemistry principles: an introduction to thermodynamics; and Hydrochemical processes; And to finish we focus on the geochemical modelling with a special section for it. If the reader feels comfortable with these topics, we recommend that you proceed to chapter ~\ref{chapter:review}.
 
-% BASIC CONCEPTS COMPUTER SCIENCE 
 
+% BASIC CONCEPTS COMPUTER SCIENCE 
 \section{Computer Science Principles}
 \subsection{Computer Processing and Modelling}
-A processor is a small chip that resides in computers and electronic devices. Its job is to receive input, do something with it and provide the appropriate output. Modern processors, which are located inside the \emph{central processing unit} or \emph{CPU}, can handle trillions of calculations per second and even work together to solve really complex instructions. These processors are also known as \emph{cores} and is common to find \emph{dual-core}'s or even \emph{quad-core}'s processors nowadays. Within that \emph{CPU} is an eletronic clock responsible to create series of synchronized electrical pulses. Which are the key to integrate all the computer's components and perform calculations with the data pulled from the memory. In 2013 the supercomputer \emph{NUDT Tianhe-2} performed $33.86 Pflops$. $Pflops$ stands for Peta Floating-Point Operations Per Second and is the regular unit to measure computer performance. 
-This was pointed out here, in order to express clearly the power that we have available nowadays to build applications and model complex systems where countless factors influence and drive the process.
+A processor is a small chip that resides in computers and electronic devices. Its job is to receive input, do something with it and provide the appropriate output. Modern processors, whose location is inside the \emph{central processing unit} or \emph{CPU}, can handle trillions of calculations per second and even work together to solve complex instructions. Within that \emph{CPU} is an electronic clock responsible for creating series of synchronized electrical pulses. These pulses are the key to integrating all the computer's components and perform calculations with the data pulled from the memory. In 2013 the supercomputer \emph{NUDT Tianhe-2} performed $33.86 Pflops$. $Pflops$ stands for Peta Floating-Point Operations Per Second and is the regular unit to measure computer performance.
+Nowadays, human's power of abstraction and modelling is what set the boundaries of the application and systems that we build. Countless factors influencing and driving the process are not a problem anymore for the computing power of the machines that are available. Not many years ago the bottleneck was on the computing power.
 
-The advances in computer processing made possible scientific modelling, which is generate part or feature of the real world to understand, define, quantify, visualize or simulate \cite{Humphreys:04}. Modelling such systems require a previous knowledge of all the characteristics, the behavior of this domain and what is the goal with this modelling allied with a big \emph{"piece"} of abstraction. Popular models are, for example, conceptual models, operational models, mathematical models, graphical models. The advantages of a model are: help us to communicate; allow us to clarify and test understanding; create credibility and accountability; organize the thoguhts; simplify and solve problems; 
+The advances in computer processing made possible scientific modelling, which generates part or feature of the real world to understand, define, quantify, visualize or simulate \cite{Humphreys:04}. Modelling such systems require a previous knowledge of all the characteristics, the behavior of this domain and what is the goal of this modelling allied with a big \emph{"piece"} of abstraction. Popular models are, for example, conceptual models, operational models, mathematical models, graphical models. The advantages of a model are: help us to communicate; allow us to clarify and test understanding; create credibility and accountability; organize the thoughts; simplify and solve problems;
 
-These models are based on a series of "orders" that the modeller had clearly expressed earlier. These stack of "orders" are known as algorithms - a series of instructions for how to do something. Instructions that tell the computer how to make decisions and when to do calculations - which are different according to the type of model.
+The series of "orders" clearly expressed by the modeller is what defines the model. These stack of "orders" are known as algorithms - a series of instructions for how to do something. Instructions that tell the computer how to make decisions and when to do calculations - which are different according to the type of model.
 
-Among the many computer science areas, there is one that studies the complexity of algorithms. As algorithms are programs that perform a series of instructions, complexity analysis allows us to measure how fast a program is when it performs computations. The analysis allows us to explain how an algorithm behaves in the worst case scenario, for instance. 
+Among the many computer science areas, there is one that studies the complexity of algorithms. As algorithms are programs that perform a series of instructions, complexity analysis allows us to measure how fast a program is when it performs computations. The analysis enables us to explain how an algorithm behaves in the worst case scenario, for instance.
 This information will come in hand when we analyze the complexity of \emph{SHPECK}'s algorithm on chapter ~\ref{chapter:SHPECK}.
 
 %SOFTWARE ARCHITECTURE AND DESIGN
 \subsection{Software Architecture and Design}
 %WHAT IS SOFTWARE ARCHITECTURE
-Software Architecture is the process of finding a structured solution that achieves all of the technical and operational requirements addressing also attributes as performance, security, value for the user and management. The architecture and design of a software is the \emph{art} of taking into account all of the several factors and take the best path available considering the impact on quality, interface, database structure, performance, maintainability and success of the software.
-%WHY SOFTWARE ARCHITECTURE
-The software architecture is responsible not only by the algorithms and the data structure, but also by the organization, communication, synchronization, functionality and design of the desired elements, scaling and performance. There is no well defined recipe for a good software architecture - it takes time, practice and efforts to start taking the right paths and weighting the options according to the needs. Recognizing paradigms and building relationships among systems can be handful in order to perform succesfully as a software architect.
-The software architect is responsible for structuring the software with a consolidated and dense foundation - anything other than this implies risk for the application. Studying the scenarios and requirements before designing the application is a must. Poor architecture results in deployment problems, instability, lack of support and the complete failure of the software (sometimes even the complete business).
+Software Architecture is the process of finding a structured solution that achieves all of the technical and operational requirements also addressing attributes as performance, security, value for the user and management. The architecture and design of software are the \emph{art} of considering all of the several factors and tracing the best path available. Without compromising the impact on quality, interface, database structure, performance, maintainability and success of the software.
+
+The software architecture is responsible not only for the algorithms and the data structure but also by the organization, communication, synchronization, functionality and design of the desired elements, scaling and performance. There is no well-defined recipe for a good software architecture - it takes time, practice and efforts to start taking the right paths and weighing the options according to the needs. Recognizing paradigms and building relationships among systems can be a handful tool to perform successfully as a software architect.
+The software architect is responsible for structuring the software with a consolidated and dense foundation - anything other than this implies a risk for the application. Studying the scenarios and requirements before designing the application is a must. Poor architecture results in deployment problems, instability, lack of support and the complete failure of the software (sometimes even the entire business).
 %GOALS OF SOFTWARE ARCHITECTURE
 A software architect aims to: 
 \begin{itemize}
@@ -315,10 +315,10 @@ A software architect aims to:
 \item Develop a structure where the tradeoffs of all attributes are clear and the impact of any change will be controlled;
 \end{itemize}
 
-During the development of \emph{SHPECK} we adopt the Object-Oriented, also know by its abbreviation \emph{OO} or \emph{OOP}, architectural style. Which is a paradigm based on the division of responsabilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsabilities. \emph{OO} COMPLETAR AQUI
-For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA); 
+During the development of \emph{SHPECK}, we adopt the Object-Oriented, also know by its abbreviation \emph{OO} or \emph{OOP}, architectural style. \emph{OO} is a paradigm based on the division of responsibilities into reusable and self-sufficient objects, each one of them containing the data and the behavior desired to its functionalities and responsibilities.
+For the purpose of illustration we listed a few other important architectural styles: client/server; domain driven design; service-oriented architecture (SOA);
 
-Before defining the architecture of \emph{SHPECK} we have analyzed points as atribbutes, application type, technologies and deployment options. Only after this section was possible to define which of the design architectures would fit best to our needs - small refinements were done along the way but always building on top of a previous wisely took decision.
+Before defining the architecture of \emph{SHPECK}, we have analyzed points as attributes, application type, technologies and deployment options. Only after this section was possible to identify which of the design architectures would fit best to our needs - small refinements were done along the way (which is normal).
 
 %PRINCIPLES OF SOFTWARE ARCHITECTURE
 \subsubsection{Software Architecture Principles}
@@ -335,36 +335,40 @@ The origin of software architecture principples is the need to minimize costs, a
 Along these principles, it is mandatory that the software architect or designer to see the large picture of the software that is under his management. The large picture is responsible to make sure that no feature is overlaping (nor duplicating) with another - this will lead to a low coupling and highly cohesive software. 
 
 \subsubsection{Design Principles}
-Designing a software is composing a structure with different layers responsible for different tasks or properties. This layering must be consistent for any operation and must respect the hierarchy as well as the orientation of this structure. 
-These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsabilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs. Design patterns is also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
+Designing software is composing a structure with different layers responsible for various tasks or properties. This layering must be consistent with any operation and must respect the hierarchy as well as the orientation of this structure.
+These layers must be connected but never overlapping themselves: duplicating properties/functionalities/responsibilities is a mistake and prone to error. Overlapping layers is the signal of potential inconsistencies and elevated software maintenance costs. Design patterns are also one important term to keep in mind. Establishing a coding style, naming standards and conventions provide a consistent model that will make the software's life longer and more adaptable.
 
 %SOFTWARE DEVELOPMENT 
 \subsection{Software Development}
-Software development is a process that requires extremely careful planning and execution to meet the proposed goals. The proposed goal is a software, but sometimes people forget that to achieve this goal is necessary many hours of computer programming, documenting, testing, bug fixing and decisions making. Software development may include also research, new development, prototyping, modification, reuse, re-engineering and maintenance. The most interesting and relevant points are going to be discussed in the following sections.
+Software development is a process that requires extremely careful planning and execution to meet the proposed goals. The proposed goal is software, but sometimes people forget that to achieve this goal is necessary many hours of computer programming, documenting, testing, bug fixing and decisions making. Software development may also include research, new development, prototyping, modification, reuse, re-engineering and maintenance. The following sections discuss the most interesting and relevant points.
 %LIFE CYCLE
 \subsubsection{Life Cycle of a Software Development Projet}
-This topic is relevant to make clear that lots of work is done before writting any line of code. We can mention tasks as: requirements definition; functional specification; architecture and design decisions; implementing and testing; software deploy; documentation; and maintenance;
-There may be additional tasks according to the reality of each software development but the idea of life cycle must be clear be a clear notion in the reader's mind. 
+This topic is relevant to clarify that lots of work are done before writing any line of code. We can mention tasks as requirements definition; functional specification; architecture and design decisions; implementing and testing; software deploy; documentation; and maintenance;
+There may be additional functions according to the reality of each software development, but the idea of life cycle must be a clear notion in the reader's mind.
 
 %SOFTWARE ENGINEERING
 \subsubsection{Software Engineering}
-The importance of software engineering can be shown with by two definitions that contrast in time: \emph{``The establishment and use of sound engineering principles in order to obtain economically software that is reliable and works efficiently on real machines.''}, from \cite{Bauer:68}; and \emph{``Software engineering is the application of a systematic disciplined, quantifiable approach to the development, operation, and maintenance of software, and the study of these approaches; that is, the application of engineering to software.''} by the \emph{IEEE Computer Society's Software Engineering Body of Knowledge} from 2004.
+The contrast in time doesn't destroy the importance of software engineering among different periods as can be verified in the following quotes:
+\begin{itemize}
+\item \emph{``The establishment and use of sound engineering principles in order to obtain economically software that is reliable and works efficiently on real machines.''}, from \cite{Bauer:68}. 
 
-The understandment that overlaps in both quotes is that to achieve a \emph{software}, engineering principles (for example: management issues, documentation, infra-structure, directing teams, scheduling and budgeting) are necessary and will be fundamental to reach that goal.
+\item \emph{``Software engineering is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software, and the study of these approaches; that is, the application of engineering to software.''} by the \emph{IEEE Computer Society's Software Engineering Body of Knowledge} from 2004.
+\end{itemize}
+The understanding that overlaps in both quotes is that to achieve a proper \emph{software}, engineering principles (for example management issues, documentation, infrastructure, directing teams, scheduling and budgeting) are necessary and will be fundamental to reach that goal.
 
 %DATABASE
 \subsubsection{Database}
-The database is responsible to organize, store and retrieve the data so it can be used efficiently and easily. It is composed by a collection of schemes in a way that it supports processes requiring information which are used by the application's internal operations. They are organized according to their organization approach: relational database; tabular database; distributed database; OO database; and flat file database; 
+The database is responsible for organizing, storing and retrieve the data so it can be used efficiently and smoothly. A collection of schemes composes it in a way that it supports processes requiring information that are utilized by the application's internal operations. They are organized according to their approach: relational database; tabular database; distributed database; OO database; and flat file database;
 
 Among several types of database, the software engineering previously done should identify which of them suits better the needs of the software. Details of \emph{SHPECK}'s database are presented in chapter ~\ref{chapter:SHPECK}.
 
 %USER INTERFACE
 \subsubsection{User Interface (\emph{UI}) and Human-Computer Interaction (\emph{HCI})}
-\emph{UI} and \emph{HCI} are area from the computer science that are influence by psychology, ergonomics, engineering, graphic design and others. Both areas take into account and are products of how humans interact with computers. 
+Psychology, ergonomics, engineering, graphic design and others fields of study influence the \emph{UI} and \emph{HCI} areas from computer science. Both areas take into account and are products of how humans interact with computers.
 
-Good \emph{UI} are not user-expensive nor task-expensive, they behave naturally as the extension of the user's needs and desires. The software will easily bring more value to its users if the \emph{HCI} happens in a mutually benefitial way - by reaching the software's goal and not being an embarassment or annoyance for the user. Losses of productivity, efficiency, money and usability are expected consequences from a software that has skipped the preparation parts to the development of \emph{UI} and \emph{HCI}.
+Good \emph{UI} are not user-expensive nor task-expensive, they behave naturally as the extension of the user's needs and desires. The software will easily bring more value to its users if the \emph{HCI} happens in a mutually beneficial way - by reaching the software's goal and not being an embarrassment or annoyance for the user. Losses of productivity, efficiency, money and usability are expected consequences from a software that has skipped the preparation parts to the development of \emph{UI} and \emph{HCI}.
 
-\emph{UI} and \emph{HCI} were extensively studied and analysed along the development of \emph{SHPECK}. 
+\emph{UI} and \emph{HCI} were extensively studied and analysed along the development of \emph{SHPECK}.
 
 % BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
 \section{Hydrogeochemistry Principles}
@@ -382,7 +386,7 @@ Stoichiometric approaches have two general advantages over non-stoichiometric: i
 It is important to mention that any analysis resulting from a water sample must be carefully taken. Any geochemical investigation is useless if the integrity of the water of the solid phase is compromised. Results of interpretation and modelling might be incorrect if the sampling was not done properly. A principal objective is to obtain a water sample with the same chemical composition as those of water in its original environment, for example, an aquifer or a surface water. \cite{Deutsch:97}
 
 % THERMODYNAMIC EQUILIBRIUM
-\subsubsection{Thermodynamic Equilibrium}
+\subsubsection{Thermodynamic Equilibrium Reactions}
 There are mainly two ways to describe thermodynamic equilibrium reactions: Equilibrium and Kinetic. Both of them formulates a closed system and describe the position of the maximum thermodynamic equilibrium. Equilibrium is the moment where there is no more chemical energy to alter the distribution of mass between reactants and products in the system. The way to model a reaction depends on its rate: an equilibrium reaction is relatively fast on the mass transport process while the kinetic reaction is slow. Therefore, when applying an equilibrium model to a reaction is assumed that the whole mass transfer happens at the same time when the reactant and product are putted together, and this will configurate an equilibrium situation. If the reaction rate is slow, it requires a kinetic description of the reaction. On this work, it will be addressed only equilibrium reactions.  \cite{Nordstrom:86}
 
 Assuming the independent equilibrium reactions:
@@ -435,12 +439,12 @@ f(x) = c_0 + c_1 * x + c_2 * x^2 + ... + c_n * x^n
 
 where \emph{n} is the degree of the polynomial and \emph{c} is a set of coefficients. Polynomial regression models are usually solved using the method of least squares. Likewise performing polynomial regression with a degree 0 on a set of data returns a single constant value. It is the same as the mean average of that data. This makes sense because the average is an approximation of all the data points, as shown in figure \ref{fig:degree0}. The average line mostly follows the path of the data points. Thus the mean average is a form of curve fitting and likely the most basic.
 
-%\begin{figure}[ht!]
-%\centering
-%\includegraphics[width=100mm]{degree0.png}
-%\caption{Example of Linear regression}
-%\label{fig:degree0}
-%\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree0.png}
+\caption{Example of Linear regression}
+\label{fig:degree0}
+\end{figure}
 
 Linear regression is polynomial regression of degree 1, and generally takes the form
 
@@ -450,22 +454,22 @@ f(x) = c_0 + c_1 * x
 
 where \emph{$c_0$} is the y-intercept and \emph{$c_1$} being the slope. Figure \ref{fig:degree1} shows clearly that the linear regression line running along the data points approximate the data. Mean average and linear regression are the most commom forms of polynomial regression, but not the only.
 
-%\begin{figure}[ht!]
-%\centering
-%\includegraphics[width=100mm]{degree1.png}
-%\caption{Example of Linear regression}
-%\label{fig:degree1}
-%\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree1.png}
+\caption{Example of Linear regression}
+\label{fig:degree1}
+\end{figure}
 
 The next step of polynomial would be the quadratic regression, now the regression becomes non-linear and the data is not restricted to straight lines. With figure \ref{fig:degree2} is possible to visualize a data with a quadratic regression trend line. Basically, the idea is simple: find a line that best fits 
 the data which is find the coefficients to a polynomial that best fits the data.
 
-%\begin{figure}[ht!]
-%\centering
-%\includegraphics[width=100mm]{degree2.png}
-%\caption{Example of Polynomial Regression}
-%\label{fig:degree2}
-%\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{degree2.png}
+\caption{Example of Polynomial Regression}
+\label{fig:degree2}
+\end{figure}
 
 Polynomial regression is an overdetermined system of equations that uses least squares as a method of approximating an answer. To understand this, some linear algebra is required. 
 
@@ -634,13 +638,14 @@ An interesting work about inverse geochemical modelling can be verified in \cite
 This type of models, also called reaction path models, are used for prediction of water chemistry evolution along a flowline. Initial water chemistry is known and the aim of the program is to predict water chemistry at some point along flow path. This kind of modelling introduce problems regarding kinetic and adsorption data, which are ofter missing and frequently limited. 
 \end{itemize}
 
+\newpage
+
 %SUMMARY
-\section{Summary - TO BE DONE}
+\section{Summary}
 \begin{itemize}
-\item Importance of multidisciplinary problems:
-\item  Analysis of the basic concepts necessary from the geochemical point of view
-\item Analysis of the basic concepts necessary from the CS point of view
-\item Summary
+\item Importance of multidisciplinary problems: The amazing power of computer science to adapt itself to other areas of knowledge and do something brilliant is incredible. The best way to push the limits is by redefining obstacles outside normal boundaries and reach solutions based on new understanding of complex situations.
+\item Computer science principles: Understanding what is a software and how it connects with the \emph{"machine world"} to the \emph{"real world"} is something not trivial. We reinforce the idea that the extension of a software goes way beyond the lines of code and the interface showing up on the screen.We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
+\item Hydrogeochemistry principles: Thermodynamics is one of the substantial basis for the history of physics, chemistry and the science in general as we know it. It is crucial to understanding the role that it has in the natural aspects of the world that we live. The comprehension of thermodynamics goes through the analysis, awareness and interrelations of the several factors that compose this complex \emph{maze}. From the wide range of factors, we can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, etc.
 \end{itemize}
 
 
@@ -827,7 +832,7 @@ This emphasizes the clear need for a proper computation approach while treating 
 \textbf{Extending Ourselves: Computational Science, Empiricism, and Scientific Method}
 
 \bibitem[BAUER, 1968]{Bauer:68} BAUER, FRITZ
-\textbf{Software Engineering: A Report on a Conference Sponsored by NATO}: NATO
+\textbf{Software Engineering: A Report on a Conference Sponsored by NATO}
 
 \end{thebibliography}
 
