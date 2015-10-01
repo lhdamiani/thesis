@@ -655,21 +655,58 @@ This type of models, also called reaction path models, are used for prediction o
 %                                                                 %
 %%%%%%%%%%%%%%%%%%%%%%
 
+%COMMERCIAL SOFTWARES REVIEW
 \chapter{Commercial softwares review}
 \label{chapter:review}
+The importance of geochemical models has increased lately due to its variety of applications, but the first models date back to the 70’s as in \cite{Westall:76} and \cite{Wolery:79}. Since then, these models are used to solve problems as  speciation; determination of minerals' saturation indexes; adjustment of equilibrium for minerals; mixing of different waters; calculation of stoichiometric reactions; mixing of solids, fluids and gaseous phases; calculation of equilibrium/kinetic controlled reactions; reactive transport; mass-law calculations;
 
+The quality of the chemical analysis depend on the methods used, thermodynamic data and theoretical concepts applied. Therefore it is crutial to check the results and is clear that there will be some differences in the results according to the software used. Among the huge variety of software availables, some of them are developed for batch-type simulations only while others have transport capabilities. Several of them do not incorporate graphical interfaces and are written in FORTRAN, newer distributions are mainly written in C/C++ and due to proprietary reasons code is not distributed along the software. Important to mention that, even those who have an integrated graphical user interface (GUI), it is ofter very tedious and time-consuming to generate input files for groudwater simulation softwares.
+
+The goal of this chapter is to note other codes that perform modelling of aqueous geochemical systems. It is not possible nor the purpose of this work to present all the existing codes but to critically review and compare some aspects of the codes. These codes are being widely used among the community and have enough documentation published in the open literature that makes a comparison effort sustainable and interesting.
+
+During this work we will focus exclusively on programs that do specifically speciation models. Which are the following: \emph{EQ3/6}; \emph{PHREEQC}; \emph{MINTEQ}; and \emph{SOLMINEQ};
+
+We will compare and critically analyze them from the computer science point of view. It's worth mentioning that in any aspect this review is meant to be impolite towards these evaluated codes. Quite the opposite, we value their efforts and are thankful by the knowledge we could acquired by analyzing them. 
+
+%GEOCHEMICAL SPECIATION MODELLING CODES
+\section{Geochemical Speciation Modelling Codes}
+\subsection{\emph{EQ3/6}}
+Large database, general screening, info is not exactly about what you want. difficult to use and people don't really understand how it is put together. Their algorithm/input/output is old. 
+
+Is a software package for geochemical modeling of aqueous systems. Includes a speciation-solubility solver (useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or diesquilibrium), a reaction path which models water/rock interaction (to model the consequences of reacting an aqueous solution with a set of reactants which react irreversibly and also model fluid mixing and the consequences of changes in temperature) or fluid mixing and several supporting thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). It is written in FROTRAN 77 and was developed to run under UNIX and the distribution is not free (license required) \cite{Wolery:79} \cite{Wolery:90} \cite{Wolery:92}.
+
+\subsection{\emph{PHREEQC}}
+shitty interface, poor input/output, old, defferent way of defining the problem.
+
+Designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model and has capabilities to:
 \begin{itemize}
-\item Geochemical's software analysis/review: The idea is to do a table comparison of softwares and tech details. Also interesting to mention who maintain (OR NOT) the programs. The software analysis and comparison will be only between:
-\begin{itemize}
-\item EQ3/6 (GWB): Large database, general screening, info is not exactly about what you want. difficult to use and people don't really understand how it is put together. Their algorithm/input/output is old. 
-\item PHREEQC: shitty interface, poor input/output, old, defferent way of defining the problem.
-\item MINTEQ: Much simpler options on raction treatment, developed by the United States' Environment Protection Agency (EPA). 
-\item SOLMINEQ: its database is focused on organic materials.
+\item Speciation and Saturation Index calculations;
+\item Batch reaction and one-dimensional (1D) transport calculations involving reversible reactions (including aqueous, minerals, gas, solid-solution, surface-complexation, and ion-exchange equilibrium) and irreversible reactions (including specified mole transfer of reactants, kinetically controlled reactions, mixing of solutions and temperature changes);
+\item Inverse modelling, which finds sets of mineral and gas mole transfers that takes into account differences in composition between waters.
 \end{itemize}
-\item Academic/literature analysis
-\item Emphasize again the CONTRIBUTION of my approach
-\item Summary
-\end{itemize}
+The software was written in C and has free distributions for Windows/UNIX/MAC \cite{Parkhurst:80}.
+
+\subsection{\emph{MINTEQ}}
+Much simpler options on raction treatment, developed by the United States' Environment Protection Agency (EPA). 
+
+Is an equilibrium speciation model that is used to calculate equilibrium composition of dillute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among disolved species, adsorbed species and multiple solid phases. A large database adequate to a large range of problems is inclued and there is no need for the user to change or add anything \cite{Brown:87} \cite{Allison:91}.
+
+
+\subsection{\emph{SOLMINEQ}} "ITS A DATABASE FOCUSED IN ORGANIC MATERIAL"
+Is a FORTAN 77 written geochemical modeling program based on SOLMNEQ with improved algorithms that result in a faster program execution and tighter convergence. Has a database with over 270 inorganics and 80 organics aquoues species and 214 minerals. It calculates the distribution of mass among aquoues species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes a wide variety of options, for example, boiling, mixing of solutions and partitioning of gases between water, oil and a vapour phase. Solimineq.88 contemplates also mass trasnfer with the effects of dissolution and/or precipitation of minerals and options to calculate activity coefficient model. The original version has no GUI but there were further studies with the intention of creating a user-friendly program that can be used to edit/analize input and output files of Solmineq.88 \cite{Kharaka:73}.
+
+
+
+%GEOCHEMICAL SPECIATION ANALYSIS
+\section{Geochemical Speciation Analysis}
+The idea is to do a table comparison of softwares and tech details. Also interesting to mention who maintain (OR NOT) the programs.
+
+%SHPECK ANALYSIS
+\section{SHPECK Analysis}
+
+%SUMMARY
+\section{Summary}
+
 
 %%%%%%%%%%%%%%%%%%%
 %                                                        %
@@ -833,6 +870,10 @@ This emphasizes the clear need for a proper computation approach while treating 
 
 \bibitem[BAUER, 1968]{Bauer:68} BAUER, FRITZ
 \textbf{Software Engineering: A Report on a Conference Sponsored by NATO}
+
+\bibitem[WESTALL, 1976]{Westall:76} WESTALL, J.C., J.L. ZACHARY AND F.F.M. MOREL
+\textbf{MINEQL, a computer program for the calculation of chemical equilibrium composition of aqueous systems}
+
 
 \end{thebibliography}
 
