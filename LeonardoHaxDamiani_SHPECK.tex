@@ -356,11 +356,11 @@ The contrast in time doesn't destroy the importance of software engineering amon
 
 \item \emph{``Software engineering is the application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software, and the study of these approaches; that is, the application of engineering to software.''} by the \emph{IEEE Computer Society's Software Engineering Body of Knowledge} from 2004.
 \end{itemize}
-The understanding that overlaps in both quotes is that to achieve a proper \emph{software}, engineering principles (for example management issues, documentation, infrastructure, directing teams, scheduling and budgeting) are necessary and will be fundamental to reach that goal.
+The understanding that overlaps in both quotes is that to achieve a proper \emph{software}, engineering principles (for example management issues, documentation, infrastructure, directing teams, scheduling and budgeting) are necessary and will be fundamental to reach that goal.
 
 %DATABASE
 \subsubsection{Database}
-The database is responsible for organizing, storing and retrieve the data so it can be used efficiently and smoothly. A collection of schemes composes it in a way that it supports processes requiring information that are utilized by the application's internal operations. They are organized according to their approach: relational database; tabular database; distributed database; OO database; and flat file database;
+The database is responsible for organizing, storing and retrieve the data so it can be used efficiently and smoothly. A collection of schemes composes it in a way that it supports processes requiring information that are utilized by the application's internal operations. They are organized according to their approach: relational database; tabular database; distributed database; OO database; and flat file database;
 
 Among several types of database, the software engineering previously done should identify which of them suits better the needs of the software. Details of \emph{SHPECK}'s database are presented in chapter ~\ref{chapter:SHPECK}.
 
@@ -678,27 +678,6 @@ We will present each relevant detail about the geochemical point of view and the
 \subsection{\emph{EQ3/6}}
 EQ3/6 consists of two programs: EQ 3 is a pure speciation code whose results EQ 6 subsequentially process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. EQ3/6 includes a speciation-solubility solver (useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium). It also offers a reaction path calculation that models water/rock interaction or fluid mixture. EQ3/6 supports several thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). It is developed to run under UNIX, and the distribution is not free (it requires a license). \cite{Wolery:79} \cite{Wolery:90} \cite{Wolery:92}.
 
-\subsubsection{User Interactions}
-In \emph{EQ3/6} the command prompt is responsible for all the interactions with the user. There are several codes inside \emph{EQ3/6} and each one of them must be run with the appropriate command prompt shortcut. From the existing softwares there are \emph{EQ3NR}, \emph{EQ6} and \emph{EQPT} just to name a few.The user must enter command from the keyboard and must use this "command prompt". By pressing "CTRL+C" at any time the software execution stops, literally "breaking" the process. For example, EQ3 is run by commands of the form as in code ~\ref{eq3:run}.
-
-\begin{lstlisting}[frame=single, caption=Running EQ3 in \emph{EQ3/6} package, label=eq3:run]
->runeq3 datafilekey inputfile(s)
-\end{lstlisting}
-
-Where \emph{datafilekey} and \emph{inputfile} are arguments used by the program; The former is a three-character identification associated to which database should be used while the latter is specifically the name of the input file (can be more than one). Depending on which program from the package the user is using, two to several output files are going to be generated, always in the \emph{ASCII} format. 
-As mentioned, the inputfile will be entered in the program as an argument. Any regular text editor is sufficient to create or modify an input file (although it is strongly recommended that the user does not create an input file from scratch). There are several pre-existing input templates available and if none of them matches the need of the user, \emph{EQ3/6} recommends that the user generate a new one by copying existing blocks from these templated provided.
-
-The menu format inside the input files try to recriate known user interactions method as shown in code ~\ref{eq3:menu}.
-
-\begin{lstlisting}[frame=single, caption=Menu Option inside \emph{EQ3/6} input files that mimics a "radio button", label=eq3:menu]
-iopr(4) - Print a Table of Aqueous Species Concentrations, Activities, etc.: 
- [ ] (-3) Omit species with molalities < 1.e-8 
- [ ] (-2) Omit species with molalities < 1.e-12 
- [ ] (-1) Omit species with molalities < 1.e-20 
- [x] ( 0) Omit species with molalities < 1.e-100 
- [ ] ( 1) Include all species 
-\end{lstlisting}
-
 \subsubsection{Input/Output Options}
 The \emph{datafilekey} and \emph{inputfile} given to the program as arguments must be consistent with the options and methods. For example, if they have different mehtods for calculating the activity coefficient there will be problems and the results will be meaningless. Other point to be taken into consideration and that follows the same idea, the \emph{inputfile} must be using chemical data (for example, elements, species and compounds) that is known by the \emph{datafilekey}. 
 
@@ -731,6 +710,26 @@ A small excerpt of an \emph{EQ6} outpuf file is shown in code ~\ref{eq3:output}.
 ...
 \end{lstlisting}
 
+\subsubsection{User Interactions}
+In \emph{EQ3/6} the command prompt is responsible for all the interactions with the user. There are several codes inside \emph{EQ3/6} and each one of them must be run with the appropriate command prompt shortcut. From the existing softwares there are \emph{EQ3NR}, \emph{EQ6} and \emph{EQPT} just to name a few.The user must enter command from the keyboard and must use this "command prompt". By pressing "CTRL+C" at any time the software execution stops, literally "breaking" the process. For example, EQ3 is run by commands of the form as in code ~\ref{eq3:run}.
+
+\begin{lstlisting}[frame=single, caption=Running EQ3 in \emph{EQ3/6} package, label=eq3:run]
+>runeq3 datafilekey inputfile(s)
+\end{lstlisting}
+
+Where \emph{datafilekey} and \emph{inputfile} are arguments used by the program; The former is a three-character identification associated to which database should be used while the latter is specifically the name of the input file (can be more than one). Depending on which program from the package the user is using, two to several output files are going to be generated, always in the \emph{ASCII} format. 
+As mentioned, the inputfile will be entered in the program as an argument. Any regular text editor is sufficient to create or modify an input file (although it is strongly recommended that the user does not create an input file from scratch). There are several pre-existing input templates available and if none of them matches the need of the user, \emph{EQ3/6} recommends that the user generate a new one by copying existing blocks from these templated provided.
+
+The menu format inside the input files try to recriate known user interactions method as shown in code ~\ref{eq3:menu}.
+
+\begin{lstlisting}[frame=single, caption=Menu Option inside \emph{EQ3/6} input files that mimics a "radio button", label=eq3:menu]
+iopr(4) - Print a Table of Aqueous Species Concentrations, Activities, etc.: 
+ [ ] (-3) Omit species with molalities < 1.e-8 
+ [ ] (-2) Omit species with molalities < 1.e-12 
+ [ ] (-1) Omit species with molalities < 1.e-20 
+ [x] ( 0) Omit species with molalities < 1.e-100 
+ [ ] ( 1) Include all species 
+\end{lstlisting}
 
 \subsubsection{File Formats}
 
@@ -751,17 +750,6 @@ The installation of \emph{EQ3/6} is explained in details in \cite{Wolery:92}. Du
 \end{itemize}
 The software was written in C and has free distributions for Windows, Linux and MAC \cite{Parkhurst:80}.
 
-\subsubsection{User Interactions}
-\emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interactions will be done separately.
-\begin{itemize}
-\item \emph{PHREEQC} for Windows: Due to the need of a geochemical modelling software and the lack of interface for \emph{PHREEQC} on the first versions of the software, many efforts were done in order to create a interface to \emph{PHREEQC}. The program \emph{PhreeqcI} is a graphical user interface to \emph{PHREEQC} that provides data entry screens for the keyword data blocks with a description of each input data item. Organizing the input file by using some sort of \emph{project tree} which facilitates viewing, selecting, editing and running the \emph{PHREEQC} simulations. Very important to mention that some keyword blocks are not implemented on \emph{PhreeqcI}. After this, another effort was done, \emph{PHREEQC} version 2 was launched with a graphical interface - which was kept later in version 3. The last effort in this sense was the development of an adaptation of the popular general-purpose text editor \emph{Notepad++}. This mod comes with the following capabilities: syntax highlighting; autocompletion of keywords and identifiers; tips; colored numbers; parenthesis matching; commenting and uncommenting multiple lines at once; column editor; few shortcuts; and file recognition;
-\item \emph{PHREEQC} for UNIX: Under UNIX's distribution, \emph{PHREEQC} runs from the command prompt. It can be used by using the command as in code ~\ref{phreeqc:run}
-\begin{lstlisting}[frame=single, caption=Command to run UNIX's \emph{PHREEQC}, label=phreeqc:run]
-phreeqc input output database screen_output
-\end{lstlisting}
-Where \emph{"input"} file will contain the description of the simulation, the \emph{"output"} file will store the results of the simulation, \emph{"database"} will specify which database should be used and \emph{"screen\_output"} stores the information that will be shown on screen. If the user doesn't specify the names of \emph{"output"}, \emph{"database"} or \emph{"screen\_output"} the geochemical modelling software will choose default values.
-
-\end{itemize}
 \subsubsection{Input/Output Options}
 The input data for \emph{PHREEQC} is arranged by \emph{keyword data blocks}. Each block organized with a keywork on the first line followed by lines containing data related to the keyword. Keywords and its context are read from the database at the beginning of the run to define all the necessary parameters - interesting to keep in mind that \emph{any} parameters can be redefined on the input file if the user wants. After the database is read, it will continue reading the input file until the \emph{END} keyword is reached. This process will be repeated until the end of the file. As the input file is being read, the program will start putting the pieces together in order to perform the necessary calculations. An example of a \emph{keyword data block} is shown in code ~\ref{phreeqc:keyword}. Among the possible keywords available in \emph{PHREEQC} are: EQUILIBRIUM PHASES, EXCHANGE, GAS PHASE, INVERSE MODELING, PHASES, REACTION, PRINT, SAVE, SOLUTION SPECIES, etc. Each one of these keywords contains specific arguments and parameters in order to be used. Certain keywords require some specific others keywords - somehow like a puzzle - and if there is something missing on the input file, the results are going to be inconclusive and wrong.
 
@@ -777,6 +765,7 @@ pH_Fix      -5.0    HCl      10.0
 
 The output file will contain the results of the simulation defined on the input file also divided in \emph{keyword blocks}. Among those we can mention solution composition, description of solution, redox couples, distribution of species (as can be seen in code ~\ref{phreeqc:output}), saturation indices.
 
+{\sloppy
 \begin{lstlisting}[frame=single, caption=\emph{PHREEQC}'s excerpt from the output file, label=phreeqc:output]
 ...
 ----------------------------Distribution of species----------------------------
@@ -796,14 +785,25 @@ C(4)         2.257e-003
    CO3-2          3.128e-005  6.506e-006    -4.505    -5.187    -0.682     -0.34
    CaCO3          2.256e-005  2.636e-005    -4.647    -4.579     0.067    -14.60
    NaCO3-         1.477e-005  9.972e-006    -4.831    -5.001    -0.170      1.77
-   ...
+...
+\end{lstlisting}}
+
+\subsubsection{User Interactions}
+\emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interactions will be done separately.
+\begin{itemize}
+\item \emph{PHREEQC} for Windows: Due to the need of a geochemical modelling software and the lack of interface for \emph{PHREEQC} on the first versions of the software, many efforts were done in order to create a interface to \emph{PHREEQC}. The program \emph{PhreeqcI} is a graphical user interface to \emph{PHREEQC} that provides data entry screens for the keyword data blocks with a description of each input data item. Organizing the input file by using some sort of \emph{project tree} which facilitates viewing, selecting, editing and running the \emph{PHREEQC} simulations. Very important to mention that some keyword blocks are not implemented on \emph{PhreeqcI}. After this, another effort was done, \emph{PHREEQC} version 2 was launched with a graphical interface - which was kept later in version 3. This graphical interface was baptized \emph{PfW} (Phreeqc for Windows) but it has no updates since 2011. The last effort in this sense was the development of an adaptation of the popular general-purpose text editor \emph{Notepad++}. This mod comes with the following capabilities: syntax highlighting; autocompletion of keywords and identifiers; tips; colored numbers; parenthesis matching; commenting and uncommenting multiple lines at once; column editor; few shortcuts; and file recognition;
+\item \emph{PHREEQC} for UNIX: Under UNIX's distribution, \emph{PHREEQC} runs from the command prompt. It can be used by using the command as in code ~\ref{phreeqc:run}
+\begin{lstlisting}[frame=single, caption=Command to run UNIX's \emph{PHREEQC}, label=phreeqc:run]
+phreeqc input output database screen_output
 \end{lstlisting}
+Where \emph{"input"} file will contain the description of the simulation, the \emph{"output"} file will store the results of the simulation, \emph{"database"} will specify which database should be used and \emph{"screen\_output"} stores the information that will be shown on screen. If the user doesn't specify the names of \emph{"output"}, \emph{"database"} or \emph{"screen\_output"} the geochemical modelling software will choose default values.
+\end{itemize}
 
 \subsubsection{File formats}
-All the files discussed above are in the \emph{ASCII} text files format and, therefore, any regular text editor is able to be used. It is recommended that the edition of the \emph{PHREEQC} files is done by using its own interface.
+All the files discussed above are in the \emph{ASCII} text files format and, therefore, any regular text editor is able to be used. It is recommended that the edition of the \emph{PHREEQC} files is done by using its NotPhreeqcce or the notepad++ adapted version \cite{NotPhree:11}.
 
 \subsubsection{Software Environment}
-\emph{PHREEQC} has support for Windows (32 and 64-bit), MacOS (OS 10.6+) and Linux. \emph{PHREEQC} is currently on version 3 and the frequency of updates, bug fixes and maintenance is fine.
+\emph{PHREEQC} has support for Windows (32 and 64-bit), MacOS (OS 10.6+) and Linux. \emph{PHREEQC} is currently on version 3 and with frequent updates, bug fixes and maintenance.
 
 \subsubsection{Installation Procedures}
 The \emph{PHREEQC} version for Windows has a self-extracting file that can be downloaded from the USGS website and easily installed. The \emph{UNIX} distribution comes with additional scripts and a makefile and the user should follow some steps to compile and install the program.
@@ -813,19 +813,125 @@ The \emph{PHREEQC} version for Windows has a self-extracting file that can be do
 \subsection{\emph{MINTEQ}}
 Much simpler options on raction treatment, developed by the United States' Environment Protection Agency (EPA). 
 
-Is an equilibrium speciation model that is used to calculate equilibrium composition of dillute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among disolved species, adsorbed species and multiple solid phases. A large database adequate to a large range of problems is inclued and there is no need for the user to change or add anything \cite{Brown:87} \cite{Allison:91}.
+\emph{MINTEQ} is a geochemical program to model aqueous solutions and the interactions of aquoues solutions with hypothesized assemblages of solid phases. It has an special inclination to equilibrium speciation to calculate equilibrium composition of dillute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among disolved species, adsorbed species and multiple solid phases although it has a much more simpler treatment of the reactions. It was orignally developed in FORTRAN77 by Battelle Pacific Northwest Laboratory (\emph{PNL}) and continued by the Environmental Protection Agency (\emph{EPA}) to perform the calculations necessary regarding waste, sediments and gruond water. \emph{MINTEQ} does not consider the kinetic reactions and works at fixed temperature ($25$ degrees Celcius). A large database adequate to a large range of problems is inclued and there is no need for the user to change nor add anything \cite{Brown:87} \cite{Allison:91}. The latest update on \emph{MINTEQ} has been in 1990, since then, some upgrades had been done in order to provide better usability and calculations. This new version was baptzied \emph{MINTEQA2} and uses a well-developed thermodynamic database from the \emph{USGS}. This review will always refer to this continued version of \emph{MINTEQ}. 
 
-\subsubsection{User Interactions}
 \subsubsection{Input/Output Options}
+The input files for \emph{MINTEQA2} can be generated manually but there is another software called \emph{PRODEFA2} that guides the user in order to accomplish this task. \emph{PRODEFA2} is an interactive program used to create input files that will be addressed in details in section ~\ref{minteq:interactions}. The input file is composed by four parts:
+\begin{itemize}
+\item Input file: The input file that contains the data input by the user. Typically, this file contains dissolved (i.e. Ca concentrations, pH, temperature) and solid phase (i.e. minerals, sorption sites) information for a water sample.
+\item Database file: This file contains the thermodynamic constants that govern the processes of interest (i.e. complexation constants, mineral solubilities, activity constants) which will be used to conduct calculations.
+\item Algorithm or executable file:  These files contain the workings of the code, which solve the specified problem (usually using an iterative numerical approach) within the constraints imposed by the Database files and the information in the Input file.
+\item Output file: This file contains the results of the calculations performed by the Algorithm Files.
+\end{itemize}
+
+Amont the input file's options, there are 4 levels of complexity that when putted together generate a \emph{MINTEQA2} simulation. 
+\begin{enumerate}
+\item Displays the current settings of system parameters such as temperature as well as program flag settings such as the number of iterations allowed;
+\item Specify the chemistry of the system;
+\item This level works as a "line editor" in displaying by category or TYPE those species that have been explicitly entered through level 2;
+\item Deals with utility functions (output file details, for example);
+\end{enumerate}
+
+If database, algorithm and output files are not specified there are some default options that will be used. Code ~\ref{minteqa2:input} brings a \emph{MINTEQA2}'s input file for a simulation that computes pH and is provided as example inside the package.
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s input file, label=minteqa2:input]
+TEST1A - Compute total H+ of a solution of known pH.              
+This together with TEST1B illustrate a two run set to compute pH. 
+25.00 MOLAL  0.000  0.00000E+00
+0 0 1 0 0 0 0 0 1 1 0 0 0
+0   0   0
+    330  0.000E+00   -2.50                      /H+1               
+    732  1.580E-03   -2.80                      /SO4-2             
+    410  7.700E-05   -4.11                      /K+1               
+    140  0.000E+00  -16.00                      /CO3-2             
+  
+  3   2
+3301403    21.6600    -0.5300                   /CO2 (g)           
+    330     2.5000     0.0000                   /H+1  
+\end{lstlisting}
+\end{minipage}
+
+
+The \emph{MINTEQA2}'s output file is divided into six parts:
+\begin{enumerate}
+\item Reproduction and interpretation of the input file;
+\item Detailed listing of species read from the database files;
+\item Iteration information and detailed information for each specie;
+\item Percentage distribution of components among dissolved and adsorbed species;
+\item Provisional or equilibrated mass distribution, provisional or equilibrium ionic strength, equilibrium pH and pE, electrostatic surface potencial and charge for electrostatic adsorption models;
+\item Saturation indices for all database solids with respect to the solution;
+\end{enumerate}
+
+Code ~\ref{minteqa2:output} brings an excerpt of \emph{MINTEQA2}'s part 3 output.
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s excerpt from the output file, label=minteqa2:output]
+...
+________________________________________________________________________________
+______________________________ PART 3 of OUTPUT FILE ___________________________
+  MINTEQA2  v4.02   DATE OF CALCULATIONS:  5-JUN-2000  TIME: 14: 6:27
+
+
+
+PARAMETERS OF THE COMPONENT MOST OUT OF BALANCE:
+
+     ITER      NAME       TOTAL mol/L   DIFF FXN   LOG ACTVTY    RESIDUAL
+      0   SO4-2           1.580E-03   6.594E-07    -2.91757    5.014E-07
+      1   SO4-2           1.580E-03   4.193E-04    -2.91775    4.192E-04
+      2   SO4-2           1.580E-03   8.125E-06    -3.01997    7.967E-06
+      3   SO4-2           1.580E-03   1.693E-07    -3.02220    1.135E-08
+
+ ID No      Name    Total Conc(M)    Conc (M)  log Activity   Diff fxn
+  410  K+1            7.700E-05     7.649E-05    -4.14759    5.093E-11
+  732  SO4-2          1.580E-03     1.266E-03    -3.02224    3.557E-09
+    2  H2O            0.000E+00    -1.049E-05    -0.00004    0.000E+00
+  330  H+1            0.000E+00     3.398E-03    -2.50000    0.000E+00
+  140  CO3-2          0.000E+00     2.916E-17   -16.66004    0.000E+00
+
+-----------------------------------------------------------------------------
+...
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection{User Interactions}\label{minteq:interactions}
+\emph{MINTEQA2} and \emph{PRODEFA2} interactions are completely independent programs and \emph{PRODEFA2} is used before \emph{MINTEQA2} in order to generate the input file that will be consumed by the latter. Everything is done through the command prompt and on this work will detail \emph{PRODEFA2}'s interaction. It provides a "walk-through" to generate an input file for \emph{MINTEQA2}. 
+
+After opening the software and providing a valid name, it will ask which part of the input file the user wants to create or edit as shown in figure ~\ref{minteq:init}. We will follow the suggested order and go through 4 levels, as previously discussed in this section. The main menu is shown in ~\ref{minteq:level0} and only defines which level the user will edit. Figure ~\ref{minteq:level1} shows the basic informations about level 1, in order to change any of the entries on this screen, the user must enter the number to the left of the entry and respond to the questions presented. This kind of interaction is performed during all the 4 levels. Through these interactions the user has access to all the information in the database and can choose specifically what is the model about. 
+
+During this work, we chose to add a specific aqueous specie to show the \emph{PRODEFA2} interactions and present it step-by-step bellow:
+
+\begin{enumerate}
+\item Choose level 2 on main menu;
+\item Choose option 1 (Specify AQUEOUS COMPONENTS: TOTAL CONCENTRATIONS or FIXED ACTIVITIES) inside the menu from level 2;
+\item Choose option 1 (TOTAL DISSOLVED CONCENTRATION), it identifies how we want to entre this new component.
+\item At this step, we are requested to enter the first letter for the component. Alternatives to this approach is to enter "-1" if you know the components id number or quit. We will add \ce{Na^+} to the system. So, we type the letter "N" and hit enter button.
+\item At this step, all the existing options available are shown listed with an identifier and we are requested to identify which one of these we want to add. This can be seen in ~\ref{minteq-Na+}.
+\item After pressing \ce{Na^+}'s id (at this case was the number 4). We can finally enter the TOTAL DISSOLVED CONCENTRATION (MOLAL) of COMPONENT. Defined earlier on step 3 After adding the molal concentration for this specie the system goes back to step 4 in case we want to continue adding other components.
+\end{enumerate}
+
 \subsubsection{File formats}
+All the files follow a regular text format (\emph{ASCII}) and their purpose is defined on the extension of the file. 
+\begin{itemize}
+\item Input files have the extension \emp{"INP"};
+\item Test and help files have the extension \emp{"HLP"};
+\item Output files have the extension \emp{"LST"};
+\item Database files have the extension \emp{"DBS"} or \emp{"UNF"};
+\item Input file have the extension \emp{"INP"};
+\end{itemize}
+
 \subsubsection{Software Environment}
+It is currently at the version 4.03 and is only supported for Windows, the latest release date back to May, 2006.
+
+
 \subsubsection{Installation Procedures}
+\emph{MINTEQA2} is easily installed by a self-extrator installer that can be downloaded from \emph{EPA}'s website \cite{minteq:website}. Included in the distribution package are also some important documentation, \emph{PRODEFA2} software and several input/output template files.
 
 \subsection{\emph{SOLMINEQ}} "ITS A DATABASE FOCUSED IN ORGANIC MATERIAL"
 Is a FORTAN 77 written geochemical modeling program based on SOLMNEQ with improved algorithms that result in a faster program execution and tighter convergence. Has a database with over 270 inorganics and 80 organics aquoues species and 214 minerals. It calculates the distribution of mass among aquoues species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes a wide variety of options, for example, boiling, mixing of solutions and partitioning of gases between water, oil and a vapour phase. Solimineq.88 contemplates also mass trasnfer with the effects of dissolution and/or precipitation of minerals and options to calculate activity coefficient model. The original version has no GUI but there were further studies with the intention of creating a user-friendly program that can be used to edit/analize input and output files of Solmineq.88 \cite{Kharaka:73}.
 
-\subsubsection{User Interactions}
 \subsubsection{Input/Output Options}
+\subsubsection{User Interactions}
 \subsubsection{File formats}
 \subsubsection{Software Environment}
 \subsubsection{Installation Procedures}
@@ -860,7 +966,7 @@ The idea is to do a table comparison of softwares and tech details. Also interes
 \item	Program organization
 \item	Complexity of the algorithm
 
-Calculation of speciation is conducted by substitution of the equilibrium constants into the mass balance expressions for the total concentration of a particular component. This results in a series of nonlinear equations which are solved iteratively using numerical techniques, such as the Newton-Raphson iteration used in the MINTEQA2 model. Iterations continue until the total calculated component concentrations, derived from the equilibrium expressions, calculated activity coefficients, and component mass balances, and the measured total concentrations converge to a prescribed limit [Nordstrom, 1979 #3004].
+Calculation of speciation is conducted by substitution of the equilibrium constants into the mass balance expressions for the total concentration of a particular component. This results in a series of nonlinear equations which are solved iteratively using numerical techniques, such as the Newton-Raphson iteration used in the MINTEQA2 model. Iterations continue until the total calculated component concentrations, derived from the equilibrium expressions, calculated activity coefficients, and component mass balances, and the measured total concentrations converge to a prescribed limit [Nordstrom, 1979].
 
 \item	Data-flow
 \item	User interface description and details
@@ -1012,7 +1118,11 @@ This emphasizes the clear need for a proper computation approach while treating 
 \bibitem[WESTALL, 1976]{Westall:76} WESTALL, J.C., J.L. ZACHARY AND F.F.M. MOREL
 \textbf{MINEQL, a computer program for the calculation of chemical equilibrium composition of aqueous systems}
 
+\bibitem[APELLO, 2011]{NotPhree:11} APELLO, C.A.J.
+\textbf{Notepad++ with PHREEQC Plugin - www.hydrochemistry.eu/ph3}
 
+\bibitem[MINTEQ, 2006]{minteq:website} Center for Exposure Assessment Modeling (CEAM)
+\textbf{http://www2.epa.gov/exposure-assessment-models/minteqa2}
 \end{thebibliography}
 
 \end{document}
