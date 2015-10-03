@@ -897,6 +897,29 @@ PARAMETERS OF THE COMPONENT MOST OUT OF BALANCE:
 
 After opening the software and providing a valid name, it will ask which part of the input file the user wants to create or edit as shown in figure ~\ref{minteq:init}. We will follow the suggested order and go through 4 levels, as previously discussed in this section. Figure ~\ref{minteq:level0} shows the main menu, it is the organization of all the levels and works as a central hub of information. Figure ~\ref{minteq:level1} displays the necessary information about level 1,     in order to change any of the entries on this screen, the user must enter the number to the left of the entry and respond to the questions presented. All the four levels do this kind of interactions. Through these interactions, the user has access to all the information in the database and can choose specifically about what is the model.
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{minteq-init.png}
+\caption{MINTEQ}
+\label{minteq:init}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{minteq-level0.png}
+\caption{MINTEQ}
+\label{minteq:level0}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{minteq-level1.png}
+\caption{MINTEQ}
+\label{minteq:level1}
+\end{figure}
+
+
+
 During this work, we chose to add a specific aqueous specie to show the \emph{PRODEFA2} interactions and present it step-by-step bellow:
 
 \begin{enumerate}
@@ -904,20 +927,27 @@ During this work, we chose to add a specific aqueous specie to show the \emph{PR
 \item Choose option 1 (Specify AQUEOUS COMPONENTS: TOTAL CONCENTRATIONS or FIXED ACTIVITIES) inside the menu from level 2;
 \item Choose option 1 (TOTAL DISSOLVED CONCENTRATION), it identifies how we want to entre this new component.
 \item At this step, we are requested to enter the first letter for the component. Alternatives to this approach is to enter "-1" if you know the components id number or quit. We will add \ce{Na^+} to the system. So, we type the letter "N" and hit enter button.
-\item At this step, all the existing options available are shown listed with an identifier and we are requested to identify which one of these we want to add. This can be seen in ~\ref{minteq-Na+}.
+\item At this step, all the existing options available are shown listed with an identifier and we are requested to identify which one of these we want to add. This can be seen in ~\ref{minteq:Na+}.
 \item After pressing \ce{Na^+}'s id (at this case was the number 4). We can finally enter the TOTAL DISSOLVED CONCENTRATION (MOLAL) of COMPONENT. Defined earlier on step 3 After adding the molal concentration for this specie the system goes back to step 4 in case we want to continue adding other components.
 \end{enumerate}
 
-There is also a software called \emph{Visual Minteq} that tries to "humanize" \emph{MINTEQ} and was maintained by the KTH Royal Institute of Technology, located in Stockholm, Sweden. \emph{Visual Minteq} latest release date is December 2013 at the version 3.0 and is available only for \emph{Windows} operating systems since it was developed in Visual Basic. Figure ~\ref{minteq:visual} shows \emph{Visual Minteq}'s interface. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{minteq-Na+.png}
+\caption{MINTEQ}
+\label{minteq:Na+}
+\end{figure}
+
+There is also a software called \emph{Visual Minteq} that tries to "humanize" \emph{MINTEQ} and was maintained by the KTH Royal Institute of Technology, located in Stockholm, Sweden. \emph{Visual Minteq} latest release date is December 2013 at the version 3.0 and is available only for \emph{Windows} operating systems since it was developed in Visual Basic. 
 
 \subsubsection{File formats}
 All the files follow a regular text format (\emph{ASCII}) and their purpose is defined on the extension of the file. 
 \begin{itemize}
-\item Input files have the extension \emp{"INP"};
-\item Test and help files have the extension \emp{"HLP"};
-\item Output files have the extension \emp{"LST"};
-\item Database files have the extension \emp{"DBS"} or \emp{"UNF"};
-\item Input file have the extension \emp{"INP"};
+\item Input files have the extension \emph{"INP"};
+\item Test and help files have the extension \emph{"HLP"};
+\item Output files have the extension \emph{"LST"};
+\item Database files have the extension \emph{"DBS"} or \emph{"UNF"};
+\item Input file have the extension \emph{"INP"};
 \end{itemize}
 
 \subsubsection{Software Environment}
@@ -930,15 +960,74 @@ The UNIX version distribution comes with the source files and must be compiled t
 
 %%% CORRECTED GRAMMARLY UNTIL HERE
 
-\subsection{\emph{SOLMINEQ}} "ITS A DATABASE FOCUSED IN ORGANIC MATERIAL"
-Is a FORTAN 77 written geochemical modeling program based on SOLMNEQ with improved algorithms that result in a faster program execution and tighter convergence. Has a database with over 270 inorganics and 80 organics aquoues species and 214 minerals. It calculates the distribution of mass among aquoues species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes a wide variety of options, for example, boiling, mixing of solutions and partitioning of gases between water, oil and a vapour phase. Solimineq.88 contemplates also mass trasnfer with the effects of dissolution and/or precipitation of minerals and options to calculate activity coefficient model. The original version has no GUI but there were further studies with the intention of creating a user-friendly program that can be used to edit/analize input and output files of Solmineq.88 \cite{Kharaka:73}.
+\subsection{\emph{SOLMINEQ.88}}
+\emph{SOLMINEQ.88} is an FORTRAN 77 written geochemical modeling program based on SOLMNEQ \cite{Kharaka:73} with improved algorithms that result in a faster program execution and tighter convergence. The software has a database with the focus on organics aqueous species. It calculates the distribution of mass among aqueous species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes options as boiling, mixing of solutions and partitioning of gases between water, oil and a vapour phase. \emph{SOLMINEQ.88} also contemplates mass transfer with the effects of dissolution and precipitation of minerals and options to calculate activity coefficient model \cite{Kharaka:88}. The original version has no UI, but there were further studies with the intention of creating a user-friendly program that can be used to generate, edit and analyze input and output files - \emph{SOLINPUT}.
+\emph{SOLMINEQ.88} model has not been developed any further nor improved since its first release.
 
 \subsubsection{Input/Output Options}
-\subsubsection{User Interactions}
-\subsubsection{File formats}
-\subsubsection{Software Environment}
-\subsubsection{Installation Procedures}
+The input of \emph{SOLMINEQ.88} consists of two sets of data: fixed and variable. The first contains the chemical composition of an aqueous fluid and options for processing these data; and the last Consists of input data required for using them.
 
+The input file is composed by six parts, \emph{SOLINPUT} guides the user throught all of them:
+\begin{enumerate}
+\item Basic Parameters: enter the chemical and physical data for that sample;
+\item Flags: controls how the software interprets, process and display the data;
+\item pH: controls the details of how the pH calculation is done;
+\item Mass transfer: defines which mass transfer capabilities are used;
+\item User Log K: make temporary changes and extensions to the database;
+\item Additional ions and minerals: temporarily adds user defined ions and minerals to a particular simulation;
+\end{enumerate}
+
+The output file contains the results of the computations by \emph{SOLMINEQ.88} and it consists of six parts: An input data echo that shows the values and options selected for each sample; A table listing the calculated tolerance factor for successive iterations on the anions; A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and os on; A table showing the distribution of species in solution; Ratios of a number of cations and anions of importance in geochemical processes; and the last one contains a table indicating the states of reactions for minerals considered;
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s excerpt of the output file, label=solmineq:output]
+ : Test Sample #1 for SOLMINEQ.88 - Modified Seawater at 25 C
+TEMP HI TEMP DENS PRESS
+0.2500E+02 O.OOOOE+00 0.1023E+01 O.OOOOE+00
+PH EHM EHMC EMFZSC
+0.8200E+01 0.5000E+00 0.9000E+01 0.9000E+01
+CONCENTRATION UNITS : PPM
+Na K Li Ca
+0.1077E+05 0.3991E+03 0.1810E+00 0.4123E+03
+Si02 Cl S04 H2S
+0.4280E+01 0.1935E+05 0.2712E+04 O.OOOOE+00
+F P04 N03 NH3
+0.1390E+01 0.6000E-01 0.2900E+00 0.3000E-01
+Pb Zn Cu Mn
+0.5000E-04 0.4900E-02 0.7000E-03 0.2000E-03
+As U V
+0.4000E-02 O.OOOOE+00 O.OOOOE+00
+Acetate Oxalate Succinate CH4
+0.1000E+00 0.1000E+00 0.1000E+00 0.1000E+00
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection{User Interactions}
+The software that accompany \emph{SOLMINEQ.88} and handles the generation of input files and all the interactions is named \emph{SOLINPU}. All the interactions use the command prompt - the menus with several options are generated and displayed. The user selects the option by entering the indication number and pressing enter (the indication number stays on the left of the option). Figure ~\ref{solmineq:interaction} shows this example of interaction.
+
+\begin{minipage}[c]{0.95\textwidth}
+\begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s example of user interaction, label=solmineq:interaction]
+	pH OPTIONS
+1) Gas Addition Option
+2) Gas-Water-Oil Distribution Option
+3) Carbonate Mineral Saturation Option
+4) C02 Option
+5) Tolerance factor for Mineral and C02 Options
+6) Return to Options Menu
+Enter Choice (1-6)   __
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection{File formats}
+The input files are regular \emph{ASCII} text files and any regular text editor is good for creating or editing.The database files from \emph{SOLMINEQ.88} have the extension "TBL" and the output files 
+
+\subsubsection{Software Environment}
+As mentioned, \emph{SOLMINEQ.88} had only one release and has been discontinued since then. It is available only for the \emph{Windows} operating system.
+
+\subsubsection{Installation Procedures}
+SOLMINEQ.88 distribution requires knowledge in compiling and linking FORTRAN77 programs. It also comes with the software \emph{SOLINPUT} that makes the user interactions, as explained before, easier.
+
+Interesting to point that along the installation manual, they recommend  that curious compiling options are activated, for example \emph{"do not check for array bounds"}, and \emph{"do not check subprogram interfaces"}.
 
 %GEOCHEMICAL SPECIATION ANALYSIS
 \section{Geochemical Speciation Analysis}
@@ -1045,6 +1134,12 @@ This emphasizes the clear need for a proper computation approach while treating 
 \bibitem[KHARAKA, 1973] {Kharaka:73} KHARAKA, Y. K. and BARNES, I.
 \textbf{SOLMNEQ: Solution-Mineral Equilibrium Computations}: NTIS Tech Rept. PB214-899, Springfield, VA, 82p
 
+\bibitem[DEBRAAL, 1989] {Debraal:89} DEBRAAL, J. D. and KHARAKA, Y. K
+\textbf{SOLINPU: A computer Code to Create and Modify Input Files for the Geochemical Program SOLMINEQ.88}
+
+\bibitem[KHARAKA, 1988] {Kharaka:88} KHARAKA, Y. K., GUNTER, W. D., AGGARWAL, P. K., PERKINS, E. H., AND DEBRAAL, J. D.,
+\textbf{SOLMINEQ.88; a computer program for geochemical modeling of water-rock interactions: Water-Resources Investigations Report.}
+
 \bibitem[NORDSTROM, 1986] {Nordstrom:86} NORDSTROM, D., MUNOZ, K.
 \textbf{Geochemical Thermodynamics}: Prentice Hall, 200. 477p
 
@@ -1122,7 +1217,6 @@ This emphasizes the clear need for a proper computation approach while treating 
 
 \bibitem[MINTEQ, 2006]{minteq:website} Center for Exposure Assessment Modeling (CEAM)
 \textbf{http://www2.epa.gov/exposure-assessment-models/minteqa2}
-
 
 \bibitem[MINTEQ, 1996]{minteq:unix} Center for Exposure Assessment Modeling (CEAM)
 \textbf{http://eng.odu.edu/cee/resources/model/minteqa_unix.shtml}
