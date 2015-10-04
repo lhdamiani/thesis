@@ -34,7 +34,8 @@
 \usepackage{listings}
 \usepackage{tablefootnote}
 \usepackage{placeins}
-
+\usepackage{booktabs}
+\usepackage{pifont}
 
 %\usepackage{mathptmx}          % p/ usar fonte Adobe Times nas fórmulas
 
@@ -133,7 +134,7 @@
     <{\egroup}%
 }
 \newcommand*\rot{\multicolumn{1}{R{50}{1em}}}% no optional argument here, please!
-
+\newcommand*\OK{\ding{51}}
 
 
 
@@ -189,6 +190,7 @@
 \item[\ce{k_0}] Pre-exponential (Arrhenius) factor
 \item[m] Molality
 \item[M] Molarity
+\item[OS] Operating System
 \item[pH] Power of Hydrogen
 \item[R] Universal Gas Constant
 \item[SI] Saturation Index 
@@ -676,7 +678,7 @@ We will present each relevant detail about the geochemical point of view and the
 
 %EQ3/6
 \subsection{\emph{EQ3/6}}
-EQ3/6 consists of two programs: EQ 3 is a pure speciation code whose results EQ 6 subsequentially process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. EQ3/6 includes a speciation-solubility solver (useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium). It also offers a reaction path calculation that models water/rock interaction or fluid mixture. EQ3/6 supports several thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). It is developed to run under UNIX, and the distribution is not free (it requires a license). \cite{Wolery:79} \cite{Wolery:90} \cite{Wolery:92}.
+EQ3/6 consists of two programs: EQ 3 is a pure speciation code whose results EQ 6 subsequentially process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. EQ3/6 includes a speciation-solubility solver (useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium). It also offers a reaction path calculation that models water/rock interaction or fluid mixture. EQ3/6 supports several thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). It is developed to run under UNIX, and the full package distribution is not free (it requires a license). \cite{Wolery:79} \cite{Wolery:90} \cite{Wolery:92}.
 
 \subsubsection{Input/Output Options}
 The \emph{datafilekey} and \emph{inputfile} given to the program as arguments must be consistent with the options and methods. For example, if they have different methods for calculating the activity coefficient there will be problems, and the results will be meaningless. Another point to be taken into consideration and that follows the same idea, the \emph{inputfile} must be using chemical data (for example, elements, species and compounds) that is known by the \emph{datafilekey}.
@@ -792,13 +794,34 @@ C(4)         2.257e-003
 \subsubsection{User Interactions}
 \emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interactions will be done separately.
 \begin{itemize}
-\item \emph{PHREEQC} for Windows: Due to the need of a geochemical modelling software and the lack of interface for \emph{PHREEQC} on the first versions of the software, many efforts were done to create an interface to \emph{PHREEQC}. The program \emph{PhreeqcI} is a graphical user interface to \emph{PHREEQC} that provides data entry screens for the keyword data blocks with a description of each input data item. Organizing the input file by using some \emph{project tree} which facilitates viewing, selecting, editing and running the \emph{PHREEQC} simulations. Critical to mention that \emph{PhreeqclI} does not implement all the keyword blocks. After this, another effort was done by the launch of \emph{PHREEQC} version 2 with a graphical interface - which was kept later in version 3. This graphical interface was baptized \emph{PfW} (Phreeqc for Windows) but it has no updates since 2011. The last effort in this sense was the development of an adaptation of the popular general-purpose text editor \emph{Notepad++}. This modification comes with the following capabilities: syntax highlighting; autocompletion of keywords and identifiers; tips; colored numbers; parenthesis matching; commenting and uncommenting multiple lines at once; column editor; few shortcuts; and file recognition;
+\item \emph{PHREEQC} for Windows: Due to the need of a geochemical modelling software and the lack of interface for \emph{PHREEQC} on the first versions of the software, many efforts were done to create an interface to \emph{PHREEQC}. The program \emph{PhreeqcI} is a graphical user interface to \emph{PHREEQC} that provides data entry screens for the keyword data blocks with a description of each input data item. Organizing the input file by using some \emph{project tree} which facilitates viewing, selecting, editing and running the \emph{PHREEQC} simulations. Critical to mention that \emph{PhreeqclI} does not implement all the keyword blocks. After this, another effort was done by the launch of \emph{PHREEQC} version 2 with a graphical interface - which was kept later in version 3. This graphical interface was baptized \emph{PfW} (Phreeqc for Windows) but it has no updates since 2011. The last effort in this sense was the development of an adaptation of the popular general-purpose text editor \emph{Notepad++}. This modification comes with the following capabilities: syntax highlighting; autocompletion of keywords and identifiers; tips; colored numbers; parenthesis matching; commenting and uncommenting multiple lines at once; column editor; few shortcuts; and file recognition; This can be seen in picture ~\ref{fig:phreeqc-notepad++}. When running PHREEQC from the \emph{Notepad++} adaptation, the command prompt is called and the simulation is executed, as in picture ~\ref{fig:phreeqc-notepad++2}. There are some options and shortcuts available from the \emph{Notepad++}'s interface, which is shown in detail in figure ~\ref{fig:phreeqc-notepad++3}.
 \item \emph{PHREEQC} for UNIX: Under UNIX's distribution, \emph{PHREEQC} runs from the command prompt. It can be used by using the command as in code ~\ref{phreeqc:run}
 \begin{lstlisting}[frame=single, caption=Command to run UNIX's \emph{PHREEQC}, label=phreeqc:run]
 phreeqc input output database screen_output
 \end{lstlisting}
 Where \emph{"input"} file will contain the description of the simulation, the \emph{"output"} file will store the results of the simulation, \emph{"database"} will specify which database should be used and \emph{"screen\_output"} stores the information that will be shown on screen. If the user doesn't specify the names of \emph{"output"}, \emph{"database"} or \emph{"screen\_output"} the geochemical modelling software will choose default values.
 \end{itemize}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{notepad++Phreeqc.png}
+\caption{Example of the PHREEQC Notepad++ plugin}
+\label{fig:phreeqc-notepad++}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{notepad++PhreeqcProcess.png}
+\caption{PHREEQC software called from the Notepad++ Plugin}
+\label{fig:phreeqc-notepad++2}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{notepad++run_menu.png}
+\caption{PHREEQC software called from the Notepad++ Plugin}
+\label{fig:phreeqc-notepad++3}
+\end{figure}
 
 \subsubsection{File formats}
 All the files discussed above are in the \emph{ASCII} text files format and, therefore, any regular text editor can be used. It is recommended that the edition of the \emph{PHREEQC} files is done by using its NotPhreeqcce or the notepad++ adapted version \cite{NotPhree:11}.
@@ -957,7 +980,7 @@ It is currently at the version 4.03 (Windows only), interesting to mention that 
 \emph{MINTEQA2} is easily installed by a self-extractor installer that can be downloaded from \emph{EPA}'s website \cite{minteq:website} and \cite{minteq:unix}. Included in the distribution package are also some important documentation, \emph{PRODEFA2} software and several input/output template files.
 The UNIX version distribution comes with the source files and must be compiled to run.
 
-%%% CORRECTED GRAMMARLY UNTIL HERE
+
 
 \subsection{\emph{SOLMINEQ.88}}
 \emph{SOLMINEQ.88} is an FORTRAN 77 written geochemical modeling program based on SOLMNEQ \cite{Kharaka:73} with improved algorithms that result in a faster program execution and tighter convergence. The software has a database with the focus on organics aqueous species. It calculates the distribution of mass among aqueous species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes options as boiling, mixing of solutions and partitioning of gases between water, oil and a vapour phase. \emph{SOLMINEQ.88} also contemplates mass transfer with the effects of dissolution and precipitation of minerals and options to calculate activity coefficient model \cite{Kharaka:88}. The original version has no UI, but there were further studies with the intention of creating a user-friendly program that can be used to generate, edit and analyze input and output files - \emph{SOLINPUT}.
@@ -976,7 +999,8 @@ The input file is composed by six parts, \emph{SOLINPUT} guides the user through
 \item Additional ions and minerals: temporarily adds user defined ions and minerals to a particular simulation;
 \end{enumerate}
 
-The output file contains the results of the computations by \emph{SOLMINEQ.88} and it consists of six parts: An input data echo that shows the values and options selected for each sample; A table listing the calculated tolerance factor for successive iterations on the anions; A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and os on; A table showing the distribution of species in solution; Ratios of a number of cations and anions of importance in geochemical processes; and the last one contains a table indicating the states of reactions for minerals considered;
+The output file contains the results of the computations by \emph{SOLMINEQ.88} and it consists of six parts: An input data echo that shows the values and options selected for each sample; A table listing the calculated tolerance factor for successive iterations on the anions; A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and os on; A table showing the distribution of species in solution; Ratios of a number of cations and anions of importance in geochemical processes; and th
+e last one contains a table indicating the states of reactions for minerals considered;
 
 \begin{minipage}[c]{0.95\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s excerpt of the output file, label=solmineq:output]
@@ -1029,12 +1053,96 @@ SOLMINEQ.88 distribution requires knowledge in compiling and linking FORTRAN77 p
 Interesting to point that along the installation manual, they recommend  that curious compiling options are activated, for example \emph{"do not check for array bounds"}, and \emph{"do not check subprogram interfaces"}.
 
 %GEOCHEMICAL SPECIATION ANALYSIS
-\section{Geochemical Speciation Analysis}
-The idea is to do a table comparison of softwares and tech details. Also interesting to mention who maintain (OR NOT) the programs.
+\section{Commercial Software Review Discussion}
+On this section we compare, analyze and discuss some important aspects and issues of each one of the software presented earlier in this work. Regarding geochemical features, table ~\ref{tab:comparativeTable} brings certain aspects and features of the software.
+
+\begin{table}
+\caption{Geochemical comparison between speciation softwares}
+\label{tab:comparativeTable}
+\centering
+\begin{tabular}{r|cccccccc}
+&
+\rot{Aqueous Complexation} &
+\rot{Precipitation and Dissolution Mass Balancing} & 
+\rot{Reaction path} &
+\rot{Kinetics} &
+\rot{Multi-Activity Coefficient methods} 
+    \\ \hline
+EQ3/6        	&  \OK &  \OK & \OK & \OK & \OK    \\ 
+PHREEQC        &  \OK &  \OK  & \OK & \OK &  \\
+MINTEQA2        &  \OK  &  \OK & & &    \\ 
+SOLMINEQ.88	& \OK& \OK&\OK & \OK & \OK\\
+\hline
+\end{tabular}
+\end{table}
+
+Regarding the computer science point of view, we analyse and evaluate the software always thinking how good is the software engineering behind it. Taking into account all the aspects described and extensively discussed in chapter ~\ref{chapter:basic} is essential.
+
+The points that we discuss and take into consideration are the following:
+\begin{itemize}
+\item The costs: Costs are probably the most thing that people look first when choosing software; however, it should not be the deciding factor. Different solutions use different pricing models and according to the purpose of the solution it will be decided.
+
+\item Setup and versioning: The installation of software is the act of making it ready for execution. According to the software, a particular installation process is done - which involves copying/generating files from the installation files to the local computer to be accessed by the operating system (\emph{OS}). The \emph{OS} also influences how this process is done; each software has a different distribution package to each \emph{OS} - or not. Not hard to find software with distribution only to specifics \emph{OS}, meaning that if the user uses other \emph{OS} it is impossible to use that software. Also not hard to find same software with disparate versions according to the \emph{OS} - resulting in divergent features available on the same software defined by the \emph{OS} that is being used.
+
+\item Customization and Integration: The software is a standard solution, and its supplier is not interested in making changes? This is the typical scenario where the user has great chances of finding problems ahead. Therefore, an interesting exercise is to think of how this software communicate with others? Options like  ``import'' and ``export'' are vital when working with a large amount of data. With the advances in software, you might want to use a different software to analyse the output and to be able to reach deeper insights about the information available. These insights might be unique and lead to incredible breakthroughs.
+
+\item Security and Control: Security is one of the main issues one face when considering solutions. Nobody wants to share private data and details with others. Ensuring that the software can guarantee no data loss or data leakage is important. The solutions that provide direct control to the database, details and process is most likely to have a private required by some users.
+
+\item Infrastructure: When choosing a software, the infrastrucutre that it requires need to be carefully analyzed to verify if it matches the disponibility. Does it requires internet access? How many space on disk and memory it uses? Extra costs may occur if this is not thought earlier.
+
+\item Core functionality: This is one of the most important points to be analyzed. How good the software focus on the needs of the user and how good is the value that the software brings to its users by performing the core activity successfully.
+
+Graphical User Interface (\emph{GUI}) and visualization: Handles the interactions between the users and the electronic devices. When the software has a complex domain, such as geochemical modeling, the \emph{GUI} is even more important. It is responsible for allowing the user to think all the possible options and to take all the advantages of the software. The perfect \emph{GUI} takes into consideration all the human behaviour, senses and how we interact with our world (from electronic devices to human relationships).
+
+\item Support and Maintenance: If the software, for some unknown reason, goes down, is the user able to reach someone to question about the issue or discuss what happened? Will the user be able to find a users' community to debate and share knowledge? If the software has a support team working to fix bugs, improve the performance, add new features and sharpen some of the old features, it means that the user will have a better infrastructure to work.
+
+\item Database: All the data manipulated inside a software is stored and organized in a database. There are multiple ways of doing this; many important things must be taken into account to decide which database fits best to the software. Since the 80's the relational database model represented by the \emph{SQL} language has been the most popular. A conceptual database model is strongly recommended to produce a schema that consider all the structure and information needed by this software. Along the database schema, the security of this database must be addressed properly - either for consistency and privacy reasons. A good database design avoids redundant data (unnecessarily duplicated data). Poorly designed database generates inconsistent data (inaccurate data), which will lead to wrong decisions and, therefore, can result in failure of the software.
+\end{itemize}
+
+To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and worst and 5 the highest and best possible grade). This "grading system" is done with the intention to obtain a normalization towards differents aspects an interesting output for the comparison and in table ~\ref{tab:comparativeSoftwareTable} we can in details.
+
+\begin{table}
+\caption{Computer Science comparison to Geochemical Speciation Software}
+\label{tab:comparativeSoftwareTable}
+\centering
+\begin{tabular}{r|ccccccccc|ccc}
+
+&
+\rot{Costs} &
+\rot{Setup and versioning} & 
+\rot{Customization and Integration} &
+\rot{Security and Control} &
+\rot{Infrastructure} &
+\rot{Core functionality} &
+\rot{Graphical User Interface} &
+\rot{Support and Maintenance} &
+\rot{Database}  &
+\rot{Overall Average} 
+    \\ \hline
+EQ3/6        	& 2 & 2 & 1 &1&3 &5 &1 &1 &1 & 1.88 \\ 
+PHREEQC         & 4 & 4 & 2 & 2& 3& 4& 2& 3& 1&2.77 \\ 
+MINTEQA2        & 4 & 2 & 1 & 1& 2& 2& 1& 1& 1& 1.66\\ 
+SOLMINEQ.88	& 3 & 1 & 1 & 1 & 1&5 & 1&1 & 1& 1.66\\ 
+\hline
+\end{tabular}
+\end{table}
+
+%%% CORRECTED GRAMMARLY UNTIL HERE
+
+\newpage
 
 %SUMMARY
 \section{Summary}
+\begin{itemize}
+\item EQ3/6: It represents a landmark in Geochemical Modelling. Unfortunately, it is inaccessible due to the elevated cost of licensing. The vast amount of information available online about \emph{EQ3/6} makes it an excellent knowledge encourager and pushes the understanding of geochemical modelling further.  It used all the computing tools and options that were available until the release date. Since then, computing has clearly evolved, making it an obsolete and hard to use the software. It has a large database with many pieces of information on it, but it is not exactly clear to the user. It is hard to understand what exactly is the software doing; verifying if that is what the users wants is even more difficult. This might be the reason that geochemical modellers do not understand how it is put together. 
 
+\item PHREEQC: It is the best option for users not experienced with software - it has a \emph{GUI} and comes with a self-extractor installer. Important to mention here that \emph{PHREEQC}'s \emph{GUI} is far from what a regular user might want - it is not clear in many aspects, and its usability is far from regular. In the geochemical modelling area, not all the users have intimacy with tasks as compiling and linking computer programs. \emph{PHREEQC} allows anyone with an interest to have a chance to perform a geochemical modelling simulation even though many people have different ways of defining the problem. Database in \emph{PHREEQC} seems to be a problem - it uses a flat file database.
+
+\item MINTEQA2: From the geochemical point of view, \emph{MINTEQA2} is the simpler from the four software analyzed in this work. The user interaction can be painful for anyone that is not used with command prompt, besides that, the complexity of the input file makes any way a hard way. Creating the input file without the subsidiary software \emph{PRODEFA2} is a task close to impossible and learning how to use this subsidiary software is a very costly task. Taking into account that its last release date back to 2006, it is hard to motivate and try to give \emph{MINTEQA2} any consideration nowadays.
+
+\item SOLMINEQ.88: An interesting software that was also a pioneer and layed the ground for many others to improve and progress the knowledge in the geochemical modelling field. \emph{SOLMINEQ} used the computing tools that were accessible when it was developed - nowadays there is no tendency that someone will start using it and learning its complex input and output. There are less costly options easily attainable, and that produce analogous results.
+
+\end{itemize}
 
 %%%%%%%%%%%%%%%%%%%
 %                                                        %
