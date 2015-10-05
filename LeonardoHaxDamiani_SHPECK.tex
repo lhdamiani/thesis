@@ -1198,7 +1198,15 @@ Figure ~\ref{fig:shpeck-architecture} brings the software architecture of \emph{
 \end{figure}
 
 \subsection{Technical Specification}
-\emph{SHPECK} is cross-platform software (\emph{Windows} and \emph{UNIX}) developed with an object oriented approach using C++ \cite{Stroustrup:97} and Qt \cite{qt:14}. We use also an external library called \emph{Armadillo C++} that implements some of the linear algebra needed in the algorithm \cite{Arma:14}.
+\emph{SHPECK} is a software developed using C++ \cite{Stroustrup:97}, which is a general-purpose programming language with a bias towards system programming that supports efficient low-level computation, data abstraction, object oriented programming, and generic programming \cite{Dale:04}. It provides powerful and flexible mechanisms for abstraction; that is, language constructs that allow the programmer to introduce and use new types of objects that match the concepts of an application needed. Thus, C++ supports styles of programming that rely on fairly direct manipulation of hardware resources to deliver a high degree of efficiency plus higher-level styles of programming that rely on user-defined types to provide a model of computation that is closer to human's view of the task being performed by a computer. These higher level styles of programming are often supported by application libraries. While developing Shpeck, two supporter tools were adopted:
+\begin{itemize}
+\item \emph{Qt} : Is a cross-platform application and UI framework for developers using C++ \cite{qt:14}. \emph{Qt} turns the development fast and easy, with lots of inbuilt library classes it provides a comprehensive range of functionality which turns also the debugging and testing way more productive and effective.
+\item \emph{Armadillo} : Is a C++ linear algebra library that provides classes for vectors, matrices, cubes and a whole set of functions to operate on the classes \cite{arma:14}. With a syntax similar to Matlab and an up-to-date support with upgrades and new releases almost every month.
+\end{itemize}
+Important to mention that the system is being developed using \emph{MAC} but the whole development process always took into account the goal to develop a multi-platform software to be distributed either in \emph{Windows, UNIX or MAC}.
+
+\subsection{Software organisation}
+EXPLAINS SOFTWARE ORGANIZATION
 
 \section{Governing equations}
 %These chemical equations are a mathematical model that drives all the methods that are executed in \emph{SHPECK}, its behavior defines all the steps and in which order they are presented. This set of equations models a real-world system and is named \emph{computer simulation model}.
@@ -1306,24 +1314,43 @@ The accurate of the solution is given according to the number of decimal places 
 
 \section{Algorithm}
 
-PARA MUDAR!!!!! 
-The algorithm takes as its input a specification of the system's state (the value of all of its variables) at some time t. It then calculates the system's state at time t+1. From the values characterizing that second state, it then calculates the system's state at time t+2, and so on. When run on a computer, the algorithm thus produces a numerical picture of the evolution of the system's state, as it is conceptualized in the model.
-PARA MUDAR!!!!! 
-
+\emph{SHPECK}'s algorithm takes as its input a specification of the system's state (the value of all of its variables), for example concentration of the species in the solution, temperature, method to calculate activity coefficient, etc. It then calculates the system's state by executing all the methods in the necessary order that the model was conceptualized. The high-level algorithm is presented in details in figure ~\ref{fig:Shpeck-algo}; is important to understand that each of the box in this algorithm represents a set of instructions, calculations and conditional clauses. Due to this work's scope we only specify the algorithm inside the box called "Newton's Method Solver", which is a fundamental piece for the understanding how the governing equations are consolidated in a numerical method. Newton's Method Solver interal algorithm is presented in figure ~\ref{fig:Shpeck-algo-newton}. 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{Shpeck_algo3.png}
+\caption{High-level algorithm of \emph{SHPECK}}
+\label{fig:Shpeck-algo}
+\end{figure}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{Shpeck_algo_newton.png}
+\caption{Algorithm of the Newton's Method Solver}
+\label{fig:Shpeck-algo-newton}
+\end{figure}
 \subsection{Complexity of the algorithm}
+The Gauss-Newton's method has a complexity O($n^3$) per iteration with a quadratic convergence.
+Quadratic convergence 
 
+%(http://ranger.uta.edu/~huber/cse4345/Notes/Nonlinear_Equations.pdf)
+%(http://ranger.uta.edu/~huber/cse4345/Notes/Equations.pdf)
+%(compared to http://en.citizendium.org/wiki/Newton%27s_method#Computational_complexity)
 
-\section{Software Engineering}
-
-\subsection{Program organisation}
-\subsection{Data flow}
 
 \section{Graphical User Interface}
+Due to the huge ammount of options connected to the nature of geochemical modeling, the development of a GUI is a challenge itself. It is necessary to develop a software that is intuitive and user friendly and has a specific and effective approach to all of the options available in the nature and in the system. The development of the GUI introduces several stages of processes related to it:
+\begin{itemize}
+	\item Planning : This moment is where the developer needs to think a way to contemplate all the options from the core of the program and make them easily, intuitive and friendly to the final user. The planning sometimes is a key process to have it done properly - all the content/features/details of the software need to be strictly defined and organized in order not to break anything afterwards nor forget it (which will result in a not used software). A slight path divides something really useful from something not useful at all - assumptions and the challenge of the developer to think as a user is sometimes really difficult because many of the developers are not the final user for its applications. Is important also to find out what others have done or are doing - during the study of others softwares their GUI were analyzed carefully.
+	\item Building : All the planning done before needs to be implemented and the main features of the software are important to be well defined at this point. To build the tool \emph{Qt} - already presented above - was chosen due to its many advantages as: Easy to customize; No coding; Templates; Simple Drag and Drop builder; Secure and reliable;
+	\item Ensuring Usability : The challenge on the field of Human Computer Interaction (HCI) investigates way people use computers is huge. Techniques and tools are used in order to find some relevant standards and some sort of measurements are available (and intended to be used during the development of Shpeck): Tests with real users; Evaluation by experts; Gathering user feedback; Usage logging;
+\end{itemize}
+
+%CONTINUE FROM HERE TAKING PRINT SCREENS 
 
 \section{Database}
 criterios de comparacao do pq usar um banco de dados estruturado; comparacao de tempo com o arquivo texto; simular pesquisa com os 2 formatos; consulatas elaboradas; concatenacao de elementos com queries; espaco, tempo e expressividade; uso de BD em area nao difundida.
 
 \newpage
+
 \section{Summary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
