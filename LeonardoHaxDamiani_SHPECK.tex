@@ -162,8 +162,11 @@
 \clearpage
 \begin{flushright}
 \mbox{}\vfill
+{\sffamily\itshape
+``To achieve great things, two things are needed:\\
+ a plan and not quite enough time.''\\}
+--- \textsc{Leonard Bernstein}
 \end{flushright}
-
 \renewcommand*\bibname{References}
 
 % sumario
@@ -191,6 +194,7 @@
 \item[K] Equilibrium Constant        
 \item[\ce{k_{diss}}] Dissolution rate constant
 \item[\ce{k_0}] Pre-exponential (Arrhenius) factor
+\item[LLNL] Lawrence Livermore National Laboratory
 \item[m] Molality
 \item[M] Molarity
 \item[MVC] Model-View-Controller
@@ -413,7 +417,7 @@ K_j =  \prod\limits_{i=1}^N  a_i^{v_{ij}} \hspace{35pt}    (j = 1, ... , M)
 \end{equation}
 where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ denotes the activity of the \emph{i-th} chemical species. The equilibrium constant depends on the temperature of the system; therefore, the equilibrium constant needs to be calculated according to the temperature of the system. 
 
-It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reaction and the concentrations of the products of the reaction. The law of mass action states that any reaction will proceed to the right (dissolution) or to the right (precipitation) until the mass-action equilibrium is achieved, important to keep in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed toward this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details later on this chapter.
+It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reaction and the concentrations of the products of the reaction. The law of mass-action states that any reaction will proceed to the right (dissolution) or to the right (precipitation) until the mass-action equilibrium is achieved, important to keep in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed toward this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details later on this chapter.
 
 Kinetic descriptions is applicable to any reaction but it is needed necessary to describe  reactions that are slow in relation to mass transport.  The following reaction has a $k_1$ and $k_2$ rates for the forward and reverse reactions, respectively 
 \begin{eqnarray}
@@ -1290,15 +1294,15 @@ Important to mention that the system is being developed using \emph{MAC} but the
 
 \emph{SHPECK} uses the thermodynamic equilibrium reaction as equations for the calculation of multiphase systems in equilibrium, the details of these reactions are discussed in details in chapter ~\ref{chapter:basic}. A set of mass-action equations (as in equation ~\ref{eq:massaction}) compose the system; The number of species and compounds that coexist in the system define the number of equations. These equations model the geochemical speciation closed system and take into account all the chemical properties.
 
-Aside with the mass action equations we must have other constraints to solve the equilibrium state of the system. In \emph{SHPECK}, we use the concentration of the species (other possible constraints are the solute activity, the number of moles, total volume, etc.) to deal with the equilibrium state of the system.
-This configuration generates a system where there are \emph{U} unknowns, {M} mass action equations and \emph{E} equilibrium constraints. 
+Aside with the mass-action equations we must have other constraints to solve the equilibrium state of the system. In \emph{SHPECK}, we use the concentration of the species (other possible constraints are the solute activity, the number of moles, total volume, etc.) to deal with the equilibrium state of the system.
+This configuration generates a system where there are \emph{U} unknowns, {M} mass-action equations and \emph{E} equilibrium constraints. 
 \begin{equation}\label{equilibrium_reaction}
 U = E + M
 \end{equation}
 The unknowns values represents the number of moles of each specie in the system.
 
 \section{Numerical Method}
-In order to solve the system composed of the equilibrium state of the mass action equations and the equilibrium constraints, \emph{SHPECK} uses a numerical methodology that computes simultaneously and find the value of the unknowns.
+In order to solve the system composed of the equilibrium state of the mass-action equations and the equilibrium constraints, \emph{SHPECK} uses a numerical methodology that computes simultaneously and find the value of the unknowns.
 
 
 The numerical method applied a modification of the \emph{Newton's method} (also known as Newton-Raphson method), which is a method for finding successively better approximations to the roots of a set of equations. It works with a derivative approach to the equations, which optimizes the time consumed to find the roots and makes the representation of the system easier.
@@ -1319,7 +1323,7 @@ or
 F(x+1) = F(x) - \frac{F(x)}{F'(x)}
 \end{equation}
 
-Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual matrix. For details see \cite{Isaacson:66}.
+Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual matrix \cite{Isaacson:66}.
 
 The $R$ residual vector is defined as a vector containing the resulting values for each equation.
 
@@ -1332,7 +1336,7 @@ R = \begin{pmatrix}
  \end{pmatrix}
 \end{equation}
 
-Where $m$ is the number of unknowns (or mass action equations plus equilibrium constraints).
+Where $m$ is the number of unknowns (or mass-action equations plus equilibrium constraints).
 
 
 The algorithm consists of iteratively calculating new approximations for the unknown values, through the matrix equation:
@@ -1406,7 +1410,6 @@ The number of decimal places defines the accuracy of the solution. Increasing th
 \end{figure}
 \subsection{Complexity of the algorithm}
 The Gauss-Newton's method has a complexity O($n^3$) per iteration with a quadratic convergence.
-Quadratic convergence 
 
 %(http://ranger.uta.edu/~huber/cse4345/Notes/Nonlinear_Equations.pdf)
 %(http://ranger.uta.edu/~huber/cse4345/Notes/Equations.pdf)
@@ -1480,20 +1483,37 @@ We use the SQLite database \cite{SQLite}, which is a software library that imple
 \end{itemize}
 
 \subsection{\emph{LLNL} thermodynamic dataset parser}
-Once we defined what would be the structure and the technology of our database, we need to find the information to populate it - the information that would  feed \emph{SHPECK}. We create a parser for the flat file database that extracted the information and arranged it following our structure. The parser was carefully generated in order not to misunderstand any structure nor miss a delimiter.
+Once we defined what would be the structure and the technology of our database, we need to find the information to populate it - the information that would  feed \emph{SHPECK}. We create a parser for the flat file database that extracted the information and arranged it following our structure. The parser was carefully generated in order not to misunderstand any structure nor miss a delimiter - this task was extremely time-consuming and proportionally important for the success of \emph{SHPECK}.
 
 \newpage
 
-%%% CORRECTED GRAMMARLYUNTIL HERE
 
 \section{Summary}
 \begin{itemize}
-\item Architecture:
-\item Governing Equations:
-\item Numerical Method:
-\item Graphical User Interface:
-\item Database: 
+\item Architecture: \emph{SHPECK} follows the architectural pattern called \emph{MVC}; It's benefits are the complete separation of responsibilities and concerns among the parts of the software; there is no mixing of codes between them. Another advantage that worth mentioning is the flexibility for the software to grow and develop itself. Figure ~\ref{fig:shpeck-architecture} displays the \emph{MVC} pattern existing in \emph{SHPECK}.
+\item Governing Equations: \emph{SHPECK} is a geochemical speciation modelling software that drives the behaviour of the aqueous system based on a set of mass-action equations combined with equilibrium constraints. A mass-action equation is described in equation  ~\ref{eq:massaction} and reinforced here:
+
+\begin{equation}
+K_j =  \prod\limits_{i=1}^N  a_i^{v_{ij}} \hspace{35pt}    (j = 1, ... , M)
+\end{equation}
+
+where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ denotes the activity of the \emph{i-th} chemical species.
+
+\item Numerical Method: \emph{SHPECK} applies the \emph{Gauss-Newton's} method to solve the nonlinear system of equations. The concept of the method is described in equation ~\ref{eq:gaussNewtonMethodEq1} and reinforced here:
+
+\begin{equation}
+\label{eq:gaussNewtonMethodEq1}
+F(x+1) = F(x) - J^{-1} * R
+\end{equation}
+
+Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual matrix. The quadratic rate of convergence of this method compensate the expensive calculation inherent to it.
+
+\item Graphical User Interface: The \emph{GUI} mission is to enable the user to use fully the potential \emph{SHPECK} has to offer. It is intuitive and user-friendly to allow the user to focus on essential duties that are imperative to model a geochemical environment. We use the popular approach of \emph{tab} panels, which are separated according the purpose of it: configurations and settings, water composition and results visualization.
+\item Database: A geochemical modelling software is severely dependent on the information inside it. \emph{SHPECK} structure all of its data in a \emph{SQLite} relational database, unique among the commercial software available. \emph{SHPECK}'s database is composed by the information about elements, species, compounds, reactions and thermodynamic constants from the \emph{LLNL} thermodynamic dataset. A parser for \emph{LLNL} flat file database was created to fetch this information.
 \end{itemize}
+
+
+%%% CORRECTED GRAMMARLYUNTIL HERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %                                                                       %
