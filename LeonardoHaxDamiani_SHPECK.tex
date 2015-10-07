@@ -5,7 +5,7 @@
 % This is an example file and is hereby explicitly put in the
 % public domain.
 %
-\documentclass[ppgc,mestrado,english]{iiufrgs}
+\documentclass[ppgc,mestrado,English]{iiufrgs}
 % um tipo específico de monografia pode ser informado como parâmetro opcional:
 %\documentclass[tese]{iiufrgs}
 % monografias em inglês devem receber o parâmetro `english':
@@ -17,12 +17,18 @@
 % \documentclass[oneside]{iiufrgs}
 \usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
 \usepackage[utf8]{inputenc}   % pacote para acentuação
+\usepackage[english]{babel}
 \usepackage{graphicx}           % pacote para importar figuras
 \usepackage{times}              % pacote para usar fonte Adobe Times
-\usepackage{mhchem} 	% pacote para usar chemistry formulae
+\usepackage[version=3]{mhchem} 	% pacote para usar chemistry formulae
 \usepackage{chemfig}
 \usepackage{amsmath}
-\usepackage{biblatex}
+{\renewcommand{\bibname}{References}}  
+\usepackage[
+backend=biber,
+style=alphabetic,
+citestyle=authoryear 
+]{biblatex}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{mathtools}
@@ -35,6 +41,7 @@
 \usepackage{listings}
 \usepackage{tablefootnote}
 \usepackage{placeins}
+\usepackage{url}
 \usepackage{booktabs}
 \usepackage{pifont}
 
@@ -138,7 +145,6 @@
 \newcommand*\OK{\ding{51}}
 
 
-
 \begin{document}
 
 
@@ -167,6 +173,7 @@
  a plan and not quite enough time.''\\}
 --- \textsc{Leonard Bernstein}
 \end{flushright}
+
 \renewcommand*\bibname{References}
 
 % sumario
@@ -225,8 +232,12 @@
 % resumo na língua do documento
 
 \renewcommand*\abstractname{Abstract}
+
 \begin{abstract}    
-HERE WILL COME THE ABSTRACT
+Chemical modelling is essential to comprehend many environmental problems. We present a flexible and general computer software project to calculate the geochemical modelling speciation dynamically and efficiently. These applications require an extremely high level of computations in a single simulation. 
+The method uses the stoichiometric approach (also known as law of mass-action approach) coupled with mass-action equations and a system of equilibrium constants solved using Newton's method. An adaptive control scheme of internal factors of the simulation is adopted to guarantee that chemical and physical processes are respected and follow the literature. 
+The software operates with customised options as capabilities to specify pH (activity of Hydrogen ions) of an aqueous solution, concentrations of the species, convergence criteria and maximal number of iterations. The proposed algorithm developed is described carefully in a software development point of view. 
+We present a comparison study about the existing geochemical modelling solvers. Finally, a study case using different solvers applied to the same system: evaporites (halite and sylvite) in an aqueous solution containing sodium (\ce{Na^+}), chlorine (\ce{Cl^-}) and potassium (\ce{K^+}). An application of this geological behaviour is the influence of the salt dome in turbidite reservoirs of oil and gas.
 \end{abstract}
 
 
@@ -253,7 +264,7 @@ Using a high-level and object-oriented programming language, we could implement 
 
 %BASIC CONCEPTS USED
 
-The principles of chemical equilibrium calculation rely on the law of conservation of mass (also known as the principle of mass conservation), stated by Antoine Lavoisier, and chemical speciation, which was presented by Garrels and Christ \cite{Garrels:65}. The law of conservation of mass establishes that the total mass of an isolated system will remain constant and is independent of any chemical and physical changes taking place within the system. Therefore, the challenge of chemical equilibrium calculations is finding the number of moles that satisfies a system of equilibrium constraints at the moment where forward and reverse reactions rates are the same. These constraints are organized in a form of linear conservation equations, which may be expressed in the form of either linear algebraic atom and charge balance equations or chemical equations \cite{SmithMissen83}. For the sake of simplicity, in this work we will only deal with chemical equilibrium and not with chemical kinetics calculations since the first one requires only the solution of algebraic equation. It is planned to integrate kinetics reactions in the future.
+The principles of chemical equilibrium calculation rely on the law of conservation of mass (also known as the principle of mass conservation), stated by Antoine Lavoisier, and chemical speciation, which was presented by Garrels and Christ  \cite{Garrels:65}. The law of conservation of mass establishes that the total mass of an isolated system will remain constant and is independent of any chemical and physical changes taking place within the system. Therefore, the challenge of chemical equilibrium calculations is finding the number of moles that satisfies a system of equilibrium constraints at the moment where forward and reverse reactions rates are the same. These constraints are organized in a form of linear conservation equations, which may be expressed in the form of either linear algebraic atom and charge balance equations or chemical equations \cite{SmithMissen83}. For the sake of simplicity, in this work we will only deal with chemical equilibrium and not with chemical kinetics calculations since the first one requires only the solution of algebraic equation. It is planned to integrate kinetics reactions in the future.
 
 %APPLICATION
 
@@ -711,6 +722,7 @@ EQ3/6 package produces different output depending on the software that is used. 
 
 A small excerpt of an \emph{EQ6} outpuf file is shown in code ~\ref{eq3:output}.
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of \emph{EQ6} output file, label=eq3:output]
 ...
  Entity Date Base Dimension Current Problem
@@ -725,6 +737,7 @@ A small excerpt of an \emph{EQ6} outpuf file is shown in code ~\ref{eq3:output}.
  Solid Soutions 12 12 0
 ...
 \end{lstlisting}
+\end{minipage}
 
 \subsubsection{User Interactions}
 In \emph{EQ3/6} the command prompt is responsible for all the interactions with the user. There are several codes inside \emph{EQ3/6}; the appropriate command will trigger each one of them. From the existing software, there are \emph{EQ3NR}, \emph{EQ6} and \emph{EQPT} just to name a few.The user must enter the command from the keyboard and must use this "command prompt". By pressing "CTRL+C" at any time the software execution stops, literally "breaking" the process. For example, EQ3 is run by commands of the form as in code ~\ref{eq3:run}.
@@ -738,6 +751,7 @@ As mentioned, the input file will be entered in the program as an argument. Any 
 
 The menu format inside the input files tries to recreate known user interactions method as shown in code ~\ref{eq3:menu}.
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Menu Option inside \emph{EQ3/6} input files that mimics a "radio button", label=eq3:menu]
 iopr(4) - Print a Table of Aqueous Species Concentrations, Activities, etc.: 
  [ ] (-3) Omit species with molalities < 1.e-8 
@@ -746,9 +760,10 @@ iopr(4) - Print a Table of Aqueous Species Concentrations, Activities, etc.:
  [x] ( 0) Omit species with molalities < 1.e-100 
  [ ] ( 1) Include all species 
 \end{lstlisting}
+\end{minipage}
+
 
 \subsubsection{File Formats}
-
 All the files discussed above are in the \emph{ASCII} text files format and, therefore, any regular text editor can be used. When the text file is a database, it is converted to binary format and this binary will be used directly by the software. This conversion from text files (\emph{ASCII}) to a binary file is interesting. An \emph{ASCII} file is a binary file that consists of \emph{ASCII} characters. \emph{ASCII} characters are 7-bit encodings stored in a byte. Thus, each byte of an \emph{ASCII} file has its most significant bit set to 0 - this represents a waste of a bit for every byte. By scaling this to a large amount of \emph{ASCII} information and it is possible to understand the reason for this conversion. Another reasonable advantage for the binary files is that the search in binary files is typically faster than in \emph{ASCII} files.
 
 
@@ -759,17 +774,17 @@ The installation of \emph{EQ3/6} is explained in details in \cite{Wolery:92}. Du
 
 %PHREEQC
 \subsection{\emph{PHREEQC}}
-\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium (in \emph{C} language) and is a widely used public-domain geochemical modelling software available from the USGS. It is available to download for free with versions for PC and Mac. Designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model and has capabilities to:
+\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium (in \emph{C} language) and is a widely used public-domain geochemical modelling software available from the USGS  \cite{Parkhurst:80}. It is available to download for free with versions for PC and Mac. Designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model and has capabilities to:
 \begin{itemize}
 \item Speciation and Saturation Index calculations;
 \item Batch reaction and one-dimensional (1D) transport calculations involving reversible reactions (including aqueous, minerals, gas, solid-solution, surface-complexation, and ion-exchange equilibrium) and irreversible reactions (including specified mole transfer of reactants, kinetically controlled reactions, mixing of solutions and temperature changes);
 \item Inverse modelling, which finds sets of mineral and gas mole transfers that takes into account differences in composition between waters.
 \end{itemize}
-The software was written in C and has free distributions for Windows, Linux and MAC \cite{Parkhurst:80}.
 
 \subsubsection{Input/Output Options}
 The input data for \emph{PHREEQC} is arranged by \emph{keyword data blocks}. Each block organized with a keyword on the first line followed by lines containing data related to the keyword. Keywords and its context are read from the database at the beginning of the run to define all the necessary parameters. After this database reading procedure, it will continue reading the input file until the it reaches the \emph{END} keyword. This process goes on until the end of the file. As the input file is being read, the program will start putting the pieces together to perform the necessary calculations. An example of a \emph{keyword data block} is shown in code ~\ref{phreeqc:keyword}. Among the possible keywords available in \emph{PHREEQC} are EQUILIBRIUM PHASES, EXCHANGE, GAS PHASE, INVERSE MODELING, PHASES, REACTION, PRINT, SAVE, SOLUTION SPECIES, etc. Each one of these keywords contains specific arguments and parameters to be used. Certain keywords require some specific others keywords - somehow like a puzzle - and if something is missing from the input file, the results are going to be inconclusive and wrong.
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{PHREEQC} keyword data block example, label=phreeqc:keyword]
 EQUILIBRIUM_PHASES
 Chalcedony  0.0     0.0
@@ -778,11 +793,11 @@ Gibbsite(c) 0.0     KAlSiO8  1.0
 Calcite     1.0     Gypsum   1.0
 pH_Fix      -5.0    HCl      10.0
 \end{lstlisting}
-
+\end{minipage}
 
 The output file will contain the results of the simulation defined in the input file also divided into \emph{keyword blocks}. Among those, we can mention solution composition, description of the solution, redox couples, distribution of species (as can be seen in code ~\ref{phreeqc:output}), saturation indices.
 
-{\sloppy
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{PHREEQC}'s excerpt from the output file, label=phreeqc:output]
 ...
 ----------------------------Distribution of species----------------------------
@@ -803,7 +818,8 @@ C(4)         2.257e-003
    CaCO3          2.256e-005  2.636e-005    -4.647    -4.579     0.067    -14.60
    NaCO3-         1.477e-005  9.972e-006    -4.831    -5.001    -0.170      1.77
 ...
-\end{lstlisting}}
+\end{lstlisting}
+\end{minipage}
 
 \subsubsection{User Interactions}
 \emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interactions will be done separately.
@@ -856,7 +872,10 @@ The \emph{PHREEQC} version for Windows has a self-extracting file that can is av
 
 %MINTEQ
 \subsection{\emph{MINTEQ}}
-Much simpler options on reaction treatment, developed by the United States' Environment Protection Agency (EPA).  \emph{MINTEQ} is a geochemical program to model aqueous solutions and the interactions of aqueous solutions with hypothesized assemblages of solid phases. It has a particular inclination to equilibrium speciation to calculate equilibrium composition of dilute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among dissolved species, adsorbed species and multiple solid phases although it has a much simpler treatment of the reactions. It was originally developed in FORTRAN77 by Battelle Pacific Northwest Laboratory (\emph{PNL}) and continued by the Environmental Protection Agency (\emph{EPA}) to perform the calculations necessary regarding waste, sediments and ground water. \emph{MINTEQ} does not consider the kinetic reactions and works at fixed temperature ($25$ degrees Celcius). An extensive database adequate to a broad range of problems is part of the software, and there is no need for the user to change nor add anything \cite{Brown:87} \cite{Allison:91}. The latest update on \emph{MINTEQ} has been in 1990, since then, some upgrades and improvements especially on the usability and calculations. This new version was baptised \emph{MINTEQA2} and uses a well-developed thermodynamic database from the \emph{USGS}. This review will always refer to this continued version of \emph{MINTEQ}.
+Much simpler options on reaction treatment, developed by the United States' Environment Protection Agency (EPA).  \emph{MINTEQ} is a geochemical program to model aqueous solutions and the interactions of aqueous solutions with hypothesized assemblages of solid phases. It has a particular inclination to equilibrium speciation to calculate equilibrium composition of dilute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among dissolved species, adsorbed species and multiple solid phases although it has a much simpler treatment of the reactions. 
+It was originally developed in FORTRAN77 by Battelle Pacific Northwest Laboratory (\emph{PNL}) and continued by the Environmental Protection Agency (\emph{EPA}) to perform the calculations necessary regarding waste, sediments and ground water. \emph{MINTEQ} does not consider the kinetic reactions and works at fixed temperature ($25$ degrees Celcius). 
+An extensive database adequate to a broad range of problems is part of the software, and there is no need for the user to change nor add anything \cite{Brown:87} \cite{Allison:91}. The latest update on \emph{MINTEQ} has been in 1990, since then, some upgrades and improvements especially on the usability and calculations. 
+This new version was baptised \emph{MINTEQA2} and uses a well-developed thermodynamic database from the \emph{USGS}. This review will always refer to this continued version of \emph{MINTEQ}.
 
 \subsubsection{Input/Output Options}
 The input files for \emph{MINTEQA2} can be generated manually, but there is another software called \emph{PRODEFA2} that guides the user to accomplish this task. \emph{PRODEFA2} is an interactive program used to create input files that will be addressed in details in section ~\ref{minteq:interactions}. Four parts compose the input file:
@@ -877,7 +896,7 @@ Amont the input file's options, there are 4 levels of complexity that when putte
 
 If database, algorithm and output files are not specified, some default options will be used. Code ~\ref{minteqa2:input} brings a \emph{MINTEQA2}'s input file for a simulation that computes pH and comes inside the package as an example.
 
-\begin{minipage}[c]{0.95\textwidth}
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s input file, label=minteqa2:input]
 TEST1A - Compute total H+ of a solution of known pH.              
 This together with TEST1B illustrate a two run set to compute pH. 
@@ -895,8 +914,7 @@ This together with TEST1B illustrate a two run set to compute pH.
 \end{lstlisting}
 \end{minipage}
 
-
-The \emph{MINTEQA2}'s output file is divided into six parts:
+An excerpt of \emph{MINTEQA2}'s output is presented in Code ~\ref{minteqa2:output}. The whole output file is divided into six parts:
 \begin{enumerate}
 \item Reproduction and interpretation of the input file;
 \item Detailed listing of species read from the database files;
@@ -906,33 +924,32 @@ The \emph{MINTEQA2}'s output file is divided into six parts:
 \item Saturation indices for all database solids with respect to the solution;
 \end{enumerate}
 
-Code ~\ref{minteqa2:output} brings an excerpt of \emph{MINTEQA2}'s part 3 output.
 
-\begin{minipage}[c]{0.95\textwidth}
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s excerpt from the output file, label=minteqa2:output]
 ...
-________________________________________________________________________________
-______________________________ PART 3 of OUTPUT FILE ___________________________
+_______________________________________________________________________
+______________________________ PART 3 of OUTPUT FILE __________________
   MINTEQA2  v4.02   DATE OF CALCULATIONS:  5-JUN-2000  TIME: 14: 6:27
 
 
 
 PARAMETERS OF THE COMPONENT MOST OUT OF BALANCE:
 
-     ITER      NAME       TOTAL mol/L   DIFF FXN   LOG ACTVTY    RESIDUAL
-      0   SO4-2           1.580E-03   6.594E-07    -2.91757    5.014E-07
-      1   SO4-2           1.580E-03   4.193E-04    -2.91775    4.192E-04
-      2   SO4-2           1.580E-03   8.125E-06    -3.01997    7.967E-06
-      3   SO4-2           1.580E-03   1.693E-07    -3.02220    1.135E-08
+ITER      NAME       TOTAL mol/L   DIFF FXN   LOG ACTVTY    RESIDUAL
+0   SO4-2           1.580E-03   6.594E-07    -2.91757    5.014E-07
+1   SO4-2           1.580E-03   4.193E-04    -2.91775    4.192E-04
+2   SO4-2           1.580E-03   8.125E-06    -3.01997    7.967E-06
+3   SO4-2           1.580E-03   1.693E-07    -3.02220    1.135E-08
 
- ID No      Name    Total Conc(M)    Conc (M)  log Activity   Diff fxn
-  410  K+1            7.700E-05     7.649E-05    -4.14759    5.093E-11
-  732  SO4-2          1.580E-03     1.266E-03    -3.02224    3.557E-09
-    2  H2O            0.000E+00    -1.049E-05    -0.00004    0.000E+00
-  330  H+1            0.000E+00     3.398E-03    -2.50000    0.000E+00
-  140  CO3-2          0.000E+00     2.916E-17   -16.66004    0.000E+00
+ ID No  Name        Total Conc(M)    Conc (M)  log Activity   Diff fxn
+  410   K+1            7.700E-05     7.649E-05    -4.14759    5.093E-11
+  732   SO4-2          1.580E-03     1.266E-03    -3.02224    3.557E-09
+    2   H2O            0.000E+00    -1.049E-05    -0.00004    0.000E+00
+  330   H+1            0.000E+00     3.398E-03    -2.50000    0.000E+00
+  140   CO3-2          0.000E+00     2.916E-17   -16.66004    0.000E+00
 
------------------------------------------------------------------------------
+-----------------------------------------------------------------------
 ...
 \end{lstlisting}
 \end{minipage}
@@ -1024,8 +1041,8 @@ The input file is composed by six parts, \emph{SOLINPUT} guides the user through
 The output file contains the results of the computations by \emph{SOLMINEQ.88} and it consists of six parts: An input data echo that shows the values and options selected for each sample; A table listing the calculated tolerance factor for successive iterations on the anions; A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and os on; A table showing the distribution of species in solution; Ratios of a number of cations and anions of importance in geochemical processes; and th
 e last one contains a table indicating the states of reactions for minerals considered;
 
-\begin{minipage}[c]{0.95\textwidth}
-\begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s excerpt of the output file, label=solmineq:output]
+\begin{minipage}[c]{0.93\textwidth}
+\begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s excerpt from the output file, label=solmineq:output]
  : Test Sample #1 for SOLMINEQ.88 - Modified Seawater at 25 C
 TEMP HI TEMP DENS PRESS
 0.2500E+02 O.OOOOE+00 0.1023E+01 O.OOOOE+00
@@ -1050,7 +1067,7 @@ Acetate Oxalate Succinate CH4
 \subsubsection{User Interactions}
 The software that accompany \emph{SOLMINEQ.88} and handles the generation of input files and all the interactions is named \emph{SOLINPU}. All the interactions use the command prompt - the menus with several options are generated and displayed. The user selects the option by entering the indication number and pressing enter (the indication number stays on the left of the option). Figure ~\ref{solmineq:interaction} shows this example of interaction.
 
-\begin{minipage}[c]{0.95\textwidth}
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s example of user interaction, label=solmineq:interaction]
 	pH OPTIONS
 1) Gas Addition Option
@@ -1083,7 +1100,7 @@ On this section we compare, analyze and discuss some important aspects and issue
 \label{tab:comparativeTable}
 \centering
 \begin{tabular}{r|cccccccc}
-&
+SOFTWARE &
 \rot{Aqueous Complexation} &
 \rot{Precipitation and Dissolution Mass Balancing} & 
 \rot{Reaction path} &
@@ -1150,6 +1167,8 @@ H2O
 \end{lstlisting}
 
 \item Redox Couples: This sections includes all chemical reactions in which atoms have their oxidation stated changed, redox reactions involve the transfer of electrons between species.The name comes from two concepts involved with electron transfer (reduction - loss of electrons - and oxidation - gain of electrons). Example:
+
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Redox Couples]
 Cr++
      charge=  2.0      ion size=  5.0 A      mole wt.=   51.9960 g
@@ -1159,9 +1178,11 @@ Cr++
         33.6814   29.9291   25.6126   21.6721
         17.7896   14.7267   12.2289   10.1676
 \end{lstlisting}
+\end{minipage}
 
 \item Aqueous Species: This sections contains the water solutions. The word aqueous is applied to a solution or mixture in which water is the solvent. When a chemical specie has been dissolved in water, this is denoted by writing (aq) after the chemical name. Example:
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Aqueous Species]
 CO2(aq)
      charge=  0.0      ion size=  4.0 A      mole wt.=   44.0098 g
@@ -1170,8 +1191,11 @@ CO2(aq)
         -6.5570   -6.3660   -6.3325   -6.4330
         -6.7420   -7.1880   -7.7630   -8.4650
 \end{lstlisting}
+\end{minipage}
+
 \item Minerals: This sections contains the naturally occurring substances that can be solid and inorganic representable by a chemical formula and has an ordered atomic structure. Example: 
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Minerals]
 Calcite                         type= carbonate
      formula= CaCO3
@@ -1181,8 +1205,11 @@ Calcite                         type= carbonate
          2.0683    1.7130    1.2133    0.6871
          0.0762   -0.5349   -1.2301   -2.2107
 \end{lstlisting}
+\end{minipage}
+
 \item Gases: This section contains individual atoms (e.g. noble gases or atomic gases), elemental molecules made from one type of atom (e.g. oxygen) or compound molecules made from a variety of atoms (e.g. carbon dioxide). Example: 
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Gases]
 CO2(g)
      mole wt.=   44.0098 g
@@ -1191,8 +1218,11 @@ CO2(g)
         -7.6827   -7.8184   -8.0628   -8.3849
         -8.8297   -9.3208   -9.8841  -10.6132
 \end{lstlisting}
+\end{minipage}
+
 \item Oxides: This sections contains the chemical compounds that consists of at least one oxygen atom and one other element in its chemical formula. Example: 
 
+\begin{minipage}[c]{0.93\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Oxides]
 Al2O3
      mole wt.=  101.9616 g
@@ -1200,16 +1230,17 @@ Al2O3
       -6.000 H+              2.000 Al+++           3.000 H2O
 \end{lstlisting}
 \end{itemize}
+\end{minipage}
 
 To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and worst and 5 the highest and best possible grade). This "grading system" is done with the intention to obtain a normalization towards differents aspects an interesting output for the comparison and in table ~\ref{tab:comparativeSoftwareTable} we can in details.
 
 \begin{table}
-\caption{Computer Science comparison to Geochemical Speciation Software}
+\caption{Qualitative analysis of the Geochemical Speciation Softwares}
 \label{tab:comparativeSoftwareTable}
 \centering
 \begin{tabular}{r|ccccccccc|ccc}
 
-&
+SOFTWARE &
 \rot{Costs} &
 \rot{Setup and versioning} & 
 \rot{Customization and Integration} &
@@ -1354,7 +1385,8 @@ Where $J$ is the Jacobian Matrix; $ \alpha [U]_{iteration+1} $ is the unknown co
 \end{equation}
 
 
-The initial guess of the solutions is an approximation that the user provides to the \emph{Gauss-Newton}'s method. This method needs a \emph{seed} to start the calculations (usually this guess is used for $F(0)$). If the guess is close to the real root value than the number of iterations necessary to obtain the solution will be small. If the guess is something completely nonsense, and far from the real solution, more iterations are going to be needed to find the correct solution.
+The initial guess of the solutions is an approximation that the user provides to the \emph{Gauss-Newton}'s method. This method needs a \emph{seed} to start the calculations (usually this guess is used for $F(0)$). 
+If the guess is close to the real root value than the number of iterations necessary to obtain the solution will be small. If the guess is something completely nonsense, and far from the real solution, more iterations are going to be needed to find the correct solution.
 
 The \emph{Jacobian Matrix} receives the equations and generates a model that does it automatically The \emph{Jacobian Matrix} is the matrix of all first-order partial derivatives of the equation and it is defined as
 
@@ -1365,7 +1397,7 @@ J_{mn} = \frac{\partial y^m}{\partial x^n}
 
 where the $y^i$'s are a new coordinate system defined in terms of the original coordinate system, the $x^i$'s. In differential equation theory, the Jacobian matrix plays a key role in defining the stability of solutions.
 
-Specifically, \emph{SHPECK}'s equations can be described as: $F_1(x_1,..., x_n),...,F_m(x_1,...,x_n)$. The partial derivatives of all these equations with respect to the variables $x_1,...,x_n$ can be organized in a m-by-n matrix, the Jacobian matrix, as bellow:
+Specifically, \emph{SHPECK}'s equations can be described as: $F_1(x_1,..., x_n)$,...,$F_m(x_1,...,x_n)$. The partial derivatives of all these equations with respect to the variables $x_1,...,x_n$ can be organized in a m-by-n matrix, the Jacobian matrix, as bellow:
 
 \begin{equation} 
 J =
@@ -1381,21 +1413,22 @@ In our case, $m = n$ and the \emph{jacobian matrix} is a square matrix and is ge
 Important to realize that the main complication with using a the \emph{Gauss-Newton}'s method to solve a system of nonlinear equations is defining all the functions included in the \emph{Jacobian Matrix}. As the number of equations and unknowns increases (n), so does the number of elements in the \emph{Jacobian} ($n^2$).
 
 
-\subsection{Gauss-Newton simple example}
-Consider the function $f(x) = x^2 - 612$, the derivative of this function is $f'(x) = 2x$, and the initial guess is $10$. According to \emph{Gauss-Newton Method}: $x_n = x_{n-1} - \frac{f(x)}{f'(x)}$
+%\subsection{Gauss-Newton simple example}
+%Consider the function $f(x) = x^2 - 612$, the derivative of this function is $f'(x) = 2x$, and the initial guess is %$10$. According to \emph{Gauss-Newton Method}: $x_n = x_{n-1} - \frac{f(x)}{f'(x)}$
 
-$x_1 = 10 - \frac{10^2 - 612}{2*10} = 35.6$\\ \\
-$x_2 = 35.6 - \frac{35.6^2 - 612}{2*35.6} = 35.6$\\ \\ 
-$x_3 = ... = 24.790635...$\\
-$x_4 = ... = 24.738688...$\\
-$x_5 = ... = 35.738633...$ \\
-...\\
+%$x_1 = 10 - \frac{10^2 - 612}{2*10} = 35.6$\\ \\
+%$x_2 = 35.6 - \frac{35.6^2 - 612}{2*35.6} = 35.6$\\ \\ 
+%$x_3 = ... = 24.790635...$\\
+%$x_4 = ... = 24.738688...$\\
+%$x_5 = ... = 35.738633...$ \\
+%...\\
 
-The number of decimal places defines the accuracy of the solution. Increasing the number of iterations will automatically enhance the precision of the solution.
+%The number of decimal places defines the accuracy of the solution. Increasing the number of iterations will automatically enhance the precision of the solution.
 
 \section{Algorithm}
 
-\emph{SHPECK}'s algorithm takes as its input a specification of the system's state. For example, the values for the concentrations of the species in the solution, the temperature of the system, the method to calculate activity coefficient, etc. It then calculates the system's state by executing all the processes in the necessary order that the model was conceptualized. Figure ~\ref{fig:Shpeck-algo} presents the high-level algorithm in details; is important to understand that each of the boxes in this algorithm represents a set of instructions, calculations and conditional clauses. Due to this work's scope we only specify the algorithm inside the box called "Newton's Method Solver", understanding how the governing equations controls the numerical methods is a fundamental piece. Newton's Method Solver internal algorithm is presented in figure ~\ref{fig:Shpeck-algo-newton}. 
+\emph{SHPECK}'s algorithm takes as its input a specification of the system's state. For example, the values for the concentrations of the species in the solution, the temperature of the system, the method to calculate activity coefficient, etc. It then calculates the system's state by executing all the processes in the necessary order that the model was conceptualized. 
+Figure ~\ref{fig:Shpeck-algo} presents the high-level algorithm in details; is important to understand that each of the boxes in this algorithm represents a set of instructions, calculations and conditional clauses. Due to this work's scope we only specify the algorithm inside the box called "Newton's Method Solver", understanding how the governing equations controls the numerical methods is a fundamental piece. Newton's Method Solver internal algorithm is presented in figure ~\ref{fig:Shpeck-algo-newton}. 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=100mm]{Shpeck_algo3.png}
@@ -1483,7 +1516,8 @@ We use the SQLite database \cite{SQLite}, which is a software library that imple
 \end{itemize}
 
 \subsection{\emph{LLNL} thermodynamic dataset parser}
-Once we defined what would be the structure and the technology of our database, we need to find the information to populate it - the information that would  feed \emph{SHPECK}. We create a parser for the flat file database that extracted the information and arranged it following our structure. The parser was carefully generated in order not to misunderstand any structure nor miss a delimiter - this task was extremely time-consuming and proportionally important for the success of \emph{SHPECK}.
+Once we defined what would be the structure and the technology of our database, we need to find the information to populate it - the information that would  feed \emph{SHPECK}. We create a parser for the flat file database that extracted the information and arranged it following our structure. 
+The parser was carefully generated in order not to misunderstand any structure nor miss a delimiter - this task was extremely time-consuming and proportionally important for the success of \emph{SHPECK}.
 
 \newpage
 
@@ -1502,7 +1536,6 @@ where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ de
 \item Numerical Method: \emph{SHPECK} applies the \emph{Gauss-Newton's} method to solve the nonlinear system of equations. The concept of the method is described in equation ~\ref{eq:gaussNewtonMethodEq1} and reinforced here:
 
 \begin{equation}
-\label{eq:gaussNewtonMethodEq1}
 F(x+1) = F(x) - J^{-1} * R
 \end{equation}
 
@@ -1523,22 +1556,60 @@ Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of t
 
 \chapter{Verification and Validation}
 
-As computer simulation methods have gained importance in more and more disciplines, the issue of their trustworthiness for generating new knowledge has grown, especially when simulations are expected to be counted as epistemic peers with experiments and traditional analytic theoretical methods.
+Along the development of this work, we have always been in contact with geochemists to present them the partial results of our geochemical speciation modelling software. We collected feedbacks regarding how to achieve a better software, as well as checking if our solution is fulfilling its purpose with consistent results. \\
+As final evaluation of this work, we selected an application relevant to petroleum systems. Many physical-chemical reactions happens during the generation, migration and storage of oil. \emph{Diagenesis} is the definition of the several processes that are involved and it is driven by multiple factors as temperature, pressure, mineral composition, water composition, activity of the solutes, pH, etc. 
+The \emph{diagenesis} is responsible for compaction and precipitation of minerals \cite{Tucker:01} and therefore, porosity, solubility and permeability of these reservoirs. The study of diagenesis is important because it allows to understand the geologic history of rocks, specially sedimentary rocks. In sedimentary rocks, the deposition of sediments are compacted in different layers and cemented by minerals that precipitate from reactions in a chemically very active environment. The \emph{diagenesis} reactions happens because the components are always trying to reach equilibrium, and therefore, they tend to interact with each others \cite{Burley:85}.
+Using geochemical modelling softwares is a powerful tool to understand the diagenetic processes and the natural conditions that occur in this natural environment. The goal is to numerically model this environment and analyse the results of the diagenetic reactions with a petrographic analysis of the modeled reservoirs.
 
+\section{Case Study}
+We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. Petrographically described in \cite{Morad:90}, this study brings a detailed description about the sandstones present in that area and with that information we can verify our results in an embracing way:
 \begin{itemize}
-\item comparacao de tempo com o arquivo texto; 
-\item simular pesquisa com os 2 formatos;
+\item Experimentally: By analysing the sedimentary analysis present in \cite{Morad:90} and cross-checking that with \emph{SHPECK}'s output;
+\item Computationally: By simulating the same environment using different softwares and comparing the outputs (important to mention that in this case, the numerical methods used in each software will affect the results). 
 \end{itemize}
 
- 
+\subsection{Experimentally validation of Shpeck}
+
+
+\section{Database Evaluation}
+The database is the source of every information inside a geochemical modelling software. The goal of this section is to make clear the difference and the benefits of \emph{SHPECK}'s relational database if compared to others. In geochemical modelling software the common approach is to use flat file databases; therefore, we're going to implement a time, space and expressiveness analysis between the \emph{LLNL} thermodynamic dataset and \emph{SHPECK}'s databse. 
+
+
+\subsection{Response Time analysis}
+The response time is considered the sum of the processing time and the time waiting for the availabilit of the resource. It is fundamental for the performance of a geochemical modelling software to have fast access to the information since it is a bottleneck for the whole system. 
+It is necessary to understand that until the software has received all the information from the database - elements, species, compounds, reactions, and so on - it will be actually doing nothing, completely stopped. This waste of CPU usage if scaled to multiple simulations and long processing is definitely something that can not be ignored. 
+In order to analyze the response time, we perform database searches to retrieve the same information. The results can be seen in figure XXXXXXXXXX.
+
+FIGURA 1 
+%fetching an specie%
+
+FIGURA 2
+%fetching a reaction%
+
+FIGURA 3
+%fetching a list of compounds%
+
+\subsection{Size and Growth analysis}
+In the size analysis we compare the flat file database and a \emph{SQLite} relational database regarding the size that it takes - either from the memory and from the hard disk. Also connected to the size of the database, we have a comparative study on how to insert one information once this database has already been finished and is in use.
+In order to analyse the size, we have table XXXXXXXXXXXXX.
+
+\subsection{Expressiveness analysis}
+The more expressiveness the database has, the more it provides for the system that is using it (in all possible ways). With flat file database, we have regular access to the information that it contains. In relation databases we use the \emph{SQL}. The studies in expressive power of query languages is one of the important fields in database studies - it studies the limitation and, on the other hand, the power of \emph{SQL}. Due to this works scope, we will not address basic knowledges in \emph{SQL} queries. 
+In order to analyze the expressiveness, we explain how the same information needs to be requested in a flat file database and in a \emph{SQL} relational database. 
+
+\begin{enumerate}
+\item Example 1
+\item Example 2
+\end{enumerate}
+
 
 \begin{itemize}
-\item Explanation of the data that will be used to compare the results: 
-\item Results comparison 
-\item	Summary
+\item Diagenetic Reactions:
+\item Verification: 
+\item Validation: 
+\item 
 \end{itemize}
 
-Results from initial studies indicated that the uncertainty for thermodynamic values is much greater around the very dilute range and the more concentrated range, where data for the thermodynamic constants are comparatively sparse. 
 
 %%%%%%%%%%%
 %                            %
@@ -1548,8 +1619,11 @@ Results from initial studies indicated that the uncertainty for thermodynamic va
 
 \chapter{Conclusion}
 
+
 Geochemical speciation is critical for understanding the form of chemicals of interest in natural systems. It is crucial in many different aspects of our daily life nowadays: assessing bioavailability, risk to humans and ecosystems. Geochemical speciation models are generaly determined through analytical methods that measure free ions or total concentrations, used in conjunction with thermodynamically based models. As presented on this work, these models rely on the local equilibrium assumption, and on experimentally determined reaction constants. It is clear, though, that if the chemical system does not achieve equilibrium state or if the equilibrium constants are not certain, the geochemical speciation model's prediction show significant uncertainty.
 This emphasizes the clear need for a proper computation approach while treating with such influential information like a geochemical speciation model. The information flow is tightly connected and any mistake will propagate errors and carry that wrong information until the very end of the model.
+
+As computer simulation methods have gained importance in more and more disciplines, the issue of their trustworthiness for generating new knowledge has grown; therefore, we present an interesting study case where is possible to absorb and realize the comprehensiveness of this work.
 
 Calculation of speciation is conducted by substitution of the equilibrium constants into the mass balance expressions for the total concentration of a particular component. This results in a series of nonlinear equations which are solved iteratively using numerical techniques, such as the Newton-Raphson iteration used in the MINTEQA2 model. Iterations continue until the total calculated component concentrations, derived from the equilibrium expressions, calculated activity coefficients, and component mass balances, and the measured total concentrations converge to a prescribed limit.
 
@@ -1571,24 +1645,133 @@ Calculation of speciation is conducted by substitution of the equilibrium consta
 
 \begin{thebibliography}{este-parametro-nao-eh-usado-pelo-estilo-ABNT}
 
-\bibitem[SARKER, 2008]{Sarker:08} SARKER, R. A., NEWTON, C. S.
-\textbf{Optimization Modellig - A Practical Approach} : CRC Press
+\bibitem[ALLAN, 2015]{Allan:15} LEAL, M. M. ALLAN, ET. AL.
+\textbf{A chemical kinetics algorithm for geochemical modelling}: Applied Geochemistry
 
-\bibitem[GARRELS, 1965]{Garrels:65} R. M. GARRELS AND C. M. CHRIST
-\textbf{Solutions, Minerals, and Equilibria}: Harpers' Geoscience Series. Harper and Row, New York, 1965.
+\bibitem[ALLEY, 1993]{Alley:93} ALLEY, WILLIAN M.
+\textbf{Regional Ground-Water Quality}
 
-\bibitem[KEHEW, 2000]{Kehew:00} KEHEW, A.
- \textbf{Applied Chemical Hidrogeology}: Prentice Hall, 2000. 368p.
+\bibitem[ALLISON, 1991] {Allison:91} ALLISON, J. D., Brown, D. S. and Novo-Gradac, K. J.
+\textbf{MINTEQA2/PRODEFA2, a geochemical assessment model for environmental systems: version 3.0}: Environmental Research Laboratory, Office of research and development, U.S. Environmental Protection Agency.
 
-\bibitem[FREEZE, 1979]{Freeze:79} FREEZE, R. A. and CHERRY, J. A.
-\textbf{Groundwater}: Prentice Hall 1979
+\bibitem[APELLO, 2011]{NotPhree:11} APELLO, C.A.J.
+\textbf{Notepad++ with PHREEQC Plugin - www.hydrochemistry.eu/ph3}
+
+\bibitem[Armadillo(2014)] {arma:14} Arma
+\textbf{Armadillo C++ linear algebra library}: Available at $http://www.arma.sourceforge.net$ : Accessed in July 2014.
+
+\bibitem[BAUER, 1968]{Bauer:68} BAUER, FRITZ
+\textbf{Software Engineering: A Report on a Conference Sponsored by NATO}
+
+\bibitem[BETHKE, 1996] {Bethke:96} BETHKE, C. M.
+\textbf{Geochemical Reaction Modeling, concepts and applications}: Oxford University Press, 397p
+
+\bibitem[BETHKE, 2008] {Bethke:08} BETHKE, C. M.
+\textbf{Geochemical and Biogeochemical Reaction Modeling}: Cambridge University Press, 547p
+
+
+\bibitem[BURLEY, 1985]{Burley:85} BURLEY S. D.; KANTOROWISCS J. D.; WAUGH B.
+\textbf{Sedimentology: Recent developments and applied aspects} : Geological Society Special Publication
+
+\bibitem[BOEHM, 1983]{Boehm:83} BOEHM, BARRY W.,
+\textbf{Seven Basic Principles of Software Engineering}
+
+\bibitem[BROWN, 1987] {Brown:87} BROWN, D. S. and ALLISON, J. D.
+\textbf{MINTEQA1, an equilibrium metal speciation model: user's manual}: Environmental Research Laboratory, Office of research and development, U.S. Environmental Protection Agency.
+
+\bibitem[DALE, 2004]{Dale:04} DALE, NELL B.
+\textbf{Programming and problem solving with C++}: Jones Bartlett Publishers, 2004.
+
+\bibitem[DEBRAAL, 1989] {Debraal:89} DEBRAAL, J. D. and KHARAKA, Y. K
+\textbf{SOLINPU: A computer Code to Create and Modify Input Files for the Geochemical Program SOLMINEQ.88}
+
+\bibitem[DEUTSCH, 1997]{Deutsch:97} DEUTSCH, J. WILLIAN,
+\textbf{Groundwater Geochemistry: fundamentals and applications to contamination}: CRC Press
 
 \bibitem[DOMENICO, 1997] {Domenico:97} DOMENICO, P. A. and SCHWARTZ, F. W.
 \textbf{Physical and Chemical Hydrogeology - Second Edition}: John Wiley and Sons Inc.
 
- \bibitem[DALE, 2004]{Dale:04} DALE, NELL B.
- \textbf{Programming and problem solving with C++}: Jones Bartlett Publishers, 2004.
+\bibitem[DREVER, 2005]{Drever:05} DREVER, J. I.
+\textbf{Surface and Ground Water, Weathering, and Soils} : Elsevier
+
+\bibitem[FREEZE, 1979]{Freeze:79} FREEZE, R. A. and CHERRY, J. A.
+\textbf{Groundwater}: Prentice Hall 1979
+
+\bibitem[GAMMA, 1994]{Gamma:94} GAMMA, ERICHT. ET AL
+\textbf{Design Patterns. Elements of Reusable Object-Oriented Software.}
+
+\bibitem[GARRELS, 1965]{Garrels:65} R. M. GARRELS AND C. M. CHRIST
+\textbf{Solutions, Minerals, and Equilibria}: Harpers' Geoscience Series. Harper and Row, New York, 1965.
+
+\bibitem[HARBAUGH, 2000] {Harbaugh:00} HARBAUGH, A. W., BANTA, E. R., MCDONALD, M. G.
+\textbf{MODFLOW-2000, the U.S. Geological Survey modular ground-water model - User guide to modularization concepts and the Ground-Water Flow Process}: U.S. Geological Survey
+
+\bibitem[HUMPHREYS, 2004]{Humphreys:04} HUMPHREYS, PAUL.
+\textbf{Extending Ourselves: Computational Science, Empiricism, and Scientific Method}
+
+\bibitem[ISAACSON, 1966] {Isaacson:66} ISAACSON, E., KELLER, H. B.
+\textbf{Analysis of Numerical Methods}: Wiley, New York 
+
+\bibitem[KHARAKA, 1973] {Kharaka:73} KHARAKA, Y. K. and BARNES, I.
+\textbf{SOLMNEQ: Solution-Mineral Equilibrium Computations}: NTIS Tech Rept. PB214-899, Springfield, VA, 82p
+
+\bibitem[KHARAKA, 1988] {Kharaka:88} KHARAKA, Y. K., GUNTER, W. D., AGGARWAL, P. K., PERKINS, E. H., AND DEBRAAL, J. D.,
+\textbf{SOLMINEQ.88; a computer program for geochemical modeling of water-rock interactions: Water-Resources Investigations Report.}
+
+\bibitem[KEHEW, 2000]{Kehew:00} KEHEW, A.
+ \textbf{Applied Chemical Hidrogeology}: Prentice Hall, 2000. 368p.
+
+\bibitem[LEE, 2011] {Lee:11} LEE, L. and GOLDHABER, M
+\textbf{The Geochemist's Workbench Computer Program}: 
+
+\bibitem[MINTEQ, 1996]{minteq:unix} Center for Exposure Assessment Modeling (CEAM)
+\textbf{ \url{http://eng.odu.edu/cee/resources/model/minteqa_unix.shtml} } : accessed in 01/10/2015
+
+\bibitem[MINTEQ, 2006]{minteq:website} Center for Exposure Assessment Modeling (CEAM)
+\textbf{ \url{http://www2.epa.gov/exposure-assessment-models/minteqa2} } : accessed in 01/10/2015
+
+\bibitem[MORAD, 1990]{Morad:90} Morad S., Bergan M., Knarud R., Nystuen J. P.
+\textbf{Triassic reservoir sandstones from the Snorre Field, Norwegian North Sea. J. Sediment}
+
+\bibitem[NOFZIGER, 2000] {Nofziger:00} NOFZIGER, D. L., WU, J.
+\textbf{CHEMFLO : Interactive software for simulating water and chemical movement in unsaturated soils}
+
+\bibitem[NORDSTROM, 1986] {Nordstrom:86} NORDSTROM, D., MUNOZ, K.
+\textbf{Geochemical Thermodynamics}: Prentice Hall, 200. 477p
+
+\bibitem[PALANDRI, 2004]{Palandri:04} PALANDRI, L. JAMES, KHARAKA, K. YOUSIF,
+\textbf{A compilation of rate parameters of water-mineral interaction kinetics for application to geochemical modeling}: U.S. Geological Survey
+
+\bibitem[PARKHURST, 1995] {Parkhurst:80} PARKHURST, D. L.
+\textbf{User's guide to PHREEQC - A Computer program for speciation, reaction-path, advective-transport, and inverse geochemical calculations}: U.S. Geological Survey Water-Resources Investigations Report 95-4227, 143p
+
+\bibitem[PETRUCCI, 2007]{Petrucci:07} PETRUCCI, RALPH H.
+\textbf{General Chemistry: Principles \& Modern Applications}: New Jersey : Prentice-Hall
+
+\bibitem[Qt(2014)] {qt:14} Qt
+\textbf{Application Framework}: Available at http://www.qt-project.org : Accessed in July 2014.
+
+\bibitem[SARKER, 2008]{Sarker:08} SARKER, R. A., NEWTON, C. S.
+\textbf{Optimization Modellig - A Practical Approach} : CRC Press
    
+\bibitem[SHARIF, 2007]{Sharif:07} SHARIF, M. U. ET. AL. 
+\textbf{Inverse geochemical modeling of groundwater evolution with emphasis on arsenic in the Mississippi River Valey alluvial aquifer, Arkansas (USA)}: Journal of Hidrology
+
+\bibitem[SMITH, 1980]{Smith:80} SMITH, W. R. 
+\textbf{The Computation of Chemical Equilibria in Complex Systems}: Americam Chemical Society
+
+\bibitem[SQLITE, 2015]{SQLite} SQLITE
+\textbf{ \url{https://www.sqlite.org} }
+
+\bibitem[STROUSTRUP, 1997]{Stroustrup:97} STROUSTRUP, BJARNE
+\textbf{The C++ Programming Language (Third ed.)}
+
+\bibitem[TUCKER, 2001]{Tucker:01} TUCKER, M. E.
+\textbf{Sedimentary Petrology}
+
+\bibitem[WESTALL, 1976]{Westall:76} WESTALL, J.C., J.L. ZACHARY AND F.F.M. MOREL
+\textbf{MINEQL, a computer program for the calculation of chemical equilibrium composition of aqueous systems}
+
 \bibitem[WOLERY, 1979] {Wolery:79} WOLERY, T. J. 
 \textbf{Calculation of chemical equilibrium between aqueous solution and minerals: \emph{the EQ3/6 software package}}: Lawrence Livermore National Laboratory, Livermore CA, U.S.A.
 
@@ -1598,110 +1781,11 @@ Calculation of speciation is conducted by substitution of the equilibrium consta
 \bibitem[WOLERY, 1992] {Wolery:92} WOLERY, T. J.
 \textbf{EQ3/6, a software package for geochemical modeling of aqueous systems: package overview and installation guide (Version 7.0)}: Lawrence Livermore National Laboratory, Livermore CA, U.S.A.
 
-\bibitem[KHARAKA, 1973] {Kharaka:73} KHARAKA, Y. K. and BARNES, I.
-\textbf{SOLMNEQ: Solution-Mineral Equilibrium Computations}: NTIS Tech Rept. PB214-899, Springfield, VA, 82p
-
-\bibitem[DEBRAAL, 1989] {Debraal:89} DEBRAAL, J. D. and KHARAKA, Y. K
-\textbf{SOLINPU: A computer Code to Create and Modify Input Files for the Geochemical Program SOLMINEQ.88}
-
-\bibitem[KHARAKA, 1988] {Kharaka:88} KHARAKA, Y. K., GUNTER, W. D., AGGARWAL, P. K., PERKINS, E. H., AND DEBRAAL, J. D.,
-\textbf{SOLMINEQ.88; a computer program for geochemical modeling of water-rock interactions: Water-Resources Investigations Report.}
-
-\bibitem[NORDSTROM, 1986] {Nordstrom:86} NORDSTROM, D., MUNOZ, K.
-\textbf{Geochemical Thermodynamics}: Prentice Hall, 200. 477p
-
-\bibitem[PARKHURST, 1995] {Parkhurst:80} PARKHURST, D. L.
-\textbf{User's guide to PHREEQC - A Computer program for speciation, reaction-path, advective-transport, and inverse geochemical calculations}: U.S. Geological Survey Water-Resources Investigations Report 95-4227, 143p
-
-\bibitem[BROWN, 1987] {Brown:87} BROWN, D. S. and ALLISON, J. D.
-\textbf{MINTEQA1, an equilibrium metal speciation model: user's manual}: Environmental Research Laboratory, Office of research and development, U.S. Environmental Protection Agency.
-
-\bibitem[ALLISON, 1991] {Allison:91} ALLISON, J. D., Brown, D. S. and Novo-Gradac, K. J.
-\textbf{MINTEQA2/PRODEFA2, a geochemical assessment model for environmental systems: version 3.0}: Environmental Research Laboratory, Office of research and development, U.S. Environmental Protection Agency.
-
-\bibitem[Qt(2014)] {qt:14} Qt
-\textbf{Application Framework}: Available at http://www.qt-project.org : Accessed in July 2014.
-
-\bibitem[Armadillo(2014)] {arma:14} Arma
-\textbf{Armadillo C++ linear algebra library}: Available at $http://www.arma.sourceforge.net$ : Accessed in July 2014.
-
-\bibitem[LEE, 2011] {Lee:11} LEE, L. and GOLDHABER, M
-\textbf{The Geochemist's Workbench Computer Program}: 
-
-\bibitem[BETHKE, 1996] {Bethke:96} BETHKE, C. M.
-\textbf{Geochemical Reaction Modeling, concepts and applications}: Oxford University Press, 397p
-
-\bibitem[BETHKE, 2008] {Bethke:08} BETHKE, C. M.
-\textbf{Geochemical and Biogeochemical Reaction Modeling}: Cambridge University Press, 547p
-
 \bibitem[XU, 2004] {Xu:04} XU, T., SONNENTHAL, E.L., SPYCHER, N., PRUESS, K.
 \textbf{TOUGHREACT User's guide: A Simulation program for non-isothermal multiphase reactive geochemical transport in variably saturated geologic media}: Lawrence Berkeley National Laboratory, Berkeley, California, U.S.
 
-\bibitem[HARBAUGH, 2000] {Harbaugh:00} HARBAUGH, A. W., BANTA, E. R., MCDONALD, M. G.
-\textbf{MODFLOW-2000, the U.S. Geological Survey modular ground-water model - User guide to modularization concepts and the Ground-Water Flow Process}: U.S. Geological Survey
-
-\bibitem[NOFZIGER, 2000] {Nofziger:00} NOFZIGER, D. L., WU, J.
-\textbf{CHEMFLO : Interactive software for simulating water and chemical movement in unsaturated soils}
-
-\bibitem[PETRUCCI, 2007]{Petrucci:07} PETRUCCI, RALPH H.
-\textbf{General Chemistry: Principles \& Modern Applications}: New Jersey : Prentice-Hall
-
 \bibitem[ZEGGEREN, 1970]{Zeggeren:70} ZEGGEREN, F. VAN., STOREY, S. H. 
 \textbf{The Computation of Chemical Equilibria}: Cambridge University Press
-
-\bibitem[SMITH, 1980]{Smith:80} SMITH, W. R. 
-\textbf{The Computation of Chemical Equilibria in Complex Systems}: Americam Chemical Society
-
-\bibitem[ALLAN, 2015]{Allan:15} LEAL, M. M. ALLAN, ET. AL.
-\textbf{A chemical kinetics algorithm for geochemical modelling}: Applied Geochemistry
-
-\bibitem[DEUTSCH, 1997]{Deutsch:97} DEUTSCH, J. WILLIAN,
-\textbf{Groundwater Geochemistry: fundamentals and applications to contamination}: CRC Press
-
-\bibitem[PALANDRI, 2004]{Palandri:04} PALANDRI, L. JAMES, KHARAKA, K. YOUSIF,
-\textbf{A compilation of rate parameters of water-mineral interaction kinetics for application to geochemical modeling}: U.S. Geological Survey
-
-\bibitem[SHARIF, 2007]{Sharif:07} SHARIF, M. U. ET. AL. 
-\textbf{Inverse geochemical modeling of groundwater evolution with emphasis on arsenic in the Mississippi River Valey alluvial aquifer, Arkansas (USA)}: Journal of Hidrology
-
-\bibitem[ALLEY, 1993]{Alley:93} ALLEY, WILLIAN M.
-\textbf{Regional Ground-Water Quality}
-
-\bibitem[BOEHM, 1983]{Boehm:83} BOEHM, BARRY W.,
-\textbf{Seven Basic Principles of Software Engineering}
-
-\bibitem[HUMPHREYS, 2004]{Humphreys:04} HUMPHREYS, PAUL.
-\textbf{Extending Ourselves: Computational Science, Empiricism, and Scientific Method}
-
-\bibitem[BAUER, 1968]{Bauer:68} BAUER, FRITZ
-\textbf{Software Engineering: A Report on a Conference Sponsored by NATO}
-
-\bibitem[WESTALL, 1976]{Westall:76} WESTALL, J.C., J.L. ZACHARY AND F.F.M. MOREL
-\textbf{MINEQL, a computer program for the calculation of chemical equilibrium composition of aqueous systems}
-
-\bibitem[APELLO, 2011]{NotPhree:11} APELLO, C.A.J.
-\textbf{Notepad++ with PHREEQC Plugin - www.hydrochemistry.eu/ph3}
-
-\bibitem[MINTEQ, 2006]{minteq:website} Center for Exposure Assessment Modeling (CEAM)
-\textbf{ $http://www2.epa.gov/exposure-assessment-models/minteqa2$ } : accessed in 01/10/2015
-
-\bibitem[MINTEQ, 1996]{minteq:unix} Center for Exposure Assessment Modeling (CEAM)
-\textbf{ $http://eng.odu.edu/cee/resources/model/minteqa_unix.shtml$ } : accessed in 01/10/2015
-
-\bibitem[SQLITE, 2015]{SQLite} 
-\textbf{ $ https://www.sqlite.org/ $ }
-
-\bibitem[GAMMA, 1994]{Gamma:94} GAMMA, ERICHT. ET AL
-\textbf{Design Patterns. Elements of Reusable Object-Oriented Software.}
-
-\bibitem[STROUSTRUP, 1997]{Stroustrup:97} STROUSTRUP, BJARNE
-\textbf{The C++ Programming Language (Third ed.)}
-
-\bibitem[ISAACSON, 1966] {Isaacson:66} ISAACSON, E., KELLER, H. B.
-\textbf{Analysis of Numerical Methods}: Wiley, New York 
-
-\bibitem[DREVER, 2005]{Drever:05} DREVER, J. I.
-\textbf{Surface and Ground Water, Weathering, and Soils} : Elsevier
 
 \end{thebibliography}
 
