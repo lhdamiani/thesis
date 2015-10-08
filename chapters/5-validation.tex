@@ -1,0 +1,61 @@
+%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                       %
+% Verification and Validation   %
+%                                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Verification and Validation}
+
+During the development of this work, we have always been in contact with geochemists to present them the partial results of our geochemical speciation modelling software. We collected feedbacks regarding how to achieve a better software, as well as checking if our solution is fulfilling its purpose with consistent results. \\
+As final evaluation of this work, we selected an application relevant to petroleum systems. Many physical-chemical reactions happens during the generation, migration and storage of oil. \emph{Diagenesis} is the definition of the several processes that are involved and it is driven by multiple factors as temperature, pressure, mineral composition, water composition, activity of the solutes, pH, etc. 
+The \emph{diagenesis} is responsible for compaction and precipitation of minerals \cite{Tucker:01} and therefore, porosity, solubility and permeability of these reservoirs. The study of diagenesis is important because it allows to understand the geologic history of rocks, specially sedimentary rocks. In sedimentary rocks, the deposition of sediments are compacted in different layers and cemented by minerals that precipitate from reactions in a chemically very active environment. The \emph{diagenesis} reactions happens because the components are always trying to reach equilibrium, and therefore, they tend to interact with each others \cite{Burley:85}.
+Using geochemical modelling softwares is a powerful tool to understand the diagenetic processes and the natural conditions that occur in this natural environment. The goal is to numerically model this environment and analyse the results of the diagenetic reactions with a petrographic analysis of the modeled reservoirs.
+
+\section{Case Study}
+We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. Morad \cite{Morad:90} describes petrographically the sandstones reservoirs present in that area and with that information we can verify our results in an embracing way:
+\begin{itemize}
+\item Experimentally: By analysing the sedimentary analysis present in \cite{Morad:90} and cross-checking that with \emph{SHPECK}'s output;
+\item Computationally: By simulating the same environment using different softwares and comparing the outputs (important to mention that in this case, the numerical methods used in each software will affect the results). 
+\end{itemize}
+
+\subsection{Experimentally validation of Shpeck}
+
+
+\section{Database Evaluation}
+The database is the source of every information inside a geochemical modelling software. The goal of this section is to make clear the difference and the benefits of \emph{SHPECK}'s relational database if compared to others. In geochemical modelling software the common approach is to use flat file databases; therefore, we're going to implement a time, space and expressiveness analysis between the \emph{LLNL} thermodynamic dataset and \emph{SHPECK}'s databse. 
+
+
+\subsection{Response Time analysis}
+The response time is considered the sum of the processing time and the time waiting for the availabilit of the resource. It is fundamental for the performance of a geochemical modelling software to have fast access to the information since it is a bottleneck for the whole system. 
+It is necessary to understand that until the software has received all the information from the database - elements, species, compounds, reactions, and so on - it will be actually doing nothing, completely stopped. This waste of CPU usage if scaled to multiple simulations and long processing is definitely something that can not be ignored. 
+In order to analyze the response time, we perform database searches to retrieve the same information. The results can be seen in figure XXXXXXXXXX.
+
+FIGURA 1 
+%fetching an specie%
+
+FIGURA 2
+%fetching a reaction%
+
+FIGURA 3
+%fetching a list of compounds%
+
+\subsection{Size and Growth analysis}
+In the size analysis we compare the flat file database and a \emph{SQLite} relational database regarding the size that it takes - either from the memory and from the hard disk. Also connected to the size of the database, we have a comparative study on how to insert one information once this database has already been finished and is in use.
+In order to analyse the size, we have table XXXXXXXXXXXXX.
+
+\subsection{Expressiveness analysis}
+The more expressiveness the database has, the more it provides for the system that is using it (in all possible ways). With flat file database, we have regular access to the information that it contains. In relation databases we use the \emph{SQL}. The studies in expressive power of query languages is one of the important fields in database studies - it studies the limitation and, on the other hand, the power of \emph{SQL}. Due to this works scope, we will not address basic knowledges in \emph{SQL} queries. 
+In order to analyze the expressiveness, we explain how the same information needs to be requested in a flat file database and in a \emph{SQL} relational database. 
+
+\begin{enumerate}
+\item Example 1
+\item Example 2
+\end{enumerate}
+
+
+\begin{itemize}
+\item Diagenetic Reactions:
+\item Verification: 
+\item Validation: 
+\item 
+\end{itemize}

@@ -1,0 +1,46 @@
+% Introduction
+\chapter{Introduction} 
+\label{chapter:intro}
+
+%PROBLEM
+
+Geochemical modelling corresponds to the design of the reactions that occur in a geological structure through the usage of chemical properties (either thermodynamics and kinetics) to describe it. The need to understand the Earth's interior (both at high-temperature - magma - and low-temperature - aqueous solutions near the surface) motivates the effort in this area of study with the development of models and simulations. The applications of geochemical models are essential in several environmental problems, such as calculating the composition of natural waters, measuring flowing groundwater or surface water and the formation and dissolution of rocks and minerals in geologic formations. A geochemical speciation modelling software is responsible for calculating the distribution of dissolved species between free ions and aqueous complexes and also saturation indexes for different minerals. 
+
+%DEFINITION OF MODELLING
+
+A mathematical model, as described in \cite{Sarker:08}, requires three major components: decision variables (unknowns of the model); objective function (which needs to be optimized); and constraints (restrictions or limitation of the model). The decision variables depend on the type of the problem considered.  The objective function represents the goal of the problem in term of decision variables. The constraints are the restrictions or limitations of the problem.
+
+As stated in \cite{Drever:05}, a chemical model is a theoretical construct that permits the calculation of chemical properties and processes, such as thermodynamics. Following this idea, a geochemical model is a chemical model developed for geologic systems. Geochemical models incorporate chemical models. A set of mathematical expressions represents these natural processes and handle modelling the system. The thermodynamics and kinetics data used to establish the reactions and mimic nature are directly responsible for the accuracy and precision of the geochemical model.
+
+
+%THIS WORK - MOTIVATION/CONTRIBUTION
+
+In this work, we develop a software that through the stoichiometry formulation calculates the chemical equilibrium of a geochemical system using the approach of imposing mass-balance conditions according to the species of the system. This process is known as chemical speciation, and the software was named as \emph{SHPECK}. It accepts any general combination of elements, species and reactions, allowing the user to create different environments, simulations and, therefore, fully control any aspect and configuration of the model. Also in this work, we show a thorough analysis of the available existing solutions, and we made clear the uniqueness of our computational approach to the geochemical modelling problem. 
+
+Using a high-level and object-oriented programming language, we could implement an efficient solution that models geochemical speciation. \emph{SHPECK} provides an interactive and intuitive user interface - unique among geochemical speciation software - as well as the support of a built-from-the-ground database structure that handles the management of the whole information used by \emph{SHPECK}. These two contributions are presented as the result of an extensive study about the available software normally in use to perform geochemical speciation simulations.Their flow of information (input and output) are old, complexes and prone to error. It is also important to mention that these software fetch the information from flat file databases. Both of these characteristics are responsible for frequent errors, problems and wrong interpretations.
+
+%BASIC CONCEPTS USED
+
+The principles of chemical equilibrium calculation rely on the law of conservation of mass (also known as the principle of mass conservation), stated by Antoine Lavoisier, and chemical speciation, which was presented by Garrels and Christ  \cite{Garrels:65}. The law of conservation of mass establishes that the total mass of an isolated system will remain constant and is independent of any chemical and physical changes taking place within the system. Therefore, the challenge of chemical equilibrium calculations is finding the number of moles that satisfies a system of equilibrium constraints at the moment where forward and reverse reactions rates are the same. These constraints are organized in a form of linear conservation equations, which may be expressed in the form of either linear algebraic atom and charge balance equations or chemical equations \cite{SmithMissen83}. For the sake of simplicity, in this work we will only deal with chemical equilibrium and not with chemical kinetics calculations since the first one requires only the solution of algebraic equation. It is planned to integrate kinetics reactions in the future.
+
+%APPLICATION
+
+The system of equations will drive and represent all the interactions between the components of the simulation. Newton-Raphson's method uses the previous guess for the equilibrium calculation in a subsequent step, recursively, until finding a suitable solution that satisfies the system and the convergence criteria. One must note that the initial guess is generated automatically and used as a seed for the iterations. This method requires the usage of a Jacobian matrix and a residual vector during the algebraic calculations. Geochemical modelling speciation has an important application in processes that occur in turbidite reservoirs. The process of the water coming from a salt dome contains a high concentration of salts as sodium (\ce{Na^+}), chlorine (\ce{Cl^-}) and potassium (\ce{K^+}). Compactation, cementation, dissolution or recrystalization can be observed inside turbidites when this process happens. These processes might change drastically, for example, the porosity of the rock and, therefore, the storage capacity of oil and gas.
+
+%OBJECTIVES OF THIS WORK
+\section{Objectives of this work}
+%This work has as purpose two main objetives:
+%\begin{enumerate}
+%\item Emphasize the importance of geochemical speciation modelling and make %explicit the need and uniqueness of the new software developed - \emph{SHPECK}. It %is a contribution to the geochemical modelling community by the adoption of a %structured Computer Science approach.
+%\item Analysis, comparison, evaluation of the accuracy of the implemented software %with the available commercial options as well as demonstrate the advantages of %\emph{SHPECK} towards these options.
+%\end{enumerate}
+%\subsection{Emphasize the importance of geochemical speciation modelling}
+Soils and aquifers are heterogeneous, subsurface systems composed of a large number of components - dissolved salts, minerals, metals, gases, natural organics, microorganisms, animals and plants. The subsurface is one of the most complex systems studied by scientists and engineers today. Because of this, geochemical modelling has gained importance and is being accepted as a useful tool to interpret subsurface geochemical processes. Geochemical speciation is based on thermodynamics concepts and the assumption of chemical equilibrium in geochemical reactions.
+%\subsection{Implementation and validation of \emph{SHPECK}}
+The idea of our own geochemical speciation software has emerged as an application where it would be possible to apply all the physical, chemical aqueous, geochemistry and linear algebra concepts, and develop a useful tool with an intuitive and interactive user interface. The most usual approach found in the area of geochemical modelling is a geochemical expert that develops a solution to solve his/her particular problem and generates a specific code/algorithm - a solution that most of the times is not very reliable and has no scalability. In this work, the approach was for the computer science expert to made the necessary efforts to understand and learn all the complex aspects of a geochemical speciation model and develop a software based on a solid knowledge in computer architecture, algorithms and software engineering. 
+
+The main purpose of this work is to develop a geochemical speciation modelling software following a structured computational approach. 
+
+
+%STRUCTURE OF THIS WORK - TO BE VERIFIED AT THE END OF THE WORK
+The rest of this work is structured as follow. In chapter 2, we present an overview of the basic concepts needed and technical concepts involved in this work. Chapter 3 shows a thoroughly analysis and review of the commercial software available. Chapter 4 presents the \emph{SHPECK} implementation with a detailed description of the whole system: design options; mathematical treatment and details; implementation and user interface (UI) details; algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. In chapter 5, it is presented a study case with an interesting and relevant scenario; the results that validate \emph{SHPECK} and a broad comparison between solutions previously addressed in this work. Chapter 6 brings the conclusion of this work. Finally, this work contains an Appendix A, which is a presentation and an analysis of a linear algebra library used for the development of \emph{SHPECK} called \emph{Armadillo C++}. -- THIS NEEDS TO BE VERIFIED LATER
