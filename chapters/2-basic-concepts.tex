@@ -3,14 +3,14 @@
 % BASIC CONCEPTS INTRODUCTION   %
 %                                                                %
 %%%%%%%%%%%%%%%%%%%%%%
-\chapter{Basic Concepts}
+\chapter{Basic Concepts for Geochemical Modelling}
 \label{chapter:basic}
 
 Applying Computer Science to solve problems and create solutions in different areas requires redefining obstacles outside normal boundaries and generating a new understanding of complex situations by thinking across two or more academic disciplines. 
 
 To develop this work, we had to delineate common goals for the different profiles that would take part on it, all of them with a clear view of their roles and with a noiseless communication in any direction. Although for the completeness of the text we should have included an introduction to the computer science aspects involved in building the geochemical modeller, we restrain ourselves to introduce the basic concepts of the application domain, i.e., geochemistry. The computational concepts and tools used in the development are addressed in Chapter~\ref{chapter:SHPECK}
 
-In this section, we explain the essential hydro-geochemistry principles: an introduction to thermodynamics; and hydrochemical processes; And to finish we focus on the geochemical modelling with a special section for it. If the reader feels comfortable with these topics, we recommend that you proceed to chapter ~\ref{chapter:review}.
+In the next section, we explain the essential hydrogeochemistry principles: an introduction to thermodynamics; and hydrochemical processes; And to finish, we focus on the geochemical modelling with a special section for it. If the reader feels comfortable with these topics, we recommend that you proceed to Chapter ~\ref{chapter:review}.
 
 
 % BASIC CONCEPTS COMPUTER SCIENCE 
@@ -100,7 +100,7 @@ In this section, we explain the essential hydro-geochemistry principles: an intr
 % BASIC CONCEPTS HYDROGEOCHEMISTRY PRINCIPLES
 \section{Hydrogeochemistry Principles}
 % INTRODUCTION TO THERMODYNAMICS
-\subsection{Introductions to Thermodynamics}
+\subsection{Introduction to Thermodynamics}
 In thermodynamics, equilibrium is a state of dynamic balance where the ratio of the product and the reactant concentration is constant. There are three general approaches to calculating the composition of a solution at equilibrium \cite{Petrucci}.
 \begin{enumerate}
     \item Manipulation of equilibrium constants (\emph{K}): The final concentrations are achieved by mathematical handling of the equilibrium constants; the idea is to express all the parts in terms of the measured equilibrium constant and initial conditions. Thermodynamics databases contain the values for the equilibrium constants obtained through experiments. Demonstration of this can be found in \cite{Kehew:00}. The disadvantage of this method is that it may never converge when using this method for a huge number of reactions.
@@ -371,8 +371,6 @@ This type of models, also known as mass-balance models, are used when chemistry 
 \item Forward geochemical modelling
 This type of models, also called reaction-path models, are used for prediction of water chemistry evolution along a flowline. The initial water chemistry is known and the aim of the program is to predict water chemistry at some point along the flow path. This kind of modelling introduces problems regarding kinetic and adsorption data, which are often missing and frequently limited.
 \end{itemize}
-
-\newpage
 
 %SUMMARY
 \section{Summary}

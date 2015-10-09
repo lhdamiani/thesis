@@ -12,13 +12,46 @@ The \emph{diagenesis} is responsible for compaction and precipitation of mineral
 Using geochemical modelling softwares is a powerful tool to understand the diagenetic processes and the natural conditions that occur in this natural environment. The goal is to numerically model this environment and analyse the results of the diagenetic reactions with a petrographic analysis of the modeled reservoirs.
 
 \section{Case Study}
-We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. Morad \cite{Morad:90} describes petrographically the sandstones reservoirs present in that area and with that information we can verify our results in an embracing way:
+We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. Morad \cite{Morad:90} describes the texture, origin, chemistry of the sandstones reservoirs in terms of the water composition and temperature. With the help and the results from this study, we  can verify \emph{SHPECK}'s results from two perspectives:
 \begin{itemize}
-\item Experimentally: By analysing the sedimentary analysis present in \cite{Morad:90} and cross-checking that with \emph{SHPECK}'s output;
-\item Computationally: By simulating the same environment using different softwares and comparing the outputs (important to mention that in this case, the numerical methods used in each software will affect the results). 
+    \item Experimentally: Morad examined two hundred representative core samples with standard optical microscopy and petrographically described the reservoirs. This analysis confirm that the our geochemical model suits the natural environment's reality;
+    \item Computationally: The descriptions presented in \cite{Morad:90} of the diagenetic reactions that take place in the Snorre Field allows us to generate a comparative study. We model and compare the same environment using \emph{SHPECK}, \emph{PHREEQC} and \emph{MINTEQA2}. The water composition is detailed in \cite{Nordstrom:79};
 \end{itemize}
 
 \subsection{Experimentally validation of Shpeck}
+As stated in \cite{Morad:90}, the model presented in \cite{Egeberg:88} calculates activities of the various ions of formations waters using ion association model (originally described in \cite{Wigley:77}). The thermodynamics data used are given in \cite{Helgeson:74a,  Helgeson:74b, Helgeson:76, Waltter:77, Helgeson:78, Helgeson:81}.
+
+After studying the composition of formations waters, the goal is to demonstrate what characteristics do the components of that water adopt. This is possible by generating and analysing the graph, in this case, expressed as a function of temperature and the log activity ratio of Potassium to Sodium ions - this can be verified in details in \cite{Aagaard:89}. 
+
+Figure ~\ref{fig:tempXactratio} brings the graph using the results from \emph{SHPECK}. It is consistent with \cite{Aagaard:89} and analysed in \cite{Morad:90}. The pattern detected is as the temperature rises and greater burial depths, the potassium activity gets higher over sodium's.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{figures/tempXactratio.png}
+\caption{Equilibrium diagram using the results from \emph{SHPECK}}
+\label{fig:tempXactratio}
+\end{figure}
+
+% QUESTION:
+% LEO: I wasn't sure if I should put the figure from aagaard's in order to really prove that our results are consistent.... 
+
+\subsection{Computationally comparative} 
+By modelling the same environment using three different software, we achieve a relevant comparison among the numerical methods and algorithms. 
+
+The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}. The latter provides an analogous chemical composition of the initial solution for the sea water. It can be verified the major components in table ~\ref{tab:nordstrom} - in $mM/L$. To have an interesting and broad study the temperature range goes from $25^o$C to $160^o$C.
+
+\begin{table}
+\caption{Chemical composition of the solution in the sea water at $25^o$C }
+\label{tab:nordstrom}
+\centering
+\begin{tabular}{r|c|c|c|c|c|c|c|c|c}
+\ce{Al^{3+}} & \ce{K^+} & \ce{Na^+} & \ce{Ca^{2+}} & \ce{Mg^{2+}} & \ce{Fe^{2+}} & \ce{SiO_2}&  
+\ce{SO_4^{2-}} & \ce{Cl^-} & pH
+    \\ \hline
+7.59e-5 & 10.45 & 479.32 & 10.53 & 54.39 & 3.66e-5 & 0.073 & 28.893 & 559.5 & 8.22
+\end{tabular}
+\end{table}
+
 
 
 \section{Database Evaluation}
@@ -48,14 +81,14 @@ The more expressiveness the database has, the more it provides for the system th
 In order to analyze the expressiveness, we explain how the same information needs to be requested in a flat file database and in a \emph{SQL} relational database. 
 
 \begin{enumerate}
-\item Example 1
-\item Example 2
+    \item Example 1
+    \item Example 2
 \end{enumerate}
 
 
 \begin{itemize}
-\item Diagenetic Reactions:
-\item Verification: 
-\item Validation: 
-\item 
+    \item Diagenetic Reactions:
+    \item Verification: 
+    \item Validation: 
+    \item 
 \end{itemize}
