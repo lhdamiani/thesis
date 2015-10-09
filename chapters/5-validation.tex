@@ -38,7 +38,7 @@ Figure ~\ref{fig:tempXactratio} brings the graph using the results from \emph{SH
 \subsection{Computationally comparative} 
 By modelling the same environment using three different software, we achieve a relevant comparison among the numerical methods and algorithms. 
 
-The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}. The latter provides an analogous chemical composition of the initial solution for the sea water. It can be verified the major components in table ~\ref{tab:nordstrom} - in $mM/L$. To have an interesting and broad study the temperature range goes from $25^o$C to $160^o$C.
+The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}. The latter provides the chemical composition of the initial solution for the sea water. It can be verified the major components in table ~\ref{tab:nordstrom} - in $mM/L$. The temperature on this comparative study interpolate from $25^o$C to $160^o$C. In MINTEQA2, due restrictions to its thermodynamics equilibrium database, the maximal temperature available is $100^o$C.
 
 \begin{table}
 \caption{Chemical composition of the solution in the sea water at $25^o$C }
@@ -52,8 +52,52 @@ The environment modelled is described in \cite{Morad:90} and the chemical compos
 \end{tabular}
 \end{table}
 
+The diagenetic processes modelled by the water-rock interactions are responsible for defining how of ions present the solution are going to behave. Figures ~\ref{fig:na+},~\ref{fig:cl-},~\ref{fig:mg+2},~\ref{fig:ca+2},~\ref{fig:k+} and ~\ref{fig:so4-2} present the most representative ions in the solution. It is possible to see that the behavior of \emph{SHPECK} accompany both \emph{PHREEQC} and \emph{MINTEQA2} in most of the cases, specially in temperatures under $100^o$C. We see a more distant behavior among \emph{SHPECK} and \emph{PHREEQC} in temperatures higher than $100^o$C but never completely opposites. This is explained due to temperatures where the equilibrium constant \emph{K} is not completely defined. This is a known issue from \emph{LLNL} thermodynamic dataset: sometimes equilibrium constants that are not measured are misterpreeted. \emph{SHPECK} uses the following approach: if there is one unknown equilibrium constant needed, it uses the closest known value. Unfortunately we can not describe exactly what other softwares do with this issue.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/na+.png}
+\caption{\ce{Na^+} log activity comparative study}
+\label{fig:na+}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/cl-.png}
+\caption{\ce{Cl^-} log activity comparative study}
+\label{fig:cl-}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/mg+2.png}
+\caption{\ce{Mg^{+2}} log activity comparative study}
+\label{fig:mg+2}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/ca+2.png}
+\caption{\ce{Ca^{+2}} log activity comparative study}
+\label{fig:ca+2}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/k+.png}
+\caption{\ce{K^+} log activity comparative study}
+\label{fig:k+}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=140mm]{figures/so4-2.png}
+\caption{\ce{SO_4^{-2}} log activity comparative study}
+\label{fig:so4-2}
+\end{figure}
 
 
+\newpage
 \section{Database Evaluation}
 The database is the source of every information inside a geochemical modelling software. The goal of this section is to make clear the difference and the benefits of \emph{SHPECK}'s relational database if compared to others. In geochemical modelling software the common approach is to use flat file databases; therefore, we're going to implement a time, space and expressiveness analysis between the \emph{LLNL} thermodynamic dataset and \emph{SHPECK}'s databse. 
 
