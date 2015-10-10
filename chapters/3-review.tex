@@ -84,16 +84,17 @@ iopr(4) - Print a Table of Aqueous Species Concentrations, Activities, etc.:
 \end{minipage}
 
 % VEJA E-MAIL SOBRE ESSE TEXT FILE QUE É DATABASE ABAIXO 
+% Reformatei todo o paragrafo, tirando o foco do especifico problema de text/binary, mas salientando que o uso desse tipo de arquivo acaba gerando desperdicio de memoria que é importante... a ideia permanece a mesma, mas com outro appraoch..deixando bem claro em qualquer linguagem, eu imagino..
 \subsection{File Formats}
-All the files discussed above are \emph{ASCII} text files and, therefore, any regular text editor can be used to build them. When the text file is a database, it is converted to binary format and this binary will be used directly by the software. This conversion from text files (\emph{ASCII}) to a binary file is interesting. An \emph{ASCII} file is a binary file that consists of \emph{ASCII} characters. \emph{ASCII} characters are 7-bit encodings stored in a byte. Thus, each byte of an \emph{ASCII} file has its most significant bit set to 0 - this represents a waste of a bit for every byte. By scaling this to a large amount of \emph{ASCII} information and it is possible to understand the reason for this conversion. Another reasonable advantage for the binary files is that the search in binary files is typically faster than in \emph{ASCII} files.
-
-
-\subsection{Software Environment}
-The \emph{EQ3/6} package runs on Windows (95 and upper versions) and was developed in FORTRAN77. The support for UNIX computers has been discontinued.  It has been developed and run at Lawrence Livermore National Laboratory on an Alliant FX/80 and Sun SPARCstations.
+All the files discussed above are \emph{ASCII} text files and, therefore, any regular text editor can be used to edit or build them. When the text file contains thermodynamic informations needed by the program, the whole group of information is copied to the memory and, only after that, the software will be able to fetch information and continue the simulation's processing and natural flow. In memory, the storage of this information is not always optimized, specially because \emph{ASCII} files are, in general, also not very well organized. Waste of memory here and there are expected and usual in this kind of text and memory management - scale this to a large amount of \emph{ASCII} information - like in geochemical modelling systems - and it is easy to understand the risk that comes together with \emph{ASCII} text files. 
 
 % TENHO DUVIDA - ACHO QUE NÃO PRECISA ESSA SEÇÃO DE INSTALAÇÃO
-\subsection{Installation Procedures}
+\subsection{Software Environment and Installation Procedures}
+The \emph{EQ3/6} package runs on Windows (95 and upper versions) and was developed in FORTRAN77. The support for UNIX computers has been discontinued.  It has been developed and run at Lawrence Livermore National Laboratory on an Alliant FX/80 and Sun SPARCstations.
+
 The installation of \emph{EQ3/6} is explained in details in \cite{Wolery:92}. Due to the purpose of this work, details of the installation will be suppressed here. At the same time, it is interesting to mention that the whole installation process requires some level of experience with command prompt and \emph{DOS}.
+
+
 
 %PHREEQC
 \section{\emph{PHREEQC}}
@@ -188,16 +189,15 @@ The \emph{"input"} file contains the description of the simulation, the \emph{"o
 All the files discussed above are in the \emph{ASCII} text files format and, therefore, any regular text editor can be used. 
 It is recommended that the editing of \emph{PHREEQC} files be done by using the NotPhreeqcce or notepad++ adapted version \cite{NotPhree:11}.
 
-\subsection{Software Environment}
+% IDEM - ACHO DESNECESSÁRIO
+\subsection{Software Environment and Installation Procedures}
 \emph{PHREEQC} has support for Windows (32 and 64-bit), MacOS (OS 10.6+) and Linux. \emph{PHREEQC} is currently on version 3 and with frequent updates, bug fixes and maintenance.
 
-% IDEM - ACHO DESNECESSÁRIO
-\subsection{Installation Procedures}
 The \emph{PHREEQC} version for Windows has a self-extracting file that can is available for download from the USGS website and easily installed. The \emph{UNIX} distribution comes with additional scripts and a makefile and the user should follow some steps to compile and install the program.
 
 %MINTEQ
 \section{\emph{MINTEQ}}
-\emph{MINTEQ} is a geochemical program to model aqueous solutions and the interactions of aqueous solutions with hypothesized assemblages of solid phases. It has a particular inclination to equilibrium speciation to calculate equilibrium composition of dilute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among dissolved species, adsorbed species and multiple solid phases although it has a much simpler treatment of the reactions. 
+\emph{MINTEQ} is a geochemical program to model aqueous solutions and the interactions of aqueous solutions with hypothesized assemblages of solid phases. It has a particular inclination to calculate equilibrium composition of dilute aqueous solutions. The model is useful for calculating the equilibrium mass distribution among dissolved species, adsorbed species and multiple solid phases although it has a much simpler treatment of the reactions. 
 
 It was originally developed in FORTRAN77 by Battelle Pacific Northwest Laboratory (\emph{PNL}) and continued by the Environmental Protection Agency (\emph{EPA}) to perform the  necessary calculations regarding waste, sediments and ground water. \emph{MINTEQ} does not consider the kinetic reactions and works at fixed temperature ($25$ degrees Celcius). 
 An extensive database adequate to a broad range of problems is part of the software, and there is no need for the user to change nor add anything \cite{Brown:87} \cite{Allison:91}. The latest update on \emph{MINTEQ} dates from 1990, and since then, there has been only some improvements especially on the usability and calculations. This version was named \emph{MINTEQA2} and uses a well-developed thermodynamic database from the \emph{USGS}.
@@ -207,11 +207,11 @@ The input files for \emph{MINTEQA2} can be generated manually, but there is anot
 \begin{itemize}
 \item Input file: The input file that contains the data input by the user. Typically, this file contains dissolved (i.e. Ca concentrations, pH, temperature) and solid phase (i.e. minerals, sorption sites) information for a water sample;
 \item Database file: This file contains the thermodynamic constants that govern the processes of interest (i.e. complexation constants, mineral solubilities, activity constants) which will be used to conduct calculations;
-\item Algorithm or executable file:  These files contain the workings of the code, which solve the specified problem (usually using an iterative numerical approach) within the constraints imposed by the Database files and the information in the Input file.
+\item Algorithm or executable file:  These files contain the algorithms of the code, which solve the specified problem (usually using an iterative numerical approach) within the constraints imposed by the Database files and the information in the Input file.
 \item Output file: This file contains the results of the calculations performed by the Algorithm Files.
 \end{itemize}
 
-Among the input file's options, there are 4 levels of complexity that when put together generate a \emph{MINTEQA2} simulation. 
+Among the input file's options, there are four levels of configuration. Each level controls some details of the simulation, and when these four levels are together, they compose a complete input file for \emph{MINTEQA2}. Important to mention that if the user does not want to specify all the details for every level, there are default options that enable any non-experienced user to execute simple simulations.
 \begin{enumerate}
 \item Displays the current settings of system parameters such as temperature as well as program flag settings such as the number of iterations allowed;
 \item Specify the chemistry of the system;
@@ -219,25 +219,27 @@ Among the input file's options, there are 4 levels of complexity that when put t
 \item Deals with utility functions (output file details, for example);
 \end{enumerate}
 
-If database, algorithm and output files are not specified, some default options will be used. Code ~\ref{minteqa2:input} brings a \emph{MINTEQA2}'s input file for a simulation that computes pH and comes inside the package as an example.
+If database, algorithm and output files are not specified, default options are used. Code ~\ref{minteqa2:input}  brings the \emph{MINTEQA2}'s input file used in the study case discussed in chapter~\ref{chapter:validation} and presented here as example. The beginning of the file (first and second lines) contains  a description of the simulation or input file; the third, fourth and fifth line brings settings configuration: details as temperature, unit chosen, eH, ionic strength, number of iterations, precipitation options. After that, comes the components that take part in the simulation, organized by internal id, concentration details and log of concentration;
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s input file, label=minteqa2:input]
-TEST1A - Compute total H+ of a solution of known pH.              
-This together with TEST1B illustrate a two run set to compute pH. 
+LHDAMIANI - STUDY CASE
+Comparative study           
 25.00 MOLAL  0.000  0.00000E+00
-0 0 1 0 0 0 0 0 1 1 0 0 0
+0 0 1 0 1 0 0 0 1 1 0 0 0
 0   0   0
-    330  0.000E+00   -2.50                      /H+1               
-    732  1.580E-03   -2.80                      /SO4-2             
-    410  7.700E-05   -4.11                      /K+1               
-    140  0.000E+00  -16.00                      /CO3-2             
-  
-  3   2
-3301403    21.6600    -0.5300                   /CO2 (g)           
-    330     2.5000     0.0000                   /H+1  
+    330  6.026E-09   -8.22 y                    /H+1               
+    410  1.045E-02   -1.98 y                    /K+1               
+    500  4.793E-01   -0.32 y                    /Na+1              
+    150  1.053E-02   -1.98 y                    /Ca+2              
+    460  5.439E-02   -1.26 y                    /Mg+2              
+    732  2.889E-02   -1.54 y                    /SO4-2             
+    180  5.595E-01   -0.25 y                    /Cl-1              
+
 \end{lstlisting}
 \end{minipage}
+
+
 
 An excerpt of \emph{MINTEQA2}'s output is presented in Code ~\ref{minteqa2:output}. The whole output file is divided into six parts:
 \begin{enumerate}
@@ -336,11 +338,10 @@ All the files follow a regular text format (\emph{ASCII}) and their purpose is d
 \item Input file have the extension \emph{"INP"};
 \end{itemize}
 
-\subsubsection{Software Environment}
+
+% Juntei as duas partes como tu sugeriu.. deixei a parte de installation procedures .. qualquer coisa posso tirar depois se decidirmos nao utilizar.
+\subsubsection{Software Environment and Installation Procedures}
 It is currently at the version 4.03 (Windows only), interesting to mention that this release date back to May 2006. The latest \emph{UNIX} distribution is version 3.12 (which was also called BETA for UNIX) and date back to August 1996.
-
-
-\subsection{Installation Procedures}
 \emph{MINTEQA2} is easily installed by a self-extractor installer that can be downloaded from \emph{EPA}'s website \cite{minteq:website} and \cite{minteq:unix}. Included in the distribution package are also some important documentation, \emph{PRODEFA2} software and several input/output template files.
 The UNIX version distribution comes with the source files and must be compiled to run.
 
@@ -408,10 +409,11 @@ Enter Choice (1-6)   __
 \subsection{File formats}
 The input files are regular \emph{ASCII} text files and any regular text editor is good for creating or editing.The database files from \emph{SOLMINEQ.88} have the extension "TBL" and the output files 
 
-\subsection{Software Environment}
+
+%Mesma coisa, juntei as duas partes e qualquer coisa tiro depois se decidirmos cortar fora mesmo..
+\subsection{Software Environment and Installation Procedures}
 As mentioned, \emph{SOLMINEQ.88} had only one release and has been discontinued since then. It is available only for the \emph{Windows} operating system.
 
-\subsection{Installation Procedures}
 SOLMINEQ.88 distribution requires knowledge in compiling and linking FORTRAN77 programs. It also comes with the software \emph{SOLINPUT} that makes the user interactions, as explained before, easier.
 
 Interesting to point that along the installation manual, they recommend  that curious compiling options are activated, for example \emph{"do not check for array bounds"}, and \emph{"do not check subprogram interfaces"}.
@@ -558,7 +560,7 @@ Al2O3
 \end{itemize}
 
 
-To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and worst and 5 the highest and best possible grade). This "grading system" is done with the intention to obtain a normalization towards differents aspects an interesting output for the comparison and in table ~\ref{tab:comparativeSoftwareTable} we can in details.
+To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and worst and 5 the highest and best possible grade). This "grading system" is done with the intention to obtain a normalization towards differents aspects an interesting output for the comparison and in table ~\ref{tab:comparativeSoftwareTable}\footnote{Source:Author}  we can in details.
 
 \begin{table}
 \caption{Qualitative analysis of the Geochemical Speciation Softwares}
