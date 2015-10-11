@@ -8,7 +8,7 @@
 %COMMERCIAL SOFTWARES REVIEW
 \chapter{Review of Available Geochemical Modelling Software}
 \label{chapter:review}
-The importance of geochemical models has increased lately due to the variety of applications, but the first models date back to the 70’s as can be observed \cite{Westall:76},~\cite{Wolery:79}. 
+The importance of geochemical models has increased lately due to the variety of applications, but the first models date back to the 70’s as can be observed \cite{Westall:76},~\cite{Wolery:1979}. 
 Since then, these models are used to solve problems as  speciation; determination of minerals' saturation indexes; adjustment of equilibrium for minerals; mixing of different waters; calculation of stoichiometric reactions; mixing of solids, fluids and gaseous phases; calculation of equilibrium/kinetic controlled reactions; reactive transport; and mass-law calculations.
 
 The quality of the chemical analysis depend on the methods used, thermodynamic data and theoretical concepts applied. Therefore, it is crucial to verify the results and it is clear that there will be some differences in the results according to the software used. Among the enormous variety of software available, some of them are developed for batch-type simulations only, while others have transport capabilities. Several of them do not incorporate graphical interfaces and are written in FORTRAN, while newer distributions are mainly written in C/C++ and, due to proprietary reasons, code is not distributed with the software. Ii ts important to mention that, even in those who provide an integrated graphical user interface (GUI), it is often very tedious and time-consuming to generate input files for groundwater simulation.
@@ -25,7 +25,10 @@ We will present relevant detail about the geochemical point of view and then, we
 
 %EQ3/6
 \section{\emph{EQ3/6}}
-EQ3/6 consists of two programs: EQ3 is a pure speciation code whose results EQ6 subsequentially process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. EQ3/6 includes a speciation-solubility solver, which is useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium. It also offers a reaction path calculation that models water/rock interaction or fluid mixture. EQ3/6 supports several thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). It is developed to run under UNIX, and the full package distribution is not free (it requires a license) \cite{Wolery:79} \cite{Wolery:90} \cite{Wolery:92}.
+EQ3/6 consists of two programs: EQ3 is a pure speciation code whose results EQ6 subsequentially process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. 
+EQ3/6 includes a speciation-solubility solver, which is useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium. It also offers a reaction path calculation that models water/rock interaction or fluid mixture. 
+EQ3/6 supports several thermodynamic data files (these data files contain support for Davies, B-dot, Debye-Hueckel equations, as well as support data for standard state and activity coefficient-related). 
+It is developed to run under UNIX, and the full package distribution is not free (it requires a license). The whole work related to EQ3/6 is described in \cite{Wolery:1979} \cite{Wolery:1990} \cite{Wolery:1992}.
 
 \subsection{Input/Output Options}
 The \emph{datafilekey} and \emph{inputfile} given to the program as arguments must be consistent with the options and methods. For example, if they have different methods for calculating the activity coefficient there will be problems, and the results will be meaningless. Another point to be taken into consideration and that follows the same idea, the \emph{inputfile} must be using chemical data (for example, elements, species and compounds) that is known by the \emph{datafilekey}.
@@ -93,13 +96,17 @@ All the files discussed above are \emph{ASCII} text files and, therefore, any re
 \subsection{Software Environment and Installation Procedures}
 The \emph{EQ3/6} package runs on Windows (95 and upper versions) and was developed in FORTRAN77. The support for UNIX computers has been discontinued.  It has been developed and run at Lawrence Livermore National Laboratory on an Alliant FX/80 and Sun SPARCstations.
 
-The installation of \emph{EQ3/6} is explained in details in \cite{Wolery:92}. Due to the purpose of this work, details of the installation will be suppressed here. At the same time, it is interesting to mention that the whole installation process requires some level of experience with command prompt and \emph{DOS}.
+The installation of \emph{EQ3/6} is explained in details in ~\cite{Wolery:1992}. Due to the purpose of this work, details of the installation will be suppressed here.
+At the same time, it is interesting to mention that the whole installation process requires some level of experience with command prompt and \emph{DOS}.
 
 
 
 %PHREEQC
 \section{\emph{PHREEQC}}
-\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium in \emph{C} language, and is a widely used public-domain geochemical modelling software available from the USGS  \cite{Parkhurst:80}, available for download in versions for PC and Mac. It was designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model and has capabilities to:
+\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium in \emph{C} language, and is a widely used public-domain geochemical modelling software available from the USGS  \cite{Parkhurst:95}. 
+It is available for download in versions for PC and Mac. 
+
+It was designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model and has capabilities to:
 \begin{itemize}
 \item Speciation and Saturation Index calculations;
 \item Batch reaction and one-dimensional (1D) transport calculations involving reversible reactions (including aqueous, minerals, gas, solid-solution, surface-complexation, and ion-exchange equilibrium) and irreversible reactions (including specified mole transfer of reactants, kinetically controlled reactions, mixing of solutions and temperature changes);
@@ -591,7 +598,7 @@ SOLMINEQ.88	& 3 & 1 & 1 & 1 & 1&5 & 1&1 & 1& 1.66\\
 \end{table}
 
 
-%\newpage
+\newpage
 
 %SUMMARY
 \section{Summary}

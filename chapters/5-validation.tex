@@ -19,11 +19,14 @@ We reproduce the diagenetic reactions observed in Snorre Field reservoir sandsto
 \end{itemize}
 
 \subsection{Experimentally validation of Shpeck}
-As stated in \cite{Morad:90}, the model presented in \cite{Egeberg:88} calculates activities of the various ions of formations waters using ion association model (originally described in \cite{Wigley:77}). The thermodynamics data used are given in \cite{Helgeson:74a,  Helgeson:74b, Helgeson:76, Waltter:77, Helgeson:78, Helgeson:81}.
+As stated in \cite{Morad:90}, the model presented in \cite{Egeberg:88} calculates activities of the various ions of formations waters using ion association model (originally described in \cite{Wigley:77}). 
+The thermodynamics data used are given in \cite{Helgeson:74a,  Helgeson:74b, Helgeson:76, Waltter:77, Helgeson:78, Helgeson:81}.
 
-After studying the composition of formations waters, the goal is to demonstrate what characteristics do the components of that water adopt. This is possible by generating and analysing the graph, in this case, expressed as a function of temperature and the log activity ratio of Potassium to Sodium ions - this can be verified in details in \cite{Aagaard:90}. 
+After studying the composition of formations waters, the goal is to demonstrate what characteristics do the components of that water adopt. 
+This is possible by generating and analysing the graph, in this case, expressed as a function of temperature and the log activity ratio of Potassium to Sodium ions - this can be verified in details in \cite{Aagaard:90}. 
 
-Figure ~\ref{fig:tempXactratio} brings the graph using the results from \emph{SHPECK}. It is consistent with \cite{Aagaard:90} and analysed in \cite{Morad:90}. The pattern detected is as the temperature rises and greater burial depths, the potassium activity gets higher over sodium's.
+Figure ~\ref{fig:tempXactratio} brings the graph using the results from \emph{SHPECK}. 
+It is consistent with \cite{Aagaard:90} and analysed in \cite{Morad:90}. The pattern detected is as the temperature rises and greater burial depths, the potassium activity gets higher over sodium's.
 
 \begin{figure}[ht!]
 \centering
@@ -122,10 +125,12 @@ Figure ~\ref{fig:timeXaccess} indicate the time elapsed (in seconds) that it cos
 
 
 \newpage
+
 \section{Summary}
 \begin{itemize}
     \item Diagenesis: This term refers to the physical-chemical reactions responsible for the compaction and precipitation of minerals  during the generation, migration and storage of oil. Understand how these reactions actually occur is fundamental to be able to predict porosity, solubility and permeability of reservoirs and using geochemical modelling softwares is one effective and accessible way to learn about this complex environment.
-    \item Study case: We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}.
+    \item Study case: We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. 
+    The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}.
     \item Comparative study: We perform a comparative study with \emph{SHPECK} side-by-side with others available geochemical speciation softwares. The results prove that \emph{SHPECK} reach good results with high accuracy. The discrepancies are minimal and are expected since each software has its own mathematical and computational treatment to the set of equations, parameters, activity coefficient calculation methods and thermodynamic dataset interpretation. 
     \item Database evaluation: The lack of a relational database in the geochemical modelling softwares makes clear that none of the existing options were really developed with a computer science emphasis. \emph{SHPECK} uses a \emph{SQLite} database specially developed to support a geochemical speciation modelling software. This software design option enables our software to achieve a higher performance, handle complex queries and fetch relevant information easier. A comparative graph highlights the advantages in time elapsed by the number of reactions requested as an exercise to detect this.
 \end{itemize}

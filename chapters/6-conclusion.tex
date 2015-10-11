@@ -5,20 +5,32 @@
 %%%%%%%%%%%
 
 \chapter{Conclusion}
+\label{chapter:conclusion}
 
-Geochemical speciation is critical for understanding the form of chemicals of interest in natural systems. It is crucial in many different aspects of our daily life nowadays: assessing bioavailability, risk to humans and ecosystems. Geochemical speciation models are generaly determined through analytical methods that measure free ions or total concentrations, used in conjunction with thermodynamically based models. As presented on this work, these models rely on the local equilibrium assumption, and on experimentally determined reaction constants. It is clear, though, that if the chemical system does not achieve equilibrium state or if the equilibrium constants are not certain, the geochemical speciation model's prediction show significant uncertainty.
-This emphasizes the clear need for a proper computation approach while treating with such influential information like a geochemical speciation model. The information flow is tightly connected and any mistake will propagate errors and carry that wrong information until the very end of the model.
+This work provides details of \emph{SHPECK} which has the purpose of increasing the quality of geochemical speciation modelling software. \emph{SHPECK} is intended to raise the quality of geochemical speciation modelling software by including an interactive and intuitive user interface as well as a relational database as nowadays softwares require. It is also an important goal to implement a dynamic and useful tool which is ready to be introduced into any geochemical situation or operate as an academic didactic tool for students to help the understanding of geochemical speciation modelling software. Besides, it must be also mentioned here that \emph{SHPECK} accepts any general combination of elemtns, species and reactions, allowing the user to create different environemnts, simulations, and, therefore, fully control any aspect and configuration of the model.
 
-As computer simulation methods have gained importance in more and more disciplines, the issue of their trustworthiness for generating new knowledge has grown; therefore, we present an interesting study case where is possible to absorb and realize the comprehensiveness of this work.
+\emph{SHPECK} has the purpose of raise and optimize in every possible way the concept of geochemical modelling, always taking into account the computer science's priorities, theories and power when applied to multidisciplinary domains. As would be expected, the first part of this work was to understand the domain: geochemical modelling and geochemistry concepts. After that we could study, use and analyze the available options to perform geochemical simulations. At this moment, the foundations for creating \emph{SHPECK} were already solid and we could clearly see that there was a coloussal need for a solution that would bring either computer science and geochemical simulations side-by-side into the geochemical modelling \emph{'world'}.
 
-Calculation of speciation is conducted by substitution of the equilibrium constants into the mass balance expressions for the total concentration of a particular component. This results in a series of nonlinear equations which are solved iteratively using numerical techniques, such as the Newton-Raphson iteration used in the MINTEQA2 model. Iterations continue until the total calculated component concentrations, derived from the equilibrium expressions, calculated activity coefficients, and component mass balances, and the measured total concentrations converge to a prescribed limit.
+What have been notested from all existing softwares studied is that they were created by geochemists to solve their daily challenge and questions - our approach is different: it is done by computer science specialists with the support of geologists and geochemicals.
 
-\begin{itemize}
-\item Review of the results emphasizing our approach and advantages
-\item  Geological explanations for the results
-\item  Final discussion about \emph{SHPECK}
-\item  CONTRIBUTION (EXPLICIT AND WELL DESCRIBED) 
-\end{itemize}
+The first challenge was to design the database that would fit the information of the geochemical speciation modelling software - this information was parsed from a well stablished source and organised in a \emph{SQLite} relational database that provides fast access to information and powerful queries. Once \emph{SHPECK}'s database was ready to boost it with the data, the speciation itself was now on the lightspot - calculating the distribution of dissolved species between free ions and aqueous complexes and saturation indexes for different minerals. \emph{SHPECK} is a geochemical speciation modelling software that calculates the speciation of a solution based on a set of mass-balance equations, which are solve iteratively using the Newton-Raphson's method.
+Once the implementation of both database and mathematical treatment was effectively finished, the new objective, was to implement a spontaneuous, interactive and intuitive interface. \emph{SHPECK}'s \emph{GUI} allows interaction seamlessly and smoothly - this way the user can focus on what really matter: modelling the geochemical environment.
+
+After the software is effectively finished, the new target, as important as its implementation, is to test, analyze, compare and measure the quality and accuracy of the results provided. Possibly at this stage of the project any problem could appear that was undistinguished until this point of the work. 
+Fortunately the results are positive when both database and mathematical accuracy were hit by a series of tests. 
+\emph{SHPECK}'s database has improved 40\% in the average time elapsed to fetch the  information if compared to the regular flat file database used by others. 
+\emph{SHPECK}'s results accuracy are equivalent and inside the expect range to the study case developed in this work. The results show that all the three software compared have nearly the same results if with the same inputs. Slight differences are found when simulating with temperatures higher than $100^o$C - which are acceptable and totally understandable taking into account the thermodynamic properties of the equilibrium constant.
+
+Due to reasons, like time and purpose, there are still some points along this work where there are enhancements to be done. For instance, add the kinetic reactions to \emph{SHPECK}'s solver - it is a really delicate topic since adding kinetic reactions implies not only working with mass balance equations but also with chemical elemental mass evolution. The elemental mass evolution describe mass change through mass-transfer and kinetic reactions of solids and solute-solute interaction. This is described in details in \cite{Ajpark:14}.
+
+\newpage
+
+%Summary here? Maybe it also doesn't make sense?
+%\begin{itemize}
+%\item Review of the results emphasizing our approach and advantages
+%\item  Geological explanations for the results
+%\item  Final discussion about \emph{SHPECK}
+%\item  CONTRIBUTION (EXPLICIT AND WELL DESCRIBED) 
+%\end{itemize}
 
 
-%This work provides three important steps of the development of a geochemical modeling speciation software with the purpose of increasing the quality in such field of softwares. The development of a new software is intended to raise and optimize in every possible way the concept of geochemical modelling always taking into account the computer science priorities and theory. The difference between all the options and this work's approach is that the computer science's side is taken more responsibly and strategically thought since the beginning. What have been notested from all existing softwares studied is that they were created by geochemists, chemicals, geologists to solve their daily challenge and questions - our approach is different: it is done by computer science specialists with the support of geologists and geochemicals. Naturally some challenges are faced, for example, the base concepts are sometimes misunderstood and it is mandatory that the basic concepts are well stablished in order to have a solid and useful software in the end of the process. During the process of developing this work aspects of physical chemistry, aqueous geochemistry, linear algebra, complex coupled systems and computational simulatosrs are going to be studied and learned.
