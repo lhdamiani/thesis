@@ -1,4 +1,4 @@
-%% abntex2-alf.bst, v-1.9.1 laurocesar
+%% abntex2-alf.bst, v<VERSION> laurocesar
 %% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
 %%
 %% This work may be distributed and/or modified under the
@@ -24,13 +24,6 @@
 %% These sourefiles are copyrighted by Patrick W Daly
 %%
 %% Revision history:
-%%
-%% 2013/08/27 PauloQuinan 
-%%  Corrige a formatação de url com https
-%%  Corrige caracter & não escapado em urls de referências quando se usa hyperref
-%%
-%% 2013/06/01 laurocesar
-%%  Ajusta opção iso-690-1987 para @article
 %%
 %% 2013/05/26 laurocesar 
 %%  Corrige problemas de duplicação de ano nas funções article e jornalpart
@@ -314,13 +307,13 @@ FUNCTION {no.space} { { "" } swap$ }
 FUNCTION {space.word} { " " swap$ * " " * }
 
 FUNCTION {bbl.and}
-{ abnt.and.type #0 = {" and "} 'skip$ if$
+{ abnt.and.type #0 = {" e "} 'skip$ if$
   abnt.and.type #1 = {" \& "} 'skip$ if$}
-FUNCTION {bbl.chapter} { "chp." }
+FUNCTION {bbl.chapter} { "cap." }
 FUNCTION {bbl.colon} {": "}
 FUNCTION {bbl.editors} { "Ed." }
 FUNCTION {bbl.editor} { "Ed." }
-FUNCTION {bbl.edby} { "edited by" }
+FUNCTION {bbl.edby} { "editado por" }
 FUNCTION {bbl.edition} { "ed." }
 FUNCTION {bbl.empty} {""}
 FUNCTION {bbl.etal}{abnt.etal.text "" = {""} {" " abnt.etal.text *} if$}
@@ -333,22 +326,22 @@ FUNCTION {bbl.ldots} %#0 use nothing, #1 use \ldots, #2 use $\ldots$, 3# use {..
    abnt.ldots.type #3 = {"{...}"}    'skip$ if$}
   {""} %for #0 use nothing
 if$}
-FUNCTION {bbl.master}  { "Master" }
+FUNCTION {bbl.master}  { "Mestrado" }
 FUNCTION {bbl.missing.year}
 {abnt.missing.year
   {"[s.d.]"} %#1
   {""}       %#0
  if$}
 FUNCTION {bbl.monography} { "Monografia" }
-FUNCTION {bbl.mthesis} { "Dissertation" }
-FUNCTION {bbl.no.address} {"[S.l.]"} %Sine loco
-FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"} 
-FUNCTION {bbl.no.publisher} {"[s.n.]"} %sine nomine
+FUNCTION {bbl.mthesis} { "Disserta\c{c}\~{a}o" }
+FUNCTION {bbl.no.address} {"[S.l.]"}
+FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"}
+FUNCTION {bbl.no.publisher} {"[s.n.]"}
 FUNCTION {bbl.number} { iso.abbreviation {"no."} {"n."} if$ }
 FUNCTION {bbl.nr} { "n." }
-FUNCTION {bbl.of} { "of" }
-FUNCTION {bbl.phd} { "PhD" }
-FUNCTION {bbl.phdthesis} { "Thesis" }
+FUNCTION {bbl.of} { "de" }
+FUNCTION {bbl.phd} { "Doutorado" }
+FUNCTION {bbl.phdthesis} { "Tese" }
 FUNCTION {bbl.pages}
   {pagename empty$
     { "p." }
@@ -356,30 +349,30 @@ FUNCTION {bbl.pages}
    if$
    }
 FUNCTION {bbl.page} { bbl.pages }
-FUNCTION {bbl.reprint} {"Reprint of"}
+FUNCTION {bbl.reprint} {"Separata de"}
 FUNCTION {bbl.semicolon} { "; "}
 FUNCTION {bbl.same.field} {"\underline{\ \ \ \ \ \ \ \ }"}
-FUNCTION {bbl.techrep} { "Tech. Rep." }
+FUNCTION {bbl.techrep} { "Rel. Tec." }
 FUNCTION {bbl.url.accessdate}
-  {iso.abbreviation { "Cited "} {"Accessed in: "} if$}
+  {iso.abbreviation { "Cited "} {"Acesso em: "} if$}
 FUNCTION {bbl.url.available}
-{ iso.abbreviation {"Available from Internet: "} {"Available from Internet: "} if$}
+{ iso.abbreviation {"Available from Internet: "} {"Dispon{\'\i}vel em: "} if$}
 FUNCTION {bbl.void} {""}
 FUNCTION {bbl.volume} { iso.abbreviation {"vol."} {"v."} if$ }
 
 
 MACRO {jan} {"jan."}
-MACRO {feb} {"feb."}
+MACRO {feb} {"fev."}
 MACRO {mar} {"mar."}
 MACRO {apr} {"abr."}
-MACRO {may} {"may"}
+MACRO {may} {"maio"}
 MACRO {jun} {"jun."}
 MACRO {jul} {"jul."}
-MACRO {aug} {"aug."}
-MACRO {sep} {"sep."}
-MACRO {oct} {"oct."}
+MACRO {aug} {"ago."}
+MACRO {sep} {"set."}
+MACRO {oct} {"out."}
 MACRO {nov} {"nov."}
-MACRO {dec} {"dec."}
+MACRO {dec} {"dez."}
 
 
 FUNCTION {is.num}
@@ -981,16 +974,14 @@ FUNCTION {format.journal.pages}
 
 FUNCTION {get.url.type}
 {s #1 #5 substring$ "http:" = {http.url}
- {s #1 #6 substring$ "https:" = {http.url}
   {s #1 #5 substring$ "file:" = {file.url}
-   {s #1 #4 substring$ "ftp:"  = {ftp.url}
-    {s #1 #4 substring$ "doi:"  = {doi.url}
-     {s #1 #7 substring$ "mailto:" = {mailto.url} {unknown.url} if$}
-      if$}
+     {s #1 #4 substring$ "ftp:"  = {ftp.url}
+       {s #1 #4 substring$ "doi:"  = {doi.url}
+         {s #1 #7 substring$ "mailto:" = {mailto.url} {unknown.url} if$}
+       if$}
      if$}
-    if$}
    if$}
-  if$
+ if$
  'url.type :=
 }
 
@@ -1009,13 +1000,10 @@ FUNCTION {filter.url.tex}
     {s url.pos #1 substring$
     duplicate$ "_" = {pop$ "\underline{\ }" } 'skip$ if$
     duplicate$ "%" = {pop$ "\%" } 'skip$ if$
-    duplicate$ "&" = {pop$ "\&" } 'skip$ if$
     duplicate$ "~" = {pop$ "\~{}" } 'skip$ if$
     duplicate$ "/" = {pop$ "\-/" } 'skip$ if$
     duplicate$ "." = {pop$ "\-." } 'skip$ if$
     duplicate$ "\" = {pop$ "{\textbackslash}" } 'skip$ if$
-    duplicate$ "#" = {pop$ "\#" } 'skip$ if$
-    duplicate$ "_" = {pop$ "\_" } 'skip$ if$
     t swap$ * 't :=
     url.pos #1 + 'url.pos :=
     }
@@ -1028,8 +1016,6 @@ FUNCTION {filter.url.html}
   {url.pos url.length <}
     {s url.pos #1 substring$
     duplicate$ "%" = {pop$ "\%" } 'skip$ if$
-    duplicate$ "#" = {pop$ "\#" } 'skip$ if$
-    duplicate$ "_" = {pop$ "\_" } 'skip$ if$
     t swap$ * 't :=
     url.pos #1 + 'url.pos :=
     }
@@ -1046,7 +1032,7 @@ FUNCTION {compose.url}
    abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
    * "$>$" *} 'skip$ if$
  abnt.url.package #1 =
-   { "\url{" * filter.url.html * "}" *} 'skip$ if$
+   { "\url{" * s * "}" *} 'skip$ if$
  abnt.url.package #2 =
    {url.type http.url =
      {"\htmladdnormallink{$<$" * filter.url.tex * "$>$}{" * filter.url.html * "}" *}
@@ -1710,8 +1696,7 @@ FUNCTION {article}
   iso.year.label
   format.title "title" output.check new.block
   format.journal output
-  iso.date.place {format.year output} 'skip$ if$
-  %iso.date.place {format.date output} 'skip$ if$
+  iso.date.place {format.date output} 'skip$ if$
   %iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
   %               {format.year output new.sentence} if$
   section "section" bibinfo.check output.dash
@@ -2102,7 +2087,7 @@ FUNCTION {set.default.abnt.variables}
   "$RCSfile: abnt-alf.bst,v $ " extract.cvs.key
   %
   "abnt-alf.bst,v " = 'abnt.alf := % #1 para abnt-alf #0 para abnt-num
-  "$Revision: v-1.9.1 $" extract.cvs.key 'abnt.bst.revision :=
+  "$Revision: v<VERSION> $" extract.cvs.key 'abnt.bst.revision :=
   #0 'abnt.and.type     :=     % #0 "e"; #1 "&"
   "\emph" 'abnt.emphasize :=
   #0 'abnt.cite.style :=       %default norm version for NBR10520
@@ -2224,8 +2209,8 @@ FUNCTION {apresentacao}
   "| http://abntex2.googlecode.com                           |"
   "| Em caso de dúvidas ou problemas com este estilo procure |"
   abnt.alf
- {"| Estilo bibliográfico abntex2-alf.bst versão " abnt.bst.revision * "          |" *}
- {"| Estilo bibliográfico abntex2-num.bst versão " abnt.bst.revision * "          |" *}
+ {"| Estilo bibliográfico abnt-alf.bst versão " abnt.bst.revision * "          |" *}
+ {"| Estilo bibliográfico abnt-num.bst versão " abnt.bst.revision * "          |" *}
  if$
   "+---------------------------------------------------------+"
   stack$

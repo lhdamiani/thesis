@@ -1,5 +1,5 @@
-%% abntex2cite.sty, v-1.9.2 laurocesar
-%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%% abntex2cite.sty, v-1.7.1 laurocesar
+%% Copyright 2012-2013 by abnTeX2 group at http://abntex2.googlecode.com/ 
 %%
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3
@@ -20,9 +20,6 @@
 %% 
 %%
 %% Revision history:
-%%
-%% 2014/1/26 7h58 laurocesar
-%%  Adiciona \ProvidesPackage
 %%
 %% 2013/05/22 07h05	laurocesar
 %%  Adiciona a macro \footciteref para referências em notas de rodapé.
@@ -177,13 +174,11 @@
 %\input{cvs-id.def}
 %\CVSExtract$Id: abntcite.sty,v 1.26 2003/10/13 09:40:41 gweber Exp $
 %\CVSPackage{abntcite}{\space Chamadas de referencias no texto (NBR10520)} %substitui \ProvidesPackage (replaces \ProvidesPackage)
-\ProvidesPackage{abntex2cite}[2014/01/26 v1.9.2 abnTeX2]
+
 \RequirePackage{ifthen}
 \RequirePackage{calc}
 \RequirePackage{abntex2abrev}
-\RequirePackage{setspace}	
-\RequirePackage{url} %*****
-\RequirePackage{xparse}
+\RequirePackage{setspace}	%*****
 
 %%%%%%  Options Declaration  %%%%%%
 
@@ -370,15 +365,9 @@
 \provideboolean{ABNThyperref}
 
 \@ifpackageloaded{hyperref}{%
-%\addtociteoptionlist{abnt-url-package=hyperref}
+\addtociteoptionlist{abnt-url-package=hyperref}
 \setboolean{ABNThyperref}{true}
 }{\setboolean{ABNThyperref}{false}}
-
-\@ifpackageloaded{url}{%
-\addtociteoptionlist{abnt-url-package=url}
-\def\UrlLeft{<}
-\def\UrlRight{>}
-\urlstyle{same}}
 
 \provideboolean{ABNTbackref} %By AWSS
 
@@ -387,25 +376,6 @@
 }{\setboolean{ABNTbackref}{false}} %By AWSS
 
 \ProcessOptions
-
-% Check if not running pdf/xe/lua/htlatex, then load breakurl
-%   From http://tex.stackexchange.com/a/53943
-\RequirePackage{ifpdf,ifxetex}
-\edef\texforht{TT\noexpand\fi
-  \@ifpackageloaded{tex4ht}
-    {\noexpand\iftrue}
-    {\noexpand\iffalse}}
-\ifpdf
-\else
-  \ifxetex
-  \else
-    \if\texforht
-    \else
-      \@ifpackageloaded{hyperref}
-        {\RequirePackage{breakurl}}{}
-    \fi% texforht
-  \fi% xetex
-\fi% pdftex
 
 % really foot?
 \ifthenelse{\boolean{ABCIfoot}\and\equal{\AbntCitetype}{num}}
@@ -629,17 +599,14 @@
 %we are repeating \bibcite command as defined in hyperref.sty
 %so that we have it all together at one place.
 \ifthenelse{\boolean{ABNThyperref}}{%
-%\renewcommand{\bibcite}[2]{%
-% \@newl@bel{b}{#1}     {\hyper@@link[cite]{}{cite.#1}{#2}}}%
-\newcommand{\bibciteEXT}[3]{%
-    %\bibcite{#1++#3}{#2}}%
-    \@newl@bel{b}{#1++#3}{\hyper@@link[cite]{}{cite.#1}{#2}}}%
+\renewcommand{\bibcite}[2]{%
+ \@newl@bel{b}{#1}{\hyper@@link[cite]{}{cite.#1}{#2}}}%
 \newcommand{\bibciteEXPL}[2]{%
-    \bibciteEXT{#1}{#2}{EXPL}}%
+ \@newl@bel{b}{#1++EXPL}{\hyper@@link[cite]{}{cite.#1}{#2}}}%
 \newcommand{\bibciteIMPL}[2]{%
-    \bibciteEXT{#1}{#2}{IMPL}}%
+ \@newl@bel{b}{#1++IMPL}{\hyper@@link[cite]{}{cite.#1}{#2}}}%
 \newcommand{\bibciteYEAR}[2]{%
-    \bibciteEXT{#1}{#2}{YEAR}}%
+ \@newl@bel{b}{#1++YEAR}{\hyper@@link[cite]{}{cite.#1}{#2}}}%
 }{}
 
 \newcommand{\abntrefinfo}[3]{%
@@ -699,26 +666,16 @@
   %
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   
-  \renewcommand{\@cite}[3]%
-    {\citeopen{%
-      \ifthenelse{\equal{#1}{}}{}{{\optionaltextstyle#1} }%
-      #2%
-      \ifthenelse{\equal{#3}{}}{}{, {\optionaltextstyle#3}}}\citeclose}%
+  \renewcommand{\@cite}[2]%
+    {\citeopen{#1\ifthenelse{\equal{#2}{}}{}{,
+          {\optionaltextstyle#2}}}\citeclose}
   
-  %compatibility with natbib cite
-  \DeclareDocumentCommand{\cite}{O{} o m }{%
-      \IfNoValueTF {#2}%
-        {\old@cite{}{#1}{#3}}%first parameter goes after the year
-        {\old@cite{#1}{#2}{#3}}%first parameter goes before the names
-  }
-
-
-  \DeclareRobustCommand{\old@cite}[3]{%
+  \DeclareRobustCommand{\cite}[2][]{%
   %
     \leavevmode
     \let\@citeprevious\@empty%
-    \@cite{#1}{%
-      \@for\@citekey:=#3\do%  \@citekey contains the key
+    \@cite{%
+      \@for\@citekey:=#2\do%  \@citekey contains the key
         {%
          \edef\@citekey{\expandafter\@firstofone\@citekey\@empty}%
          %
@@ -754,9 +711,9 @@
              \fi%
              \let\@citeprevious\@citename%
            }%
-           \ifthenelse{\boolean{ABNTbackref}}{\Hy@backout{#3}}{}% By AWSS: put backref
+           \ifthenelse{\boolean{ABNTbackref}}{\Hy@backout{#2}}{}% By AWSS: put backref
         }% end for
-    }{#2}%
+    }{#1}%
   }
   
   
@@ -819,11 +776,7 @@
   % "overcite" compatibility
   \let\citen\citeonline
   \let\citenum\citeonline
-  
-  % natbib compatibility
-  \let\citep\cite
-  \let\citet\citeonline
-  \DeclareRobustCommand{\citeyearpar}[1]{\citeopen{\citeyear{#1}}\citeclose}
+
 % end alf
 %
 %
@@ -1417,7 +1370,7 @@
 \citeauthor{#3}, \citeyear{#3}%
 \ifthenelse{\equal{#1}{\empty}}{}{, #1})}
 
-\newcommand{\apudonline}[3][]{\citeauthoronline{#2}\footciteref{#2} (\apudname\ %
+\newcommand{\apudonline}[3][]{\citeauthoronline{#2} (\citeyear{#2} \apudname\ %
 \citeauthor{#3}, \citeyear{#3}%
 \ifthenelse{\equal{#1}{\empty}}{}{, #1})}
 

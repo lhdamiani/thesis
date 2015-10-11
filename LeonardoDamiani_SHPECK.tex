@@ -17,14 +17,29 @@
 % \documentclass[oneside]{iiufrgs}
 \usepackage[T1]{fontenc}        % pacote para conj. de caracteres correto
 \usepackage[utf8]{inputenc}   % pacote para acentuação
-%\usepackage[hyphens]{url}
+
 \usepackage{graphicx}           % pacote para importar figuras
 \usepackage{times}              % pacote para usar fonte Adobe Times
 \usepackage[version=3]{mhchem} 	% pacote para usar chemistry formulae
 \usepackage{chemfig}
 \usepackage{amsmath}
 
-\usepackage{biblatex}
+\let\biblabelsep\relax
+\let\IfSubStringInString\relax
+\makeatletter
+\let\su@IfSubStringInString\relax
+\let\su@ExpandTwoArgs\relax
+\makeatother
+
+\usepackage{csquotes}
+%\usepackage[backend=bibtex]{biblatex}
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf]{abntex2cite}	% Citações padrão ABNT
+% ---
 %\usepackage[alf,abnt-emphasize=bf,num]{abntex2cite}
 \usepackage{amsthm}
 \usepackage{amssymb}
@@ -41,6 +56,7 @@
 \usepackage{booktabs}
 \usepackage{pifont}
 
+%\addbibresource{references.bib} 
 
 
 %\usepackage{mathptmx}          % p/ usar fonte Adobe Times nas fórmulas
@@ -242,10 +258,9 @@
 \input{chapters/6-conclusion}
 \newpage
 
+
 % references
 \bibliography{references}
-\bibliographystyle{inputs/abnt-ufrgs}      % Procura pelo arquivo "abnt-ufrgs" - normas ABNT.
-\clearpage
 
 \appendix
 \input{extra/appendixA}          % Editar o arquivo apendice.tex
