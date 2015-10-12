@@ -104,8 +104,8 @@ In the next section, we explain the essential hydrogeochemistry principles: an i
 In thermodynamics, equilibrium is a state of dynamic balance where the ratio of the product and the reactant concentration is constant. There are three general approaches to calculating the composition of a solution at equilibrium \cite{Petrucci:07}.
 \begin{enumerate}
     \item Manipulation of equilibrium constants (\emph{K}): The final concentrations are achieved by mathematical handling of the equilibrium constants; the idea is to express all the parts in terms of the measured equilibrium constant and initial conditions. Thermodynamics databases contain the values for the equilibrium constants obtained through experiments. Demonstration of this can be found in \cite{Kehew:00}. The disadvantage of this method is that it may never converge when using this method for a huge number of reactions.
-    \item Gibbs Energy of the system: At equilibrium, the Gibbs Energy (G) is at a minimum. When the object of the study is a close system - no particles neither entering nor leaving - the total number of atoms of each element will remain constant, therefore, achieving the minimum free energy. Due to the complexity in demonstrating how this method works, it will be suppressed here. An interesting algorithm for equilibrium calculation that uses Gibbs energy is described in \cite{Allan:15}. One of the disadvantages of this method lies in the effect of species that appear only in tiny quantities at equilibrium.
-    \item Manipulation of mass-balance: The total concentration of species that compose the system is the basis for this method. Smith \cite{Smith:80} explains this stoichiometric formulation approach. This method takes into account the stoichiometric approach among the species, which generates a system of non-linear mass-action equations. Mass-balance manipulation is the method chosen for this work, and the details are explained further in this text.
+    \item Gibbs Energy of the system: At equilibrium, the Gibbs Energy (\emph{G}) is at a minimum. When the object of the study is a close system - no particles neither entering nor leaving - the total number of atoms of each element will remain constant, therefore, achieving the minimum free energy. Due to the complexity in demonstrating how this method works, it will be suppressed here. An interesting algorithm for equilibrium calculation that uses Gibbs energy is described in \cite{Allan:15}. One of the disadvantages of this method lies in the effect of species that appear only in tiny quantities at equilibrium.
+    \item Manipulation of mass-balance: The total concentration of species that compose the system is the basis for this method. Smith \cite{Smith:80} explains this stoichiometric formulation approach. This method takes into account the stoichiometric approach among the species, which generates a system of non-linear mass-action equations. Mass-balance manipulation is the method chosen for this work, and the details are explained further in section ~\ref{chapter:SHPECK}.
 \end{enumerate}
 
 Stoichiometric approaches have two general advantages over non-stoichiometric: in the case of real systems and for multiphase problems - in which singularities can occur in the linear equations \cite{Smith:80}. It is important to remind that all the methods described above are equivalent, and can be verified in \cite{Zeggeren:70}.
@@ -126,7 +126,7 @@ K_j =  \prod\limits_{i=1}^N  a_i^{v_{ij}} \hspace{35pt}    (j = 1, ... , M)
 \end{equation}
 where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ denotes the activity of the \emph{i-th} chemical species. The equilibrium constant depends on the temperature of the system; therefore, the equilibrium constant needs to be calculated according to the temperature of the system. 
 
-It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reacting and the concentrations of the products of the reaction. The law of mass-action states that any reaction will proceed to the right (dissolution) or to the right (precipitation) until the mass-action equilibrium is achieved, being important to keep in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed towards this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details later on in this chapter.
+It has been known that the driving force of a chemical reaction is related to the concentration of the constituents that are reacting and the concentrations of the products of the reaction. The law of mass-action states that any reaction will proceed to the right (dissolution) or to the left (precipitation) until the mass-action equilibrium is achieved. One must bear in mind that it may take years or even thousands of years for that equilibrium to be achieved and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed towards this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the nonideal behavior of components in the solution, which is called \emph{activity} and is presented in details on section ~\ref{activity}.
 
 Kinetic descriptions are applicable to any reaction but it is necessary to describe  reactions that are slow in relation to mass transport.  The following reaction has a $k_1$ and $k_2$ rates for the forward and reverse reactions, respectively 
 \begin{eqnarray}
@@ -141,7 +141,7 @@ where $a, b, d$ and $e$ are stoichiometric coefficients of each one of the ions 
 r_A &=& - k_1 (A)^{n1}(B)^{n2} + k_2 (D)^{m1}(E)^{m2}
 \end{eqnarray}
 where $n1, n2, m1$ and $m2$ are empirical stoichiometric coefficients. When there are reactions in parallel or series the rate laws are even more complex.
-The dissolution rate constant (\ce{k_diss}) of a chemical reaction depends on temperatue. The relation between constant and temperature is given by the \emph{Arrhenius equation}, described as
+The dissolution rate constant (\ce{k_{diss}}) of a chemical reaction depends on temperatue. The relation between constant and temperature is given by the \emph{Arrhenius equation}, described as
 \begin{eqnarray}
 k_diss = A * exp(\frac{-E_a}{R*T})
 \end{eqnarray}
@@ -154,10 +154,10 @@ The \emph{equilibrium constant} (\emph{K}), also known as \emph{stability consta
 
 Equilibrium constants are determined by measurements of the relevant concentrations of the species under differing experimental conditions. Concentrations of species can be measured in multiple ways, and the use of these values in modelling requires adjustment to the conditions in the system being modelled. These adjustments, as well as the differences in conditions and different methods for determination, can lead to uncertainty in chemical speciation constants.
 
-Several thermodynamics database are available nowadays. They include reaction constants, reaction descriptions, solutes, species, enthalpy values, activity coefficient parameters, etc. During the development of \emph{SHPECK} we selected the \emph{Geochemist's Work Bench's} (\emph{GWB}) database - it contains also the values of a $8^{th}$ degree polynomial, which allows the user to calculate the equilibrium constant to any temperature. Also another source of data used along this work is \cite{Palandri:04}.
+Several thermodynamics database are available nowadays. They include reaction constants, reaction descriptions, solutes, species, enthalpy values, activity coefficient parameters, etc. During the development of \emph{SHPECK} we selected the \emph{Lawrence Livermore National Laboratory} (\emph{LLNL}) thermodynamic dataset - it contains also the values of a $8^{th}$ degree polynomial, which allows our software to calculate the equilibrium constant to any temperature and is used often by several geochemical modelling software. Also another source of experimentally measured data is \cite{Palandri:04}.
 
 In geochemical modelling, polynomial regression is specifically used to calculate the equilibrium constant of the compound at the desired temperature. 
-Polynomial regression is one of several methods of curve fitting, which is a process of constructing a curve that has the best fit to a series of data points. Polynomial regression is a statistic method that is a form of linear regression in which the relationship between the independent variable \emph{x} and the dependent variable \emph{y} is modelled as an \emph{nth} degree polynomial. In our case, the polynomial regression is necessary in order to obtain the equilibrium constant for compounds found in the solution system.
+Polynomial regression is one of several methods of curve fitting, which is a process of constructing a curve that has the best fit to a series of data points. Polynomial regression is a statistic method that is a form of linear regression in which the relationship between the independent variable \emph{x} and the dependent variable \emph{y} is modelled as an \emph{n-th} degree polynomial. In our case, the polynomial regression is necessary in order to obtain the equilibrium constant for compounds found in the solution system.
 
 %Polynomial regression is considered to be a special case of multiple linear regression. A polynomial is a function that takes the form 
 
@@ -202,12 +202,12 @@ Polynomial regression is one of several methods of curve fitting, which is a pro
 
 
 %ACTIVITY OF A SOLUTE
-\subsubsection{Activity of a solute}
+\subsubsection{Activity of a solute}\label{activity}
 Activity (\ce{a_i}) is \emph{"thermodynamic concentration"} (or informally known as \emph{"effective concentration"}). It is calculated as a product of activity coefficient and concentration (where \emph{i} means the solute involved):
 \begin{equation}\label{activityEq}
 a_i = \gamma_i * m_i
 \end{equation}
-Activity coefficient ($\gamma_i$) is a function of ionic strenght (I), which is a measure of the concentration of ions in the solution.  
+Activity coefficient ($\gamma_i$) is explained in ~\ref{actCoeff} and is a function of ionic strenght (I), which is a measure of the concentration of ions in the solution.  
 
 %IONIC STRENGTH
 \subsubsection{Ionic strength}
@@ -226,7 +226,7 @@ I = 1.5 mol/L
 
 
 %ACTIVITY COEFFICIENT
-\subsubsection{Activity Coefficient} 
+\subsubsection{Activity Coefficient} \label{actCoeff}
 There are different methods to calculate $\gamma$ for ions:
 \begin{itemize}
 \item Debie-Hueckel: They assumed that ions behave like spheres with charges located at their center points. The ions interact with each other by coulombic forces and the result of their analysis is as follows
@@ -240,9 +240,9 @@ log \gamma_i &=& - Az_i^2 \bigg(\frac{\sqrt{I}}{1+\sqrt{I}} - 0.3 I)
 \end{eqnarray}
 \item B-dot: This model is presented as an activity model based on an equation similar to Davies and parameterized for solutions up to 3 molal ionic strength.
 \begin{eqnarray} \label{eq:bdotEq}
-log \gamma_i &=& - \frac{Az_i^2 \sqrt{I}}{1+ a_i B \sqrt{I}} + \overset{.}{B} I )
+log \gamma_i &=& - \frac{Az_i^2 \sqrt{I}}{1+ a_i B \sqrt{I}} + \overset{.}{B} I 
 \end{eqnarray}
-where \emph{\aa}  is the ion size for each specie and \emph{A, B and $\overset{.}{B}$} are coefficients that vary with the temperature.
+where \emph{\aa}  is the ion size for each specie and \emph{A, B and $\overset{.}{B}$} are coefficients that vary with the temperature and are present in the thermodynamic dataset used by geochemical modelling codes.
 \end{itemize}
 Important to mention that there are other methods available for calculating activity coefficients, which are not going to be addressed here. Pure solids have activity coefficient equal to one. Each one of the methods has its advantages and limitations. Debye-Hueckel equations are simple to apply, and is an extensible method for including new species in the solution due to the fact that it requires a low number of (specific) arguments. Moreover, Debye-Hueckel can be applied to the most important temperatures in the field of aqueous geochemistry, but it works poorly regarding moderate or high ionic strength.
 As to dissolution and precipitation, there is clearly a reaction happening during these processes, which means that some reactions are not in equilibrium.
@@ -353,11 +353,7 @@ Common problems solved using speciation programs are:
 \item There are ground water samples that had been in contact with granitic masses and we want to verify the possibility of precipitation of minerals like \emph{Albite} (a plagioclase feldspar mineral whose formula is \emph{\ce{NaAlSi_{3}O_{8}}}).
 \end{itemize}
 
-Details of several available programs will be presented and discussed in chapter ~\ref{chapter:review}).
-
-The development of our software \emph{SHPECK}, which is a geochemical speciation modelling software will be detailed, presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. 
-
-%Also important to mention that this work is the first work that will completely guide anyone to generate a geochemical speciation modelling software from the ground.
+Details of several available programs are presented and discussed in chapter ~\ref{chapter:review}). The development of \emph{SHPECK}, which is our proposal of a geochemical speciation modelling software is presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. 
 
 %OTHER TYPES OF GEOCHEMICAL MODELLING
 \subsubsection{Other Types Of Geochemical Modelling}
@@ -377,6 +373,6 @@ This type of models, also called reaction-path models, are used for prediction o
 %SUMMARY
 \section{Summary}
 \begin{itemize}
-\item Importance of multidisciplinary problems: The power from the advances in computer science to adapt itself to other areas of knowledge is ever increasing. The best way to push the limits of our work is by redefining obstacles outside our normal boundaries and reach solutions based on new understanding of complex situations. On the other hand, understanding what is a software and how it connects with the \emph{"machine world"} to the \emph{"real world"} is something non-trivial. We reinforce the idea that the extension of a software goes way beyond the lines of code and the interface showing up on the screen.We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
+\item Importance of multidisciplinary problems: The power from the advances in computer science to adapt itself to other areas of knowledge is ever increasing. The best way to push the limits of our work is by redefining obstacles outside our normal boundaries and reach solutions based on new understanding of complex situations. On the other hand, understanding what is a software and how it connects the \emph{"machine world"} to the \emph{"real world"} is something non-trivial. We reinforce the idea that the extension of a software goes way beyond the lines of code and the interface showing up on the screen. We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
 \item Hydrogeochemistry principles: Thermodynamics is one of the substantial basis for the history of physics, chemistry and the science in general as we know it. It is crucial to understand the role that it has in the natural aspects of the world that we live. The comprehension of thermodynamics goes through the analysis, awareness and interrelations of the several factors that compose this complex \emph{maze}. From the wide range of factors, we can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, etc.
 \end{itemize}

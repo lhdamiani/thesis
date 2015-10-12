@@ -12,7 +12,7 @@ The \emph{diagenesis} is responsible for compaction and precipitation of mineral
 Using geochemical modelling softwares is a powerful tool to understand the diagenetic processes and the natural conditions that occur in this natural environment. The goal is to numerically model this environment and analyse the results of the diagenetic reactions with a petrographic analysis of the modeled reservoirs.
 
 \section{Case Study}
-We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. Morad \cite{Morad:90} describes the texture, origin, chemistry of the sandstones reservoirs in terms of the water composition and temperature. With the help and the results from this study, we  can verify \emph{SHPECK}'s results from two perspectives:
+We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian North Sea. Morad \cite{Morad:90} describes the texture, origin, chemistry of the sandstones reservoirs in terms of the water composition and temperature. With the help and the results from this study, we  can verify \emph{SHPECK}'s results from two perspectives:
 \begin{itemize}
     \item Experimentally: Morad examined two hundred representative core samples with standard optical microscopy and petrographically described the reservoirs. This analysis confirm that the our geochemical model suits the natural environment's reality;
     \item Computationally: The descriptions presented in \cite{Morad:90} of the diagenetic reactions that take place in the Snorre Field allows us to generate a comparative study. We model and compare the same environment using \emph{SHPECK}, \emph{PHREEQC} and \emph{MINTEQA2}. The water composition is detailed in \cite{Nordstrom:79};
@@ -31,12 +31,12 @@ It is consistent with \cite{Aagaard:90} and analysed in \cite{Morad:90}. The pat
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=100mm]{figures/tempXactratio.png}
-\caption{Equilibrium diagram using the results from \emph{SHPECK}}
+\caption{Log activity ratio of Potassium to Sodium ions using the results from \emph{SHPECK}}
 \label{fig:tempXactratio}
 \end{figure}
 
 % QUESTION:
-% LEO: I wasn't sure if I should put the figure from aagaard's in order to really prove that our results are consistent.... 
+% LEO: I wasn't sure if I should put the figure from aagaard's in order to really prove that our results are consistent.... I don't like the idea of putting someone else's graph in here..
 
 \subsection{Computationally comparative} 
 By modelling the same environment using three different software, we achieve a relevant comparison among the numerical methods and algorithms. 
@@ -55,7 +55,7 @@ The environment modelled is described in \cite{Morad:90} and the chemical compos
 \end{tabular}
 \end{table}
 
-The diagenetic processes modelled by the water-rock interactions are responsible for defining how of ions present the solution are going to behave. Figures ~\ref{fig:na+},~\ref{fig:cl-},~\ref{fig:mg+2},~\ref{fig:ca+2},~\ref{fig:k+} and ~\ref{fig:so4-2} present the most representative ions in the solution. It is possible to see that the behavior of \emph{SHPECK} accompany both \emph{PHREEQC} and \emph{MINTEQA2} in most of the cases, specially in temperatures under $100^o$C. We see a more distant behavior among \emph{SHPECK} and \emph{PHREEQC} in temperatures higher than $100^o$C but never completely opposites. This is explained due to temperatures where the equilibrium constant \emph{K} is not completely defined. This is a known issue from \emph{LLNL} thermodynamic dataset: sometimes equilibrium constants that are not measured are misterpreeted. \emph{SHPECK} uses the following approach: if there is one unknown equilibrium constant needed, it uses the closest known value. Unfortunately we can not describe exactly what other softwares do with this issue.
+The diagenetic processes modelled by the water-rock interactions are responsible for defining how of ions present the solution are going to behave. Figures ~\ref{fig:na+},~\ref{fig:cl-},~\ref{fig:mg+2},~\ref{fig:ca+2},~\ref{fig:k+} and ~\ref{fig:so4-2} present the most representative ions in the solution. It is possible to see that the behavior of \emph{SHPECK} accompany both \emph{PHREEQC} and \emph{MINTEQA2} in most of the cases, specially in temperatures under $100^o$C. We see a more distant behavior among \emph{SHPECK} and \emph{PHREEQC} in temperatures higher than $100^o$C but never completely opposites. This is explained due to temperatures where the equilibrium constant \emph{K} is not completely defined. This is a known issue from \emph{LLNL} thermodynamic dataset: sometimes equilibrium constants that are not measured are misterpreeted. \emph{SHPECK} uses the following approach: if there is one unknown equilibrium constant needed, it uses the closest known value. Unfortunately we do not have access to all the informations about each software; therefore, we can not describe exactly what other softwares do with this issue.
 
 \begin{figure}[ht!]
 \centering
@@ -101,20 +101,20 @@ The diagenetic processes modelled by the water-rock interactions are responsible
 
 
 \section{Database Evaluation}
-The database is the source of every information inside a geochemical modelling software. The goal of this section is to make clear the difference and - more important - the benefits of \emph{SHPECK}'s relational database if compared to others. In geochemical modelling software the common approach is to use flat file databases; therefore, we're going to describe a time, space and expressiveness analysis between the \emph{LLNL} thermodynamic dataset and \emph{SHPECK}'s databse. 
+The database is the source of all the data and thermodynamic information inside a geochemical modelling software. The goal of this section is to make clear the difference and - more important - the benefits of \emph{SHPECK}'s relational database if compared to others. In geochemical modelling software the common approach is to use flat file databases; therefore, we're going to describe a time, space and expressiveness analysis between the \emph{LLNL} thermodynamic dataset and \emph{SHPECK}'s databse. 
 
-Most of the information inside a geochemical database is related to each other (i.e. a mineral is described by a reaction, a reactio is composed by species, a specie is composed by elements). \emph{SQLite} databases are naturally a structure where the data can be related to each other, this affects drastically the performance and robustness of the application. On \emph{SQLite} databases, the data can be accessed using powerfull \emph{SQL} queries that reduce the complexity and increase the speed on information retrieval.
+Most of the information inside a geochemical database is related to each other (i.e. a mineral is described by a reaction (may be more than one), a reaction is composed by species, a specie is composed by elements). \emph{SQLite} databases are naturally a structure where the data can be related to each other, this affects drastically the performance and robustness of the application. On \emph{SQLite} databases, the data can be accessed using powerfull \emph{SQL} queries that reduce the complexity and increase the speed on information retrieval.
 
-With flat file database, we have regular access to the information that it contains. In relation databases we use the \emph{SQL}. The studies in expressive power of query languages is one of the important fields in database studies - it studies the limitation and, on the other hand, the power of \emph{SQL}. Due to this works scope, we will not address basic knowledges in \emph{SQL} queries.
+With flat file database, we have regular continuous access to the information that it contains. In relation databases we use the \emph{SQL} language. The studies in expressive power of query languages is one of the important fields in database studies - it studies the limitation and, on the other hand, the power of \emph{SQL}. Due to this works scope, we will not address basic knowledges in \emph{SQL} queries.
 
 \subsection{Time analysis}
 The response time is considered the sum of the processing time and the time waiting for the availabilit of the resource. It is fundamental for the performance of a geochemical modelling software to have fast access to the information since it is a bottleneck for the whole system. 
 It is necessary to understand that until the software has received all the information requested from the database it will be doing nothing, completely stopped and waiting. This waste of CPU usage, if scaled to multiple simulations and long processing, is definitely something that can not be ignored. 
 In order to analyze the response time with a geochemical analysis point of view, we discuss not only the access time but also what that information means.
 
-When fetching any information from a thermodynamic dataset, it is important to take into consideration that no information actually matters if considered alone; there will always be supporting information to get also - which menas more database searches and consuming time. For example, when fetching a reaction (as expressed in equation ~\ref{reaction}), the basic informations are the compounds that take part on this reaction and the related stoichiometric values. Behind this action, the database must also provide informations about the compounds itself (i.e. charge, ion size, mole weigth, elements in that specie, formula, mole volume, thermodynamic equilibrium constant coefficients, etc). 
+When fetching any information from a thermodynamic dataset, it is important to take into consideration that no information actually matters if considered alone; there will always be supporting information to fetch aside - which means more database searches and consuming time. For example, when fetching a reaction (as expressed in equation ~\ref{reaction}), the basic informations are the compounds that take part on this reaction and the related stoichiometric values. Behind this action, the database must also provide informations about the compounds itself (i.e. charge, ion size, mole weigth, elements in that specie, formula, mole volume, thermodynamic equilibrium constant coefficients, etc). 
 
-Figure ~\ref{fig:timeXaccess} indicate the time elapsed (in seconds) that it costs to retrieve all the information related to a chemical reaction from the database. In this example, we simulated from 20 to 580 reactions randomly in the database.
+Figure ~\ref{fig:timeXaccess} indicate the time elapsed (in seconds) that it costs to retrieve all the information related to a chemical reaction from the database. In this example, we simulated from 20 to 580 randomly selected reactions in the database.
 
 \begin{figure}[ht!]
 \centering
@@ -123,14 +123,15 @@ Figure ~\ref{fig:timeXaccess} indicate the time elapsed (in seconds) that it cos
 \label{fig:timeXaccess}
 \end{figure}
 
+It is possible to see clearly in ~\ref{fig:timeXaccess} that the usage of \emph{SQLite} improves considerably if compared to flat file databases. That is one of the reasons that flat file databases are considered deprecated nowadays. 
 
 \newpage
 
 \section{Summary}
 \begin{itemize}
-    \item Diagenesis: This term refers to the physical-chemical reactions responsible for the compaction and precipitation of minerals  during the generation, migration and storage of oil. Understand how these reactions actually occur is fundamental to be able to predict porosity, solubility and permeability of reservoirs and using geochemical modelling softwares is one effective and accessible way to learn about this complex environment.
-    \item Study case: We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian's North Sea. 
+    \item Diagenesis: This term refers to the physical-chemical reactions responsible for the compaction and precipitation of minerals during the generation, migration and storage of oil. Understand how these reactions actually occur is fundamental to be able to predict porosity, solubility and permeability of reservoirs and using geochemical modelling softwares is one effective and accessible way to learn and predict this complex environment.
+    \item Study case: We reproduce the diagenetic reactions observed in Snorre Field reservoir sandstones, Norwegian North Sea. 
     The environment modelled is described in \cite{Morad:90} and the chemical composition of the water in \cite{Nordstrom:79}.
     \item Comparative study: We perform a comparative study with \emph{SHPECK} side-by-side with others available geochemical speciation softwares. The results prove that \emph{SHPECK} reach good results with high accuracy. The discrepancies are minimal and are expected since each software has its own mathematical and computational treatment to the set of equations, parameters, activity coefficient calculation methods and thermodynamic dataset interpretation. 
-    \item Database evaluation: The lack of a relational database in the geochemical modelling softwares makes clear that none of the existing options were really developed with a computer science emphasis. \emph{SHPECK} uses a \emph{SQLite} database specially developed to support a geochemical speciation modelling software. This software design option enables our software to achieve a higher performance, handle complex queries and fetch relevant information easier. A comparative graph highlights the advantages in time elapsed by the number of reactions requested as an exercise to detect this.
+    \item Database evaluation: The lack of a relational database in the geochemical modelling softwares makes clear that none of the existing options were really developed with a computer science emphasis. \emph{SHPECK} uses a \emph{SQLite} database specially developed to support a geochemical speciation modelling software. This software design option enables our software to achieve a higher performance, handle complex queries and fetch relevant information easier and faster. A comparative graph highlights the advantages in time elapsed by the number of reactions requested as an exercise to detect this.
 \end{itemize}

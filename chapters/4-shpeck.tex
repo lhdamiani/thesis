@@ -5,10 +5,10 @@
 %%%%%%%%%%%%%%%%%%%
 
 
-\chapter{\emph{SHPECK} - Speciation Model}
+\chapter{\emph{SHPECK} - Geochemical Speciation Model}
 \label{chapter:SHPECK}
 
-\emph{SHPECK} is a equation-based simulator, there is a governing theory that can guide the construction of mathematical models based on a set of equations. The “equation-based” term refers to simulations based on the kinds of global equations we associate with physical theories - many of these theories present in the foundation concepts of \emph{SHPECK} originally from the \emph{Phase Rule}. Phase rule allows us to predict the number of stable phases that may exist in equilibrium for a particular system and is describe fully in \cite{Garrels:65} and is the base principle used in chemical speciation.
+\emph{SHPECK} is a geochemical speciation model equation-based simulator, there is a governing theory that can guide the construction of mathematical models based on a set of equations. The “equation-based” term refers to simulations based on the kinds of global equations we associate with physical theories - many of these theories present in the foundation concepts of \emph{SHPECK} are originally from the \emph{Phase Rule}. Phase rule allows us to predict the number of stable phases that may exist in equilibrium for a particular system and is describe fully in \cite{Garrels:65} and is the base principle used in chemical speciation.
 
 As a computer simulation software, \emph{SHPECK} represents the entire process. This process includes choosing a model; finding a way of implementing that model in a form that a computer can run; calculating the output of the algorithm; visualizing and studying the resultant data.
 
@@ -18,7 +18,7 @@ This chapter will guide through all the aspects of the development of \emph{SHPE
 \emph{SHPECK} is a geochemical speciation modelling software responsible for calculating the distribution of dissolved species between free ions and aqueous complexes and also saturation indexes for different minerals. 
 
 \section{Architecture}
-The architecture of a software is responsible for assuring that all the internal and external stakeholders' concerns are preserved, addressed and satisfied. To not develop something that will not need restructuration and code refactoring later, it is necessary to see the big picture of the whole \emph{SHPECK}'s project. This will drive and be present during the entire development, starting with the technical decisions until the satisfaction of the final user.
+The architecture of a software is responsible for assuring that all the internal and external stakeholders' concerns are preserved, addressed and satisfied. To not develop something that will not need restructuration and code refactoring later, it is necessary to see the big picture of the whole \emph{SHPECK}'s project. This drives and is present during the entire development, starting with the technical decisions until the satisfaction and the value brought to the user.
 
 Figure ~\ref{fig:shpeck-architecture} brings the software architecture of \emph{SHPECK}, which is modelled following the popular concept of \emph{Model-View-Controller} (MVC) \cite{Gamma:94}. \emph{MVC} is an architectural pattern that divides the software into three interconnected parts:
 \begin{itemize}
@@ -38,21 +38,24 @@ Figure ~\ref{fig:shpeck-architecture} brings the software architecture of \emph{
 \emph{SHPECK} is a software developed using C++, which is a general-purpose programming language. C++ has a bias towards system programming that supports efficient low-level computation, data abstraction, object-oriented programming, and generic programming \cite{Dale:04} \cite{Stroustrup:97}. It provides powerful and flexible mechanisms for abstraction; that is, language constructs that allow the programmer to introduce and use new types of objects that match the concepts of an application needed. Thus, C++ supports styles of programming that rely on relatively direct manipulation of hardware resources to deliver a high degree of efficiency. It can also address higher-level styles of programming that rely on user-defined types to provide a model of computation that is closer to human's view of the task being performed by a computer. Application libraries often support these higher level styles of programming. While developing Shpeck, two supporter tools were adopted:
 \begin{itemize}
 \item \emph{Qt} : It is a cross-platform application and UI framework for developers using C++  \cite{Qt:14}. \emph{Qt} turns the development fast and easy, with lots of inbuilt library classes it provides a comprehensive range of functionality which also turns the debugging and testing way more productive and effective.
-\item \emph{Armadillo} : It Is a C++ linear algebra library that provides classes for vectors, matrices, cubes and a whole set of functions to operate on the classes \cite{arma:14}. With a syntax similar to Matlab and an up-to-date support with upgrades and new releases almost every month.
+\item \emph{Armadillo} : It is a C++ linear algebra library that provides classes for vectors, matrices, cubes and a whole set of functions to operate on the classes \cite{arma:14}. With a syntax similar to Matlab and an up-to-date support with upgrades and new releases almost every month.
 \end{itemize}
-Important to mention that the system is being developed using \emph{MAC} but the whole development process always took into account the goal to develop a multi-platform software to be distributed either in \emph{Windows, UNIX} and \emph{MAC}.
+Important to mention that the system is being developed using \emph{MAC} but since the beginning of the development process, the goal is to develop a multi-platform software to be distributed either in \emph{Windows} and \emph{UNIX-like} systems.
 
 \section{Governing equations}
 %These chemical equations are a mathematical model that drives all the methods that are executed in \emph{SHPECK}, its behavior defines all the steps and in which order they are presented. This set of equations models a real-world system and is named \emph{computer simulation model}.
 
-\emph{SHPECK} uses the thermodynamic equilibrium reaction as equations for the calculation of multiphase systems in equilibrium, the details of these reactions are discussed in details in chapter ~\ref{chapter:basic}. A set of mass-action equations (as in equation ~\ref{eq:massaction}) compose the system; The number of species and compounds that coexist in the system define the number of equations. These equations model the geochemical speciation closed system and take into account all the chemical properties.
+\emph{SHPECK} uses the thermodynamic equilibrium reactions as equations for the calculation of multiphase systems in equilibrium, the details of these reactions are discussed in details in chapter ~\ref{chapter:basic}. A set of mass-action equations (as in equation ~\ref{eq:massaction}) compose the system; The number of species and compounds that coexist in the system define the number of equations. These equations model the geochemical speciation closed system and take into account all the chemical properties.
 
 Aside with the mass-action equations we must have other constraints to solve the equilibrium state of the system. In \emph{SHPECK}, we use the concentration of the species (other possible constraints are the solute activity, the number of moles, total volume, etc.) to deal with the equilibrium state of the system.
 This configuration generates a system where there are \emph{U} unknowns, {M} mass-action equations and \emph{E} equilibrium constraints. 
 \begin{equation}\label{equilibrium_reaction}
 U = E + M
 \end{equation}
-The unknowns values represents the number of moles of each specie in the system.
+The unknowns values represents the number of moles of each specie in the system. In order to have a better efficiency on the method, we use equation ~\ref{eq:massactionLog} reformulated by applying natural logarithm in both sides, as expressed below:
+\begin{equation}\label{eq:massactionLog}
+ln({K_j}) =  ln({\prod\limits_{i=1}^N  a_i^{v_{ij}}}) \hspace{35pt}    (j = 1, ... , M)
+\end{equation}
 
 \section{Numerical Method}
 In order to solve the system composed of the equilibrium state of the mass-action equations and the equilibrium constraints, \emph{SHPECK} uses a numerical methodology that computes simultaneously and find the value of the unknowns.
@@ -62,21 +65,14 @@ The numerical method applied a modification of the \emph{Newton's method} (also 
 
 \emph{SHPECK} uses the \emph{Gauss-Newton}'s method to solve a nonlinear system of equations which results in finding the roots of continuously differentiable equations. 
 
-The \emph{Gauss-Newton}'s method is applied in order to achieve the best approximation possible to the solution that is being sought. It since it is an iterative algorithm where each step consists in minimizing the first-order approximation of the solution. \emph{Gauss-Newton}'s method is a modification of \emph{Newton}'s method (also known as \emph{Newton-Raphson}'s method) for finding a minimum of a function. Its difference from regular \emph{Newton}'s method is that second derivatives are not required. \emph{Gauss-Newton}'s method is used to solve a system of coupled nonlinear equations. The first-order approximation of the function starts with an initial guess for the minimum values, the method proceeds by the iterations as shown in equations ~\ref{eq:gaussNewtonMethodEq1} and ~\ref{eq:gaussNewtonMethodEq2}.
+The \emph{Gauss-Newton}'s method is applied in order to achieve the best approximation possible to the solution that is being sought. It since it is an iterative algorithm where each step consists in minimizing the first-order approximation of the solution. \emph{Gauss-Newton}'s method is a modification of \emph{Newton}'s method for finding a minimum of a function. Its difference from regular \emph{Newton}'s method is that second derivatives are not required. \emph{Gauss-Newton}'s method is used to solve a system of coupled nonlinear equations. The first-order approximation of the function starts with an initial guess for the minimum values, the method proceeds by the iterations as shown in equations ~\ref{eq:gaussNewtonMethodEq1}.
 
 \begin{equation}
 \label{eq:gaussNewtonMethodEq1}
 F(x+1) = F(x) - J^{-1} * R
 \end{equation}
 
-or 
-
-\begin{equation}
-\label{eq:gaussNewtonMethodEq2}
-F(x+1) = F(x) - \frac{F(x)}{F'(x)}
-\end{equation}
-
-Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual matrix \cite{Isaacson:66}.
+Where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual vector \cite{Isaacson:66}.
 
 The $R$ residual vector is defined as a vector containing the resulting values for each equation.
 
