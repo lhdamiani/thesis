@@ -277,17 +277,12 @@ Molarity (\emph{M}) is defined as mass in moles in 1 liter of solution and molal
 
 %ACID-BASE REACTIONS
 \subsubsection{Acid-Base Reactions}
-The importance of acid-base reactions is clearly evident when one understands their influence on the pH. The pH is described as
+The importance of acid-base reactions is clearly evident when one understands their influence on the pH. The pH scale represents how acidic or basic is the solution. The pH is described as
 \begin{eqnarray}
 pH = - log([H^+])
 \end{eqnarray}
-where $[H^+]$ is the activity of the hydrogen ion. The interpretation of the values is as follows:
-\begin{itemize}
-\item pH < 7 : acidic solution;
-\item pH = 7 : neutral solution;
-\item pH > 7 : basic solution;
-\end{itemize}
-The acid substance has a tendency to loose protons, while a basic substance has tendency to gain protons, and this interaction is called acid-base reactions and is described as
+where $[H^+]$ is the activity of the hydrogen ion. Solutions with pH greater than 7 are alkaline or basic, less than 7 are acidic and equals to 7 neutral solutions.
+The acid component has a tendency to loose protons, while a basic component has tendency to gain protons, and this interaction is called acid-base reactions and is described as
 
 \begin{eqnarray}
 Acid_1 + Base_2 &=& Acid_2 + Base_1
@@ -295,16 +290,20 @@ Acid_1 + Base_2 &=& Acid_2 + Base_1
 The reaction must be understood as that in the forward reaction, the proton lost by $Acid_1$ is gained by $Base_2$ and, in the reverse reaction, the proton lost by $Acid_2$ is gained by $Base_1$.  The strength of an acid or base refers to the proportion of the protons that are lost or gained. 
 
 %COMPLEXATION AND SPECIATION
-\subsubsection{Complexation and Speciation}
-Complexation is when an ion is formed by combining simpler cations, anions and sometimes molecules. A simple example of complexation is the following
+\subsubsection{Complexation}
+Complexation is when an ion is formed by combining simpler cations, anions and sometimes molecules. Complexes are dissolved species that consist of two or more simples species. Considering the following reaction
+
 \begin{eqnarray}\label{complexation_reaction}
 Mn^{2+} + Cl^- &=& MnCl^+
 \end{eqnarray}
-The calculation of the distribution of metals among complexes (\emph{speciation}) involves the solution of a series of mass-law transport equations. The mass-law equation of the reaction ~\ref{complexation_reaction} is described below
+
+A simple example of complexation for the reaction ~\ref{complexation_reaction} is expressed in mass law form as:
+
 \begin{eqnarray}
 K_{MnCl^+} &=& \frac{[MnCl^+]}{[Mn^{2+}][Cl^-]}
 \end{eqnarray}
-Each complex compound has a property called stability constant ($\beta_i$). It defines how the total concentrations of the components are distributed among the possible compounds (it may include other complexes) in the solution.
+
+Each complex compound has a property called stability constant ($\beta_i$). It defines how the total concentrations of the components are distributed among the possible compounds (it may include other complexes) in the solution. For more details on this topic we refer to \cite{Kehew:00}.
 
 %OXIDATION-REDUCTION REACTIONS
 \subsubsection{Oxidation-Reduction Reactions}
@@ -313,11 +312,16 @@ Certain reactions involve the transfer of electrons between its components (reac
 In this work, \emph{redox reactions} (as oxidation-reduction reactions are also known) are not going to be addressed. In order to get deeper understanding on this topic, we refer to \cite{Petrucci:07}
 
 
-%ADSORPTION AND ION EXCHANGE
-\subsubsection{Adsorption and ion exchange}
-Adsorption systems treat water by adding a substance, such as activated carbon or aluminia, to the water supply. Adsorbents attract contaminants by chemical and physical processes that cause them to \emph{stick} to their surfaces for later disposal. This mechanism is often used to remove contaminants like \emph{arsenic} or \emph{fluoride} (mostly organic contaminants) from water reservoirs. Ion exchange works simillarly but it is focused on inorganic contaminants in a particle-free water. Ion exchange is most often used to remove hardness or nitrate (mostly inorganic soluble molecules). 
+%SORPTION
+\subsubsection{Sorption}
+Sorption describes a process where compounds \emph{stick} to surfaces of solids - which represents the removal of the solute from the solution onto mineral surface. There are three kinds of sorptions: 
+\begin{itemize}
+\item Adsorption: The solute can held at the mineral surface as a hydrated species.
+\item Absorption: The solute can incorporate into the mineral structure at the surface.
+\item Ion Exchange: When an ion becomes sorbed to a surface by changing places with an ion previously residing on the mineral.
+\end{itemize}
 
-In this work, adsorption and ion exchange are not addressed. For more detailed information on this topic, we refer to \cite{Freeze:79}
+In this work, sorption are not addressed deeply. For more detailed information on this topic, we refer to \cite{Freeze:79}
 
 % GEOCHEMICAL MODELING
 \subsection{Geochemical Modeling}
@@ -366,5 +370,5 @@ This type of models, also called reaction-path models, are used for prediction o
 \section{Summary}
 \begin{itemize}
 \item The importance of multidisciplinary problems: The power from the advances in computer science to adapt itself to other areas of knowledge is ever increasing. The best way to push the limits of our work is by redefining obstacles outside our normal boundaries and reach solutions based on new understanding of complex situations. On the other hand, understanding what is a software and how it connects the \emph{"machine world"} to the \emph{"real world"} can be non-trivial. We reinforce the idea that the extension of a software goes far beyond the lines of code and the user interface displayed on the screen. We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
-\item Hydrogeochemistry principles: The journey and what has happened to the groundwater can be discovered by using the hydrogeochemistry knowledge (studying the chemical composition and properties of the water). From the wide range of factors that take part in this complex environment, we can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, etc. 
+\item Hydrogeochemistry principles: The groundwater's journey and what has happened to it can be discovered using hydrogeochemistry models. Studying water's chemical composition and properties is a complex and interesting task - many different factors take part in this environment. We can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, etc. 
 \end{itemize}
