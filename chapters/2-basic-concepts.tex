@@ -1,8 +1,8 @@
-%%%%%%%%%%%%%%%%%%%%%%
-%                                                                %
-% BASIC CONCEPTS INTRODUCTION   %
-%                                                                %
-%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                               %                   %                               %
+%       BASIC CONCEPTS          %
+%                               %                   %                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Basic Concepts for Geochemical Modeling}
 \label{chapter:basic}
 
@@ -127,7 +127,7 @@ K_j =  \prod\limits_{i=1}^N  a_i^{v_{ij}} \hspace{35pt}    (j = 1, ... , M)
 \end{equation}
 where $K_j$ denotes the equilibrium constant of the \emph{j-th} reaction; $a$ denotes the activity of the \emph{i-th} chemical species. The equilibrium constant depends on the temperature of the system; therefore, the equilibrium constant needs to be calculated according to the temperature of the system. 
 
-The driving force of a chemical reaction is related to the concentration of the reacting constituents and the concentrations of the reaction products. The law of mass-action states that any reaction will proceed to the right (dissolution) or to the left (precipitation) until the mass-action equilibrium is achieved. One must bear in mind that in nature it may take years or even thousands of years for that equilibrium to be achieved, and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed towards this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium will never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the non-ideal behavior of components in the solution, which is called \emph{activity} and is presented in details on section ~\ref{activity}.
+The driving force of a chemical reaction is related to the concentration of the reacting constituents and the concentrations of the reaction products. The law of mass-action states that any reaction will proceed to the right (dissolution) or to the left (precipitation) until the mass-action equilibrium is achieved. One must bear in mind that in nature it may take years or even thousands of years for that equilibrium to be achieved, and after a disturbance in the system, such as an addition of reactants, removal of products, changes in the temperature or pressure, the system will continue to proceed towards this new equilibrium (if the disturbances are frequent compared to the reaction rate, equilibrium may never be achieved) \cite{Freeze:79}. Each of the dissolved species will have one representation of the non-ideal behavior of components in the solution, which is called \emph{activity} and is presented in details on section ~\ref{activity}.
 
 Kinetic descriptions are applicable to any reaction but it is necessary to describe  reactions that are slow in relation to mass transport.  The following reaction has a $k_1$ and $k_2$ rates for the forward and reverse reactions, respectively 
 \begin{eqnarray}
@@ -144,14 +144,14 @@ r_A &=& - k_1 (A)^{n1}(B)^{n2} + k_2 (D)^{m1}(E)^{m2}
 where $n1, n2, m1$ and $m2$ are empirical stoichiometric coefficients. When there are reactions in parallel or series the rate laws are even more complex.
 The dissolution rate constant (\ce{k_{diss}}) of a chemical reaction depends on temperatue. The relation between constant and temperature is given by the \emph{Arrhenius equation}, described as
 \begin{eqnarray}
-k_diss = A * exp(\frac{-E_a}{R*T})
+k_{diss} = A * e^{(\frac{-E_a}{R*T})}
 \end{eqnarray}
 where \ce{k_0} is the pre-exponential (Arrhenius) factor, $E_a$ is the activation energy, R is the universal gas constant, and T is the temperature in Kelvin.
 During the development of \emph{SHPECK}, we will not deal with kinetic reactions.
 
 %EQUILIBRIUM CONSTANT
 \subsubsection{Thermodynamic Equilibrium Constant}
-The \emph{equilibrium constant} (\emph{K}), also known as \emph{stability constant}, is the value of the reaction quotient when the reaction has reached equilibrium. \emph{K} depends only on the temperature and on the ionic strength of the solution. According to known reactions' equilibrium constant value, it is possible to express K a temperature-dependent polynomial.
+The \emph{equilibrium constant} (\emph{K}) is the value of the reaction quotient when the reaction has reached equilibrium. \emph{K} depends only on the temperature and on the ionic strength of the solution. According to known reactions' equilibrium constant value, it is possible to express K as a  temperature-dependent polynomial.
 
 Equilibrium constants are determined by measurements of the relevant concentrations of the species under differing experimental conditions. Concentrations of species can be measured in multiple ways, and the use of these values in modeling requires adjustment to the conditions in the system being modeled. These adjustments, as well as the differences in conditions and different methods for determination, can lead to uncertainty in chemical speciation constants.
 
@@ -203,17 +203,17 @@ The polynomial regression is specifically used to calculate the equilibrium cons
 
 %ACTIVITY OF A SOLUTE
 \subsubsection{Activity of a solute}\label{activity}
-Activity (\ce{a_i}) is the \emph{"thermodynamic concentration"} (or informally known as \emph{"effective concentration"}). It is calculated as a product of activity coefficient and concentration (where \emph{i} means the solute involved):
+Activity ($a_i$) is the \emph{"thermodynamic concentration"} (or informally known as \emph{"effective concentration"}). It is calculated as a product of activity coefficient and concentration (where $i$ means the solute involved):
 \begin{equation}\label{activityEq}
 a_i = \gamma_i * m_i
 \end{equation}
-where $m_i$ is the molar concentration of the solute $i$ and activity coefficient ($\gamma_i$) is explained in ~\ref{actCoeff}. Activity coefficient is a function of ionic strenght (I), which is a measure of the concentration of ions in the solution.  
+where $m_i$ is the molar concentration of the solute $i$ and $\gamma_i$ is the activity coefficient (explained in ~\ref{actCoeff}), which is a function of ionic strenght ($I$).
 
 %IONIC STRENGTH
 \subsubsection{Ionic strength}
-Mathematically the ionic strength of the solution is calculated according to
+Ionic strength ($I$) is a measure of the concentration of ions in the solution.  Mathematically the ionic strength of the solution is calculated according to
 \begin{equation} \label{eq:ionicStrength}
-I = 0.5 \sum{M_i z_i^2}
+I = \frac{1}{2} \sum{M_i z_i^2}
 \end{equation}
 where \emph{M} is the molar concentration of the specie \emph{i} having a charge \emph{z}.When \emph{I} increases, activity coefficients decrease. In a very dilute solution, activity coefficient is closer to \emph{1.0}, and activity is nearly equal to the concentration. The decreasing trend is related to the "cage" of opposite charge particles around ions. There is a reversal of the trend in extremely concentrated solutions (brines), because beyond ionic strength of about $1 mol/L$ there is an increase of activity coefficients with increasing ionic strength. This is related to decreasing amount of free water molecules, because most of water molecules are already bound around the solutes.
 For a matter of explanation, we will calculate the ionic strength of a \ce{CaCl_2} solution (composed by $0.5 mol$ of \ce{Ca^{+2}} and $1 mol$ \ce{Cl^{-1}}):
@@ -227,7 +227,7 @@ I = 1.5 mol/L
 
 %ACTIVITY COEFFICIENT
 \subsubsection{Activity Coefficient} \label{actCoeff}
-There are different methods to calculate $\gamma$ for ions:
+There are different methods to calculate activity coefficient ($\gamma$) for ions:
 \begin{itemize}
 \item Debie-Hueckel: This method assumes that ions behave like spheres with charges located at their center points. The ions interact with each other by coulombic forces and the result of their analysis is as follows
 \begin{eqnarray} \label{eq:debyeEq}
@@ -240,7 +240,7 @@ log \gamma_i &=& - Az_i^2 \bigg(\frac{\sqrt{I}}{1+\sqrt{I}} - 0.3 I)
 \end{eqnarray}
 \item B-dot: This model is presented as an activity model based on an equation similar to Davies and parameterized for solutions up to 3 molal ionic strength.
 \begin{eqnarray} \label{eq:bdotEq}
-log \gamma_i &=& - \frac{Az_i^2 \sqrt{I}}{1+ a_i B \sqrt{I}} + \overset{.}{B} I 
+log \gamma_i &=& - \frac{Az_i^2 \sqrt{I}}{1+ \mathring{a}_i B \sqrt{I}} + \overset{.}{B} I 
 \end{eqnarray}
 where \emph{\aa}  is the ion size for each specie and \emph{A, B and $\overset{.}{B}$} are coefficients that vary with temperature and are present in the thermodynamic dataset used by geochemical modeling codes.
 \end{itemize}
@@ -258,12 +258,12 @@ The Ion Activity Product (\emph{IAP}) is calculated according to
 \begin{eqnarray}
 IAP &=& \frac{[C]^c [D]^d}{[A]^a[B]^b}
 \end{eqnarray}
-where [A], [B], [C] and [D] are activities of the ions. The interpretation of \emph{IAP} is the following:
+where $[A]$, $[B]$, $[C]$ and $[D]$ are activities of the ions and $a, b, c$ and $d$ denote the respectives stoichiometric values. The interpretation of $IAP$ is the following:
 \begin{itemize}
 \item IAP > K : The reaction is progressing from left to right, producing more products. This state is also described to as supersaturated.
 \item IAP = K : The reaction is in equilibrium, and there is equal flow of reaction to the right and to the left
 \item IAP < K : The reaction is progressing from right to left, producing more reactants. This state is also described as undersaturated.
-\end{itemize}{itemize}
+\end{itemize}
 
 With the \emph{SI} approach, it is possible to predict the reactive mineralogy from the water composition. If the \emph{SI} for a mineral is less than zero, the aqueous solution is undersaturated with respect to that mineral - which corresponds to the state where the mineral may dissolve in order to reach equilibrium concentrations. If the \emph{SI} is greater than zero, then more mineral may precipitate from the aqueous solution (oversaturated). To conclude, when the \emph{SI} is close to zero (it is ok to consider a small range of values to be in equilibrium) , the water is in near- saturation  with respect to that mineral \cite{Alley:93}. 
 
@@ -297,7 +297,7 @@ Complexation is when an ion is formed by combining simpler cations, anions and s
 Mn^{2+} + Cl^- &=& MnCl^+
 \end{eqnarray}
 
-A simple example of complexation for the reaction ~\ref{complexation_reaction} is expressed in mass law form as:
+A simple example of complexation for the reaction~\ref{complexation_reaction} is expressed in mass law form as:
 
 \begin{eqnarray}
 K_{MnCl^+} &=& \frac{[MnCl^+]}{[Mn^{2+}][Cl^-]}
@@ -321,7 +321,7 @@ Sorption describes a process where compounds \emph{stick} to surfaces of solids 
 \item Ion Exchange: When an ion becomes sorbed to a surface by changing places with an ion previously residing on the mineral.
 \end{itemize}
 
-In this work, sorption are not addressed deeply. For more detailed information on this topic, we refer to \cite{Freeze:79}
+In this work, sorption are not addressed. For detailed information on this topic, we refer to \cite{Freeze:79}
 
 % GEOCHEMICAL MODELING
 \subsection{Geochemical Modeling}
@@ -349,7 +349,7 @@ Information about the distribution of dissolved species is important, for exampl
 
 Field data necessary for input ofspeciation program are temperature, pH and results from laboratory chemical analysis (results obtained from a sample of the solution of interest).
 
-Details of several available programs are presented and discussed in chapter ~\ref{chapter:review}). The development of \emph{SHPECK}, which is our proposal of a geochemical speciation modeling software, is presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. 
+Details of several available programs are presented and discussed in chapter ~\ref{chapter:review}. The development of \emph{SHPECK}, which is our proposal of a geochemical speciation modeling software, is presented and thoroughly discussed in chapter~\ref{chapter:SHPECK}. 
 
 %OTHER TYPES OF GEOCHEMICAL MODELING
 \subsubsection{Other Types Of Geochemical Modeling}
@@ -369,6 +369,6 @@ This type of models, also called reaction-path models, are used for prediction o
 %SUMMARY
 \section{Summary}
 \begin{itemize}
-\item The importance of multidisciplinary problems: The power from the advances in computer science to adapt itself to other areas of knowledge is ever increasing. The best way to push the limits of our work is by redefining obstacles outside our normal boundaries and reach solutions based on new understanding of complex situations. On the other hand, understanding what is a software and how it connects the \emph{"machine world"} to the \emph{"real world"} can be non-trivial. We reinforce the idea that the extension of a software goes far beyond the lines of code and the user interface displayed on the screen. We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
-\item Hydrogeochemistry principles: The groundwater's journey and what has happened to it can be discovered using hydrogeochemistry models. Studying water's chemical composition and properties is a complex and interesting task - many different factors take part in this environment. We can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, etc. 
+\item The importance of multidisciplinary problems: The power from the advances in computer science to adapt itself to other areas of knowledge is ever increasing. The best way to push the limits of our work is by redefining obstacles outside our normal boundaries and reach solutions based on new understanding of complex situations. On the other hand, understanding what is a software and how it connects the \emph{"machine world"} to the \emph{"real world"} can be non-trivial. I reinforce the idea that the extension of a software goes far beyond the lines of code and the user interface displayed on the screen. We often find the comparison that building software is somehow like building a house - this certainly is a helpful example to understand everything that is behind a software. Both house and software require: estimating costs, thinking about the requirements, plans, rules, standards, best practices, specifications timelines, reviews, milestones, testing, alterations, handover and warranty.
+\item Hydrogeochemistry principles: The groundwater's journey and what has happened to it can be discovered using hydrogeochemistry models. Studying water's chemical composition and properties is a complex and interesting task - many different factors take part in this environment. We can mention the equilibrium and kinetic reactions, the activity and the activity coefficient of the solute, the ionic strength of the solution, the saturation index, the equilibrium constant, etc. 
 \end{itemize}
