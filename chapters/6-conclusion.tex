@@ -7,11 +7,12 @@
 \chapter{Conclusion}
 \label{chapter:conclusion}
 
-This work provides details of \emph{SHPECK} that is intended to raise the quality of available geochemical speciation modeling software by including an interactive and intuitive user interface as well as a relational database. The user interface of the program implements a dynamic tool that facilitates simulation case preparation. \emph{SHPECK} accepts any general combination of elements, species and reactions.
+This work provides details of \emph{SHPECK}, a modeling software package intended to raise the quality of available geochemical speciation. The program innovates by including a visual user interface that allows to parametrize the reaction simulation, as well as a relational database architecture component. The user interface implements a dynamic tool that facilitates the simulation case preparation. \emph{SHPECK} accepts any general combination of chemical elements, mineral species and chemical reactions, along with definitions of boundary contour conditions of temperature, pH, pressure, etc.
 
 \emph{SHPECK} is built with considerations for computer science's priorities and theories. As would be expected, the first part of this work was to understand the topic of geochemical modeling. Subsequently, available alternative options of geochemical models were evaluated. Based on the findings, the program SHPECK was designed to address the weakness of the existing alternative models. 
 
-It became evident during the evaluation process that all existing software studied were created by geochemists. Thus, they lacked the expertise available to computer sciences specialists. 
+%Mara: Frase preconceituosa....
+%It became evident during the evaluation process that all existing software studied were created by geochemists. Thus, they lacked the expertise available to computer sciences specialists. 
 
 The first challenge was to design the database that would fit the information of the geochemical speciation modeling software. This information was parsed from a well-stablished source and organized in a \emph{SQLite} relational database. Once \emph{SHPECK}'s database was ready, the speciation methodology was coded.
 
@@ -19,12 +20,12 @@ Speciation is the calculation of the distribution of dissolved solutes in the wa
 
 Once the implementation of both database and mathematical treatment was completed, the user interface was developed. \emph{SHPECK}'s \emph{GUI} allows significantly simpler method of setting up a geochemical model compared to the available methods.
 
-The completed software was tested and its results compared with results obtained through the alternative softwares. 
+The completed software was tested and its results compared with the results obtained through the alternative softwares. 
 The results produced by \emph{SHPECK} were found to be consistent with those of the alternative models.
 
-\emph{SHPECK}'s results accuracy is equivalent and inside the expect range to the study case developed in this work. The results show that all the three software compared have nearly the same results if with the same inputs. Slight differences are found when simulating with temperatures higher than $100^o$C, which appear to arise from discrepancies in the thermodynamic properties of the equilibrium constant.
+\emph{SHPECK}'s results accuracy is equivalent and inside the expect range to the study case developed in this work. The results show that all the three software compared have nearly the same results with the same inputs. Slight differences are found when simulating with temperatures higher than $100^o$C, which appear to arise from discrepancies in the thermodynamic properties of the equilibrium constant.
 
 %Commented out by Tony
-%Due to reasons, like time and purpose, there are still some points along this work where there are enhancements to be done. For instance, add the kinetic reactions to \emph{SHPECK}'s solver - it is a  delicate topic since adding kinetic reactions implies not only working with mass balance equations but also with chemical elemental mass evolution. The elemental mass evolution describes mass change through mass transfer and kinetic reactions of solids and solute-solute interaction - described in details in \cite{Ajpark:14}.
-
+Due to reasons, like time and purpose, there are still some points along this work where there are enhancements to be done. For instance, add the kinetic reactions to \emph{SHPECK}'s solver - it is a  delicate topic since adding kinetic reactions implies not only working with mass balance equations but also with chemical elemental mass evolution. The elemental mass evolution describes mass change through mass transfer and kinetic reactions of solids and solute-solute interaction - described in details in \cite{Ajpark:14}.
+Moreover, we also plan to create a distribution platform where users can register, interact, collaborate in forums, indicate bugs, and download \emph{SHPECK}.
 

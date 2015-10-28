@@ -7,17 +7,45 @@
 \chapter{\emph{SHPECK} - Geochemical Speciation Model}
 \label{chapter:SHPECK}
 
-\emph{SHPECK} is a geochemical speciation model based on the \emph{Phase Rule} described in \cite{Garrels:65}. This is also the principle that is used in all of the speciation models reviewed in the previous section. 
+\emph{SHPECK} is a geochemical speciation model based on the \emph{Phase Rule} described in \cite{Garrels:65}. This is also the principle that is used on the speciation models reviewed in the previous section. 
 
 As a computer simulation software, \emph{SHPECK} is a complete integrated model that allows: the user to set up choosing; convert the chemical description to a system of equations; solving the system of equations; and present the results.
 
-This chapter will guide through all the aspects of the development of \emph{SHPECK} - a geochemical speciation modeling software. 
+Figure~\ref{fig:shpeck_flow} represents a briefing overview to make it clear what are the processes involved in \emph{SHPECK}. In figure~\ref{fig:shpeck_flow} ($a$), the user will interact with the interface to define the speciation settings and the chemical phases that compose the present water (necessary information will come from the database but is transparent to the user). In figure~\ref{fig:shpeck_flow} ($b$), the processing core will take place and perform the several tasks involved in defining the speciation of a solution - described in details later in this chapter. In figure~\ref{fig:shpeck_flow} ($c$) , the relevant results are displayed in the \emph{GUI} to the user.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{figures/shpeck_flow.png}
+\caption{\emph{SHPECK} overview}
+\label{fig:shpeck_flow}
+\end{figure}
+
+This chapter will guide through the aspects of the development of \emph{SHPECK} - a geochemical speciation modeling software. Software quality factors (either external and internal) were constantly addressed and studied. As external factors, we can mention:
+\begin{itemize}
+\item Correctness: The ability of performing the exact task as defined by the specification of a geochemical modeling software.
+\item Robustness: The ability of reacting appropriately to abnormal conditions that may be entered through the chemical composition by the user.
+\item Extendibility: The ease of adapting to changes of specification and reorganize the tasks.
+\item Reusability: The ability to serve for construction of many different applications. For example, adopting \ce{CO_2} pressure or including reactive transport to the solver.
+\item Compatibility: The ease of combining software elements with others. Working with new datasets and trying to connect different source of thermodynamic data can be complicated - if not impossible.
+\end{itemize}
+On the other side, we have internal factors:
+\begin{itemize}
+\item Modularity: By dividing the system into different parts is possible to have a better understanding. A set of different modules compose the whole system - each one responsible for a task.
+\item Readability: Adopting code conventions and good habits in programming are fundamental to the health of the software.
+\end{itemize}
+These quality factors are detailed in \cite{Meyer:00}.
 
 \section{Specification}
 \emph{SHPECK} is a geochemical speciation modeling software designed to calculate the distribution of dissolved chemical elements and aqueous solutes and complexes, and it also calculates saturation indexes for different minerals. 
 
+\section{Documentation}
+For internal documentation, \emph{Doxygen} is used. \emph{Doxygen} is an automated code documentation generating tool \cite{Heesch:13}. This documentation will be available along with the distribution of \emph{SHPECK} when possible.
+
+\section{Intended users}
+\emph{SHÈCK} is a software for geochemists, geologists, chemists, environmental engineers, forestry engineers, agronomists, laboratory analysts and others. 
+
 \section{Architecture}
-The architecture of the software is responsible for assuring that all the internal and external stakeholders' concerns are preserved, addressed and satisfied. The design of the architecture must occur prior the start of the development - it avoids waste of resources and re-work in the future. \emph{SHPECK}'s architectural design choices are done always to make sure that the software will bring value to the user.
+The architecture of the software is responsible for assuring that all the internal and external stakeholders' concerns are preserved, addressed and satisfied. The design of the architecture must occur prior the start of the development - it avoids waste of resources and re-work in the future. \emph{SHPECK}'s architectural design choices are done always to make sure that the software will bring value to the user. 
 
 
 Figure~\ref{fig:shpeck-architecture} shows the software architecture of \emph{SHPECK}, which is modeled following the popular concept of \emph{Model-View-Controller} (MVC) \cite{Gamma:94}. \emph{MVC} is an architectural pattern that divides the software into three interconnected parts:
@@ -26,11 +54,12 @@ Figure~\ref{fig:shpeck-architecture} shows the software architecture of \emph{SH
 \item View: It is a form of visualization of the state of the model. For example, which are the solutes that the user wants to add into the simulation?
 \item Controller: It offers facilities to change the state of the model. For example, define which algorithm for calculating the activity coefficient according to the user's choice or the value of the ionic strength (if the user did not specify which one to use).
 \end{itemize}
+In figure~\ref{fig:shpeck-architecture} any kind of information flow is indicated by the direction of the arrows going out or in from the components.
 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=100mm]{figures/shpeck-architecture.png}
-\caption{Architecture of the \emph{SHPECK} software}
+\caption{Architecture of the software \emph{SHPECK}}
 \label{fig:shpeck-architecture}
 \end{figure}
 
@@ -41,6 +70,8 @@ Figure~\ref{fig:shpeck-architecture} shows the software architecture of \emph{SH
 \item \emph{Armadillo} : It is a C++ linear algebra library that provides classes for vectors, matrices, cubes and a whole set of functions to operate on the classes \cite{arma:14}. Its syntax is similar to Matlab, and it has an up-to-date support with upgrades and new releases are available on monthly basis.
 \end{itemize}
 Important to mention that the system is being developed using \emph{MAC} but since the beginning of the development process, the goal is to develop a multi-platform software to be distributed either in \emph{Windows} and \emph{LINUX-like} systems.
+
+~\ref{Meyer:00} concepts and arguments are maintained close during the development of \emph{SHPECK} to produce o high-class software.
 
 \section{Governing equations}
 %These chemical equations represent the mathematical model that drives the methods that are executed in \emph{SHPECK}. Their behavior defines the steps and the order in which they are presented. This set of equations models a real-world system and is named \emph{computer simulation model}.
@@ -72,7 +103,7 @@ The \emph{Newton-Raphson} method is applied in order to achieve the best approxi
 \label{eq:NewtonMethodEq1}
 F(x+1) = F(x) - J^{-1} * R
 \end{equation}
-where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual vector (\cite{Isaacson:66}).
+where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual vector (\cite{Isaacson:66}). The \emph{Newton-Raphson}'s method has a complexity O($n^3$) per iteration with a quadratic convergence.
 
 The \emph{Jacobian Matrix} is the matrix of all first-order partial derivatives of the equations and it is defined as
 
@@ -141,8 +172,6 @@ Figure~\ref{fig:Shpeck-algo} presents the high-level algorithm in details. It is
 \caption{Algorithm of the Newton's Method Solver}
 \label{fig:Shpeck-algo-newton}
 \end{figure}
-\subsection{Complexity of the algorithm}
-The \emph{Newton-Raphson}'s method has a complexity O($n^3$) per iteration with a quadratic convergence.
 
 %(http://ranger.uta.edu/~huber/cse4345/Notes/Nonlinear_Equations.pdf)
 %(http://ranger.uta.edu/~huber/cse4345/Notes/Equations.pdf)
@@ -158,13 +187,12 @@ Due to the enormous amount of options connected to the nature of geochemical mod
 \end{itemize}
 
 
-\subsection{\emph{SHPECK}'s GUI }
-In existing geochemical modeling software the GUI are either poorly implemented, or not implemented at all. We see \emph{SHPECK} as geochemical speciation modeling software with a potential to broaden its influence. The \emph{GUI} enables the user to streamline and conveniently construct a geochemical environment for modeling.
-\emph{SHPECK}'s \emph{GUI} works based on tabs. Each tab is responsible for viewing a specific point of the software. I present them in detail below:
+\subsection{\emph{SHPECK}'s GUI}
+In existing geochemical modeling software systems, the \emph{GUI} are either poorly implemented, or not implemented at all. The \emph{GUI} of \emph{SHPECK} enables the user to streamline and conveniently construct a geochemical environment for modeling. \emph{SHPECK}'s \emph{GUI} works based on tabs, where each tab is responsible for viewing a specific point of the software. It is presented them in detail below:
 \begin{itemize}
-\item Configurations tab: This allows users to view and manipulate basic system settings and controls such as temperature, activity coefficient calculation method, the number of iterations, solver options, and error and convergence criteria. It is presented in figure~\ref{fig:config}.
-\item Compounds in the water tab: Allows users to create and edit the composition of the water that will be used in the geochemical speciation model. It has the complete catalog of species available from the database. The species in the tab that have concentrations other than zero compose the water. This tab is presented in figure~\ref{fig:water}.
-\item Results tab: Allows the user to see relevant input information and the outputs of the geochemical speciation model such temperature, ionic strength, pH of the solution, final concentration for the species, saturation indexes, etc. It is presented in figure~\ref{fig:output}.
+\item Configurations tab: this allows users to view and manipulate basic system settings and to control temperature, activity coefficient calculation method, the number of iterations, solver options, and error and convergence criteria. It is presented in  figure~\ref{fig:config}.
+\item Chemical phases in the water tab: it allows users to create and edit the composition of the water that will be used in the geochemical speciation model. It has the complete catalog of species available from the database. The species in the tab that have concentrations other than zero compose the water. This tab is presented in figure~\ref{fig:water}.
+\item Tab of results: Allows the user to see relevant input information and the outputs of the geochemical speciation model, such as, temperature, ionic strength, pH of the solution, final concentration for the species, saturation indexes, etc. It is presented  figure~\ref{fig:output}.
 \end{itemize}
 
 
@@ -178,7 +206,7 @@ In existing geochemical modeling software the GUI are either poorly implemented,
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=100mm]{figures/shpeck-watertab.png}
-\caption{Water composition tab}
+\caption{Chemical phases in the water tab}
 \label{fig:water}
 \end{figure}
 
@@ -189,15 +217,105 @@ In existing geochemical modeling software the GUI are either poorly implemented,
 \label{fig:output}
 \end{figure}
 
+
+\subsubsection{GUI Interaction}
+To demonstrate how the user interaction works in \emph{SHPECK}, the selection of which method used to calculate the activity coefficient will be detailed. Figure~\ref{fig:radioAct} shows the available options (displayed to the user by radio buttons). There are four: automated, \emph{Debye Hueckel}, \emph{Bdot} and \emph{Davies}. The automated option will choose among the available methods which one fits best to the modeled system. The methods were described in ~\ref{actCoeff}. Inside the logic of the program, the system identifies which one should be used (code~\ref{cod:actCoeff}) and calls the referring method (code~\ref{cod:debyeHueckelMethod}). 
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{figures/radioAct.png}
+\caption{Activity Coefficient Selection Method}
+\label{fig:radioAct}
+\end{figure}
+
+
+\begin{minipage}{0.8\linewidth}
+\begin{lstlisting}[frame=single, label=cod:actCoeff, caption=Activity coefficient calculation method implementation]
+if ((iStrength < I_STRENGTH_DBH_MAX && option == 0) || (option == 1)){
+    // Debie-Huckel Equations
+    qDebug() << MODEL_OF_EQUATIONS_DBH;
+    if (option == 0)
+        selectedEqMethod = "Automatic (Debie-Huckel)";
+    actCoeffList = ActCoeffDBH::actCoeffDBH(actCoeffDatabase.getADH(),
+                     actCoeffDatabase.getBDH(),iStrength,
+                     variables,charges,ionSizes);
+
+\end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{0.8\linewidth}
+\begin{lstlisting}[frame=single, label=cod:debyeHueckelMethod, caption=Debye Hueckel method implementation]
+QList<double> ActCoeffDBH::calcActCoeff(double adh,
+                                        double bdh,
+                                        double ionicStrength,
+                                        QStringList variables,
+                                        QStringList charges,
+                                        QStringList ionSize)
+{
+    QList<double> actCoeff;
+    for (int i = 0; i < variables.size(); i++){
+        double value = (adh * qPow(charges.at(i).toDouble(),2.0) * qPow(ionicStrength,0.5) * -1)/
+                (1 +  ionSize.at(i).toDouble()* bdh * qPow(ionicStrength,0.5));
+        value = qPow(10.0,value);
+        actCoeff.push_back(value);
+    }
+    return actCoeff;
+}
+
+\end{lstlisting}
+\end{minipage}
+
+\subsubsection{Chemical phases in the water}
+The chemical composition displayed to the user in the 'compounds tab' comes from the database. It shows the chemical species that are present in \emph{SHPECK}'s database. Among these, the user can define the concentration for each one and this is corresponding to the water composition that will be simulated and speciated. A simple water composition is shown in details in figure~\ref{fig:waterCompositionDetail}. When the \emph{SHPECK} runs, this water is fetched from the database (code~\ref{cod:waterMethod}), each query is treated as one component of the water (code~\ref{cod:waterMethodSaving}) and each component is added to the water composition of the system (code~\ref{cod:waterMethodSavingComponent}).
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=50mm]{figures/shpeck-waterComposition.png}
+\caption{Water composition detailed}
+\label{fig:waterCompositionDetail}
+\end{figure}
+
+\begin{minipage}{0.8\linewidth}
+\begin{lstlisting}[frame=single, label=cod:waterMethod, caption=Fetching the water composition from the database method]
+// Get water composition information from database
+status = DatabaseHelper::getWaterComposition(&waterShpeck,dataBase,&pHValue);
+\end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{0.8\linewidth}
+\begin{lstlisting}[frame=single, label=cod:waterMethodSaving, caption=Excerpt of the water composition saving code]
+    if (query.exec(sql))
+    {
+        while(query.next())
+        {
+            // Set values inside the class WaterComposition
+            // from the query returned from the database
+            waterShpeck->addComponent(&query);
+\end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{0.8\linewidth}
+\begin{lstlisting}[frame=single, label=cod:waterMethodSavingComponent, caption=Detailed composition of the water]
+    Composition* composition = new Composition();
+    composition->setConcentration(query->value(0).toFloat());
+    composition->setName(QString(query->value(1).toString()));
+    composition->setCharge(query->value(2).toFloat());
+    composition->setIonSize(query->value(3).toFloat());
+    composition->setMoleWt(query->value(4).toFloat());
+    composition->setNumberOfElements(query->value(5).toInt());
+    componentsList.push_back(*composition);
+\end{lstlisting}
+\end{minipage}
+
 \section{Database}
-As can be seen in this chapter, the algorithm of \emph{SHPECK} is not trivial and requires many interactions between many different entities. The database is responsible for providing the data that will flow through \emph{SHPECK}. Chapter ~\ref{chapter:review} makes clear that using a flat file database poses difficulties to users. Potential issues of using flat file databases are: duplication of the information; non-unique records; difficulty in updating and maintenance; inherently inefficient; rigid (difficult data format); and insecure.
-In \emph{SHPECK}, we use a relational database, which is a model of a database that prevents all the problems faced in flat file database previously discussed. A relational database works based on a \emph{query}, which is an information request from the database. Besides that, there are three important advantages:
+As can be seen in this chapter, the algorithm of \emph{SHPECK} is not trivial and requires many interactions between many different entities. The database is responsible for providing the data that will flow through \emph{SHPECK}. Chapter ~\ref{chapter:review} makes clear that using a flat file database poses difficulties to users. Potential issues of using flat file databases are: duplication of the information; non-unique records; difficulty in updating and maintenance; inherently inefficient; rigid (difficult data format); and insecure \ref{dauerer2000system}. 
+In \emph{SHPECK}, we use a relational database, which is a model of a database that prevents the problems faced in flat file database previously discussed. A relational database works based on a \emph{query}, which is an information request from the database. Besides that, there are three important advantages:
 \begin{itemize}
-\item A relational database has another advantage of the content existing as an external entity to the memory allocated by the software. Also, these databases are often larger than the computer's RAM capacity. By using a database system, the software fetches the information on-the-go. 
-\item Complex queries enable the versatility and efficiency when fetching relevant information from the database. Instead of scanning through flat files, the query can pre-define the categories of information - even from multiple tables - that will be sought. Also important to mention, a query can be composed and concatenated on runtime execution - meaning that \emph{SHPECK} only fetches from the database information relevant to the specific simulation that is being executed (species, compounds, reactions, etc.). Complex queries and concatenation of queries result in a faster and more efficient use of the available resources.
+\item Memory saving, since the information is not fully load in main memory during run time. The software fetches the information when required by each module. The data is permanently stored and relationally structured according to the requirements of the application.
+\item Direct access to relevant information: Complex queries are built and fetched when required by the software modules, avoiding sequential search over text files.  Only the chemical phases that are part of the simulated reaction are load to memory to be processed by the software. Complex queries and concatenation of queries result in a faster and more efficient use of the available resources. The semantic connection between the relational data allows richer queries semantically when fetching data.
 \end{itemize}
 
-The database is one of the most critical and significant infrastructure component of our software. The database architecture was defined after studying the algorithm and determining the structure and the information that will be needed - this is presented in detail in figure ~\ref{fig:ERDiagram}. We developed a relational database that incorporates the data already in use from other software, but with a newer approach and organized as structured tables. Naturally, some changes in the structure were necessary in order to derive a more relevant database for the software.
+The database architecture, presented in details in figure~\ref{fig:ERDiagram}, was defined after studying the algorithm and determining what would be the structure and the information requested.  The relational database embraces all the important data requested for a geochemical modelling software and the structure was defined in order to compact, organize, structure and make the information access efficient by the modules. 
 
 \begin{figure}[ht!]
 \centering
@@ -207,7 +325,7 @@ The database is one of the most critical and significant infrastructure componen
 \end{figure}
 
 \subsection{Database Technologies}
-We use the SQLite database \cite{SQLite}, which is a software library that implements a self-contained, transactional \emph{SQL} database engine, open source and currently is the most widely deployed \emph{SQL} database engine in the world. Some of its advantages are explained bellow:
+The implementation was done with \emph{SQLite} database \cite{SQLite}, which is a software-library that implements a self-contained, transactional \emph{SQL} open source database engine. Currently it is the most widely deployed \emph{SQL} database engine in the world. Some of its advantages are presented bellow:
 \begin{itemize}
 \item Zero-Configuration: \emph{SQLite} does not need to be installed before it is used, there is no setup procedure;
 \item Serverless: The process that wants to acess the database reads and writes directly from the database files on disk. There is no intermediary server process (nor interprocess communication using \emph{TCP/IP});
@@ -217,7 +335,14 @@ We use the SQLite database \cite{SQLite}, which is a software library that imple
 
 \subsection{\emph{LLNL} thermodynamic dataset parser}
 Once the structure and the technology of our database were defined, a parser was prepared to extract the information from the flat file database. 
-The parser was generated carefully in order to ensure that all of the data and delimiters were identified and treated properly. This task was extremely time-consuming because of irregularities found in the flat files.
+The parser was generated carefully in order to ensure that all of the data and delimiters were identified and treated properly. This task was extremely time-consuming because of irregularities found in the flat files (i.e. wrong tab or space formating, different encoding of the files, etc). Figure ~\ref{fig:parserAlgorithm} describes in details the parser.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=100mm]{figures/parser.png}
+\caption{Parser algorithm}
+\label{fig:parserAlgorithm}
+\end{figure}
 
 \newpage
 
@@ -239,5 +364,34 @@ F(x+1) = F(x) - J^{-1} * R
 where $F$ is function's result for the applied $x$, $J^{-1}$ is the inverse of the Jacobian matrix, and $R$ is the residual vector. The quadratic rate of convergence of this method compensate the expensive calculation inherent to it.
 
 \item Graphical User Interface: The \emph{GUI} mission is to enable the user to use the full potential \emph{SHPECK} has to offer. It is intuitive and user-friendly to allow the user to focus on essential duties that are imperative to modeling a geochemical environment. We use the popular approach of \emph{tab} panels, which are separated according to their purposes: configurations and settings, water composition, and results visualization.
-\item Database: A geochemical modeling software is dependent on the information provided in the database. \emph{SHPECK} structures all of its data in a \emph{SQLite} relational database, which is unique approach among the comparable software available. \emph{SHPECK}'s database is composed of the information on elements, species, compounds, reactions and thermodynamic constants found in the \emph{LLNL} thermodynamic dataset. A parser for \emph{LLNL} flat file database was created to fetch this information.
+\item Database: A geochemical modeling software is dependent on the information provided in the database. \emph{SHPECK} structures its data in a \emph{SQLite} relational database, which is unique approach among the comparable software available. \emph{SHPECK}'s database is composed of the information on elements, species, compounds, reactions and thermodynamic constants found in the \emph{LLNL} thermodynamic dataset. A parser for \emph{LLNL} flat file database was created to fetch this information.
+\item \emph{SHPECK}'s software engineering: A set of techniques provided in ~\ref{Meyer:00} were carefully followed along every step in the development of \emph{SHPECK}.
+\item The updated version of table~\ref{tab:comparativeSoftwareTable}, including \emph{SHPECK}, is demonstrated in table ~\ref{tab:comparativeSoftwareTableUpdated}.
+\begin{table}
+\caption{Updated version of table ~\ref{tab:comparativeSoftwareTable}}
+\label{tab:comparativeSoftwareTableUpdated}
+\centering
+\begin{tabular}{r|ccccccccc|ccc}
+
+SOFTWARE &
+\rot{Costs} &
+\rot{Setup and versioning} & 
+\rot{Customization and Integration} &
+\rot{Security and Control} &
+\rot{Infrastructure} &
+\rot{Core functionality} &
+\rot{Graphical User Interface} &
+\rot{Support and Maintenance} &
+\rot{Database}  &
+\rot{Overall Average} 
+    \\ \hline
+EQ3/6        	& 2 & 2 & 1 & 1 & 3 & 5 & 1 & 1 & 1 & 1.88 \\ 
+PHREEQC         & 4 & 4 & 2 & 2 & 3 & 4 & 2 & 3 & 1 & 2.77 \\ 
+MINTEQA2        & 4 & 2 & 1 & 1 & 2 & 2 & 1 & 1 & 1 & 1.66\\ 
+SOLMINEQ.88	    & 3 & 1 & 1 & 1 & 1 & 5 & 1 & 1 & 1 & 1.66\\ 
+SHPECK	        & 4 & 4 & 2 & 3 & 3 & 5 & 5 & 5 & 5 & 4\\ 
+\hline
+\end{tabular}
+\end{table}
+
 \end{itemize}

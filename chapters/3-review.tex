@@ -13,11 +13,8 @@ Since then, these models are used to solve complex geochemical problems, such as
 
 The quality of model results depend on the methods used, and thermodynamic data and theoretical concepts applied. Therefore, it is crucial to verify the results and it is clear that there will be some differences among the results obtained by different software. Among the enormous variety of software available, some of them are developed for batch-type simulations only, while others have transport capabilities. Several of them do not incorporate graphical interfaces and are written in \emph{FORTRAN}, while newer distributions are mainly written in C/C++ and, due to proprietary reasons, code is not distributed with the software. It is important to mention that, even in those who provide an integrated graphical user interface (\emph{GUI}), it is often very tedious and time-consuming to generate input files for simulations.
 
-The goal of this chapter is to review other programs that perform aqueous geochemical systems simulations. It is not possible nor the purpose of this work to present all existing software, but to critically review and compare some aspects of them. 
 
-In this work, only programs that provide speciation modeling are reviewed. They are the following: \emph{EQ3/6}; \emph{PHREEQC}; \emph{MINTEQ}; and \emph{SOLMINEQ};
-
-The following reviews present geochemical modeling approach, and then critically analyze and discuss each software from the computer science point of view. It's worth mentioning that sometimes is not possible to analyze the same aspects of different software due to lack of information.
+We critically review and compare, in this article, the software packages that provide speciation modeling: \emph{EQ3/6}, \emph{PHREEQC}, \emph{MINTEQ} and \emph{SOLMINEQ}. We had given special attention to the geochemical modelling approaches and the computer-science related aspects of them, providing the comparison when the information is available. 
 
 
 %GEOCHEMICAL SPECIATION MODELING CODES
@@ -469,7 +466,7 @@ Following points were taken into consideration:
 
 
 \subsection{Existing Thermodynamic datasets}
-The contents of the databases are extracted from the \emph{Lawrence Livermore National Laboratory (LLNL)} thermodynamic datasets that are used in \emph{EQ3/6}, \emph{PHREEQC} and others. The data sets are contributions from many authors that had measured thermodynamical and kinetic parameters of the minerals and reactions minerals over the years. The following is a small excerpt that illustrates the structure that the information is organized in the \emph{LLNL}'s flat file:
+The contents of the databases are extracted from the \emph{Lawrence Livermore National Laboratory (LLNL)} thermodynamic datasets that are used in \emph{EQ3/6}, \emph{PHREEQC} and others. The data sets are contributions from many authors that had measured thermodynamical and kinetic parameters of the minerals and reactions minerals over the years. Flat file databases' interactions are difficult and, if necessary, must be done carefully - the format of the file is composed of a series of rules and very often is not recommended that the user alters anything inside the flat file database due to the complexity and the errors that it might result. The following is a small excerpt that illustrates the structure that the information is organized in the \emph{LLNL}'s flat file:
 
 \begin{itemize}
 \item Parameters: Many used parameters are stablished on this section, among them are temperatures, pressures, debye huckel coefficients, bdot coefficients...
@@ -569,7 +566,7 @@ Al2O3
 To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and 5 the highest possible grade). This "grading system" is done with the intention of comparing and normalizing the attributes of the software (see table ~\ref{tab:comparativeSoftwareTable}\footnote{Source:Author}).
 
 \begin{table}
-\caption{Qualitative analysis of the Geochemical Speciation Softwares}
+\caption{Qualitative analysis of the Geochemical Speciation Software}
 \label{tab:comparativeSoftwareTable}
 \centering
 \begin{tabular}{r|ccccccccc|ccc}
