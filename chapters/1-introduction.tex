@@ -13,11 +13,13 @@ The decision variables depend on the type of the problem considered.  The object
 
 As stated in \cite{Drever:05}, a chemical model is a theoretical construct that permits the calculation of chemical properties and processes using thermodynamic properties of reactions between solutes. Following this idea, a geochemical model is a chemical model developed for geological systems. A set of mathematical expressions represents these natural processes. Thermodynamic data used to establish the reactions and mimic nature are directly responsible for the accuracy of the geochemical system modeled; while the numerical method and computational algorithms determines the precision of results obtained through the modeling.
 
-%Renata: Senti falta de um paragrafo citando e dizendo que existem softwares que sao usados na pratica, mas que sao imcompletos, mostrar o 'gap'. daih na sequencia entrar com o que tu fez que preenche o 'gap'
+
+%Review of existing solutions, gap and our approach
+Prior the start of this work we experimented, reviewed and compared the available existing solutions. We present a thorough analysis of them, which exposes several gaps in the geochemical modeling solutions. This review makes clear the uniqueness of our proposed computational approach for the geochemical modeling problem.
 
 %THIS WORK - MOTIVATION/CONTRIBUTION
 
-In this work, a software system, named as \emph{SHPECK}, was developed for calculating the chemical equilibrium of a geochemical system using the mass-balance conditions, a  process known as \emph{chemical speciation}. The software system receives as input any general combination of chemical elements, species, and reactions, allowing the user to create several different environments, simulations and, therefore, and to fully control any aspect and configuration of the model. Moreover, the work shows a thorough analysis of the available existing solutions, making clear the uniqueness of the proposed computational approach for the geochemical modeling problem.
+In this work, a software system, named as \emph{SHPECK}, was developed for calculating the chemical equilibrium of a geochemical system using the mass-balance conditions, a  process known as \emph{chemical speciation}. The software system receives as input any general combination of chemical elements, species, and reactions, allowing the user to create several different environments, simulations and, therefore, and to fully control any aspect and configuration of the model. 
 
 \emph{SHPECK} provides an interactive user interface that allows the flexible setup of every parameter of the chemical simulation, as well as the support of a built-from-the-ground database structure that handles the management of the whole data used.  The flexibility of parameter configuration offered by the visual interface further extend the possibilities of experimentation with the software, and this is a unique characteristic among commercial software products for geochemical speciation. Limitations on the database structure and input capability strongly restrict the potential use of the known geochemical packages. Therefore, \emph{SHPECK} is unique by combining the modern computing technology with efficient numerical method.
 
@@ -49,16 +51,11 @@ This method requires the usage of a Jacobian matrix and a residual vector during
 
 Soils and aquifers are heterogeneous, subsurface systems composed of a large number of components - dissolved salts, minerals, metals, gases, natural organics, and microorganisms. Geochemical modeling is an important tool for understanding processes occurring in such systems. 
 
-% Renata: achei que os objetivos no abstract e na introdução estão melhores explicados do que nos objetivos. Achei que faltou falar da avaliação e listar as contribuições
-
 The main purpose of this work is to develop a geochemical speciation modelling software following a structured computational approach. The idea of our own geochemical speciation software has emerged as an application where it would be possible to add the benefits of smart user interface and efficient numerical method to the traditionally used method of speciation model development. The result is a compact and versatile tool with an intuitive and interactive user interface.
 
 Therefore, I have made the necessary effort to understand and learn the complex aspects of a geochemical speciation model, and develop a software based on a solid knowledge in computer architecture, algorithms and software engineering. 
 
+A comparative study is presented to verify and evaluate \emph{SHPECK}'s results. The software is systematically analyzed across two different approaches: experimentally and computationally. The benefits and the consistent flow (input and output) of \emph{SHPECK} made it a singular tool. 
 
-%Renata: Acgho que deveria ficar fora dos objetivos. 
-%Leo: Adicionei uma parte 'structure of this work'
 \section{Structure of this work}
-
-
 The rest of this report is structured as follows. In chapter 2, I present an overview of the basic concepts needed and technical concepts involved. Chapter 3 shows a thorough analysis and review of the commercial software available. Chapter 4 presents the \emph{SHPECK} implementation with a detailed description of the whole system: design options; mathematical treatment; implementation and graphical user interface (\emph{GUI}); algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. Chapter 5 presents a study case that validates \emph{SHPECK}, and makes a broad observation of the approach used in this work. Chapter 6 brings the conclusion of this work.
