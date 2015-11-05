@@ -11,10 +11,10 @@
 The first geochemical models date back to the 70’s \cite{Westall:76},~\cite{Wolery:1979}. 
 Since then, these models are used to solve complex geochemical problems, such as speciation; determination of minerals' saturation indexes; mixing of different waters; calculation of stoichiometric reactions; interaction between solids, fluids and gaseous phases; calculation of equilibrium/kinetic controlled reactions; reactive transport; and mass-law calculations.
 
-The quality of model results depend on the methods used, and thermodynamic data and theoretical concepts applied. Therefore, it is crucial to verify the results and it is clear that there will be some differences among the results obtained by different software. Among the enormous variety of software available, some of them are developed for batch-type simulations only, while others have transport capabilities. Several of them do not incorporate graphical interfaces and are written in \emph{FORTRAN}, while newer distributions are mainly written in C/C++ and, due to proprietary reasons, code is not distributed with the software. It is important to mention that, even in those who provide an integrated graphical user interface (\emph{GUI}), it is often very tedious and time-consuming to generate input files for simulations.
+The quality of model results depend on the methods used, and the thermodynamic data and theoretical concepts applied. Therefore, it is crucial to verify the results and it is clear that there will be some differences among the results obtained from different software. Among the enormous variety of software available, some of them are developed for batch-type simulations only, while others have transport capabilities. Several of them do not incorporate graphical interfaces and are written in \emph{FORTRAN}, while newer distributions are mainly written in C/C++ and, due to proprietary reasons, code is not distributed with the software. It is important to mention that, even in those who provide an integrated graphical user interface (\emph{GUI}), it is often very tedious and time-consuming to generate input files for simulations.
 
 
-We critically review and compare, in this article, the software packages that provide speciation modeling: \emph{EQ3/6}, \emph{PHREEQC}, \emph{MINTEQ} and \emph{SOLMINEQ}. We had given special attention to the geochemical modelling approaches and the computer-science related aspects of them, providing the comparison when the information is available. 
+For developing SHPECK, we critically analysed the software packages that provide speciation modeling: \emph{EQ3/6}, \emph{PHREEQC}, \emph{MINTEQ} and \emph{SOLMINEQ}. We had given special attention to the geochemical modeling approaches and the computer-science related aspects of them, providing the comparison when the information is available. We also summarize the main characteristics and content of the Lawrence Livermore National Laboratory (\emph{LLNL}) Thermodynamic Dataset, since it contains parameters of minerals and reactions used by many modeling software.
 
 
 %GEOCHEMICAL SPECIATION MODELING CODES
@@ -22,17 +22,17 @@ We critically review and compare, in this article, the software packages that pr
 
 %EQ3/6
 \section{\emph{EQ3/6}}
-EQ3/6 consists of two programs: EQ3 is a pure speciation code whose results EQ6 subsequently process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. 
+EQ3/6 consists of two programs: EQ3 is a pure speciation code, whose results EQ6 subsequently process. It is a software package for geochemical modeling of aqueous systems written in FORTRAN77. 
 EQ3/6 includes a speciation-solubility solver, which is useful for analyzing groundwater chemistry data, calculating solubility limits and determining whether certain reactions are in states of partial equilibrium or disequilibrium. It also offers a reaction path calculation that models water/rock interaction or fluid mixture. 
 EQ3/6 supports several thermodynamic data files (these data files contain support for \emph{Davies}, \emph{B-dot}, \emph{Debye-Huckel} equations, as well as support data for standard state and activity coefficient-related). 
-It is developed to run under UNIX, and the full package distribution is not free (it requires a license). The whole work related to EQ3/6 is described in \cite{Wolery:1979}, \cite{Wolery:1990} and \cite{Wolery:1992}.
+It is developed to run under UNIX, and the full package distribution is not free (it requires a license). The whole work related to EQ3/6 is described in three reports: \cite{Wolery:1979}, \cite{Wolery:1990} and \cite{Wolery:1992}.
 
 \subsection{Input/Output Options}
 The \emph{datafilekey} and \emph{inputfile} are files given to the program as arguments and they must be mutually consistent with the options and methods. For example, if they have different methods for calculating the activity coefficient there will be problems, and the results will be erroneous. In the similar manner, the \emph{inputfile} must be using chemical data (for example, elements, species and compounds) that is known by the \emph{datafilekey}.
 
-Inside each file, there are a series of \emph{blocks} that are combined to support the geochemical speciation. They are presented bellow:
+Inside each file, there are a series of \emph{blocks} that are combined to support the geochemical speciation. They are presented below:
 \begin{itemize}
-\item \emph{Datafilekey}: Title; Miscellaneous parameters (temperature limit, activity coefficient parameters, pressure); chemical elements block; aqueous species block; pure minerals block; pure non-aqueous liquids block; gas species blocks; solid solutions blocks; references blocks
+\item \emph{Datafilekey}: Title; Miscellaneous parameters (temperature limit, activity coefficient parameters, pressure); chemical elements block; aqueous species block; pure minerals block; pure non-aqueous liquids block; gas species blocks; solid solutions blocks; references blocks.
 \item \emph{Inputfile}: Title; Special basis switches; temperature; pressure option; density; total dissolved salts (TDS) option; electrical balancing option; redox option; basis species constraints; ion exchanger creation flag; ion exchanger compositions; solid solutions compositions; alter/suppression options; iopt options; iopg options; iopr options; iodb options; numerical parameters; ordinary basis switches; saturation flag tolerance; aqueous phase scale factor.
 \end{itemize}
 
@@ -42,7 +42,7 @@ EQ3/6 package produces different outputs depending on the version of software us
 \item \emph{EQ6}: This program generates three output files: a \emph{tab} output file, a \emph{pickup} output file and the normal output file. The \emph{tab} file contains information that can be used to plot output results. The \emph{pickup} file is the input to \emph{EQ6}. The normal output file of \emph{EQ6} is similar to the \emph{EQ3NR}'s output file.
 \end{itemize}
 
-A small excerpt of an \emph{EQ6} output file is shown in code~\ref{eq3:output}. We can see that in this part of the output file, it specifies the components of the current problem with internal ID's for each component, specie, phase and so on.
+A small excerpt of an \emph{EQ6} output file is shown in Code~\ref{eq3:output}. We can observe that this part of the output file specifies the components of the current problem with internal ID's for each component, specie, phase and so on.
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=Excerpt of \emph{EQ6} output file, label=eq3:output]
@@ -62,7 +62,7 @@ A small excerpt of an \emph{EQ6} output file is shown in code~\ref{eq3:output}. 
 \end{minipage}
 
 \subsection{User Interaction}
-In \emph{EQ3/6} the command prompt is used for all the user interaction. There are several functions inside \emph{EQ3/6}; the appropriate command will trigger each one of them. From the existing software, there are \emph{EQ3NR}, \emph{EQ6} and \emph{EQPT} just to name a few. The user must enter the command from the keyboard and must use this "command prompt". By pressing "CTRL+C" at any time the execution stops, literally "breaking" the process. For example, EQ3 is run by commands of the form shown in code ~\ref{eq3:run}.
+In \emph{EQ3/6} the command prompt is used for all the user interaction. There are several functions inside \emph{EQ3/6}; the appropriate command will trigger each one of them. From the existing software, there are \emph{EQ3NR}, \emph{EQ6} and \emph{EQPT}, just to name a few. The user must enter the command from the keyboard and must use this "command prompt". By pressing "CTRL+C" at any time the execution stops, literally "breaking" the process. For example, EQ3 is run by commands of the form shown in code ~\ref{eq3:run}.
 
 \begin{lstlisting}[frame=single, caption=Running EQ3 in \emph{EQ3/6} package, label=eq3:run]
 >runeq3 datafilekey inputfile(s)
@@ -71,7 +71,7 @@ In \emph{EQ3/6} the command prompt is used for all the user interaction. There a
 In this command, \emph{datafilekey} and \emph{inputfile} are arguments, being the former a three-character identification associated to which database should be used, while the latter is specifically the name of the input file, which can be more than one. Depending on which program from the package the user is using, it generates two or more output files (always in the \emph{ASCII} format).
 As mentioned, the input file is entered in the program as an argument. Any regular text editor is sufficient to create or modify an input file (although it is not recommended that the user create an input file from scratch). There are several pre-existing input templates available and, if none of them matches the need of the user, \emph{EQ3/6} recommends that the user generate a new one by copying existing blocks from any provided template.
 
-The input files can contain instructions and parameters that try to recreate known user interactions method as shown in code ~\ref{eq3:menu}.
+The input files can contain instructions and parameters that try to recreate known user interactions method as shown in Code ~\ref{eq3:menu}.
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=Menu Option inside \emph{EQ3/6} input files that mimics a "radio button", label=eq3:menu]
@@ -93,25 +93,23 @@ All the files discussed above are \emph{ASCII} text files and, therefore, any re
 \subsection{Software Environment and Installation Procedures}
 The \emph{EQ3/6} package runs on Windows (95 and upper versions) and was developed in FORTRAN77. The support for UNIX computers has been discontinued.  It has been developed and run at \emph{Lawrence Livermore National Laboratory} on an \emph{Alliant FX/80} and \emph{Sun SPARCstations}.
 
-The installation of \emph{EQ3/6} is explained in details in ~\cite{Wolery:1992}. Due to the purpose of this work, details of the installation will be suppressed here.
-At the same time, it is interesting to mention that the whole installation process requires some level of experience with command prompt and \emph{DOS}.
+The installation of \emph{EQ3/6} is explained in details in ~\cite{Wolery:1992}, and these details will be suppressed here for simplicity. However, it is interesting to mention that the whole installation process requires some level of experience with command prompt and \emph{DOS}.
 
 
 
 %PHREEQC
 \section{\emph{PHREEQC}}
-\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium in \emph{C} language, and is a widely used geochemical modeling software available from the USGS. Details can be found in \cite{Parkhurst:95};
-It is available for download in versions for Windows and UNIX. 
+\emph{PHREEQC} stands for \emph{PH} \emph{RE}dox \emph{EQ}uilibrium in \emph{C} language, and is a widely used geochemical modeling software available from the USGS. Details can be found in \cite{Parkhurst:95}. It is available for download in versions for Windows and UNIX. 
 
 It was designed to perform a wide variety of low-temperature aqueous geochemical calculations based on an ion-association aqueous model, and has capabilities to:
 \begin{itemize}
-\item Speciation and Saturation Index calculations;
-\item Batch reaction and one-dimensional (1D) transport calculations involving reversible reactions (including aqueous, minerals, gas, solid-solution, surface-complexation, and ion-exchange equilibrium) and irreversible reactions (including specified mole transfer of reactants, kinetically controlled reactions, mixing of solutions and temperature changes);
-\item Inverse modeling, which finds sets of mineral and gas mole transfers that takes into account differences in composition between waters.
+\item speciation and Saturation Index calculations;
+\item batch reaction and one-dimensional (1D) transport calculations involving reversible reactions (including aqueous, minerals, gas, solid-solution, surface-complexation, and ion-exchange equilibrium) and irreversible reactions (including specified mole transfer of reactants, kinetically controlled reactions, mixing of solutions and temperature changes);
+\item inverse modeling, which finds sets of mineral and gas mole transfers that takes into account differences in composition between waters.
 \end{itemize}
 
 \subsection{Input/Output Options}
-The input data for \emph{PHREEQC} is arranged by \emph{keyword data blocks}. Each block is organized with a keyword in the first line, followed by lines containing data related to the keyword. Keywords and their respective contexts are read from the database at the beginning of the run to define all the necessary parameters. After this database reading procedure, it continues reading the input file until it reaches the \emph{END} keyword. As the input file is being read, the program will start putting the pieces together to perform the necessary calculations. An example of a \emph{keyword data block} is shown in code ~\ref{phreeqc:keyword}. Among the possible keywords available in \emph{PHREEQC} are EQUILIBRIUM PHASES, EXCHANGE, GAS PHASE, INVERSE MODELING, PHASES, REACTION, PRINT, SAVE, SOLUTION SPECIES, etc. Each one of these keywords contains specific arguments and parameters to be used. Certain keywords require some other specific keywords, and if something is missing from the input file, the results will be inconclusive. So building an input file is usually quite difficult and time-consuming task. 
+The input data for \emph{PHREEQC} is arranged by \emph{keyword data blocks}. Each block is organized with a keyword in the first line, followed by lines containing data related to the keyword. Keywords and their respective contexts are read from the database at the beginning of the run to define all the necessary parameters. After this database reading procedure, it continues reading the input file until it reaches the \emph{END} keyword. As the input file is being read, the program starts putting the pieces together to perform the necessary calculations. An example of a \emph{keyword data block} is shown in Code~\ref{phreeqc:keyword}. Among the possible keywords available in \emph{PHREEQC} are EQUILIBRIUM PHASES, EXCHANGE, GAS PHASE, INVERSE MODELING, PHASES, REACTION, PRINT, SAVE, SOLUTION SPECIES, etc. Each one of these keywords contains specific arguments and parameters to be used. Certain keywords require some other specific keywords, and if something is missing from the input file, the results will be inconclusive. So, building an input file is usually a quite difficult and time-consuming task. 
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{PHREEQC} keyword data block example, label=phreeqc:keyword]
@@ -124,7 +122,7 @@ pH_Fix      -5.0    HCl      10.0
 \end{lstlisting}
 \end{minipage}
 
-The output file contains the result of the simulation defined in the input file, is also divided into \emph{keyword blocks}. Among those are solution composition, description of the solution, redox couples, distribution of species (as can be seen in code ~\ref{phreeqc:output}), and saturation indices.
+The output file contains the result of the simulation defined in the input file; it is also divided into \emph{keyword blocks}. Among those blocks are solution composition, description of the solution, redox couples, distribution of species (as can be seen in Code~\ref{phreeqc:output}), and saturation indices.
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{PHREEQC}'s excerpt from the output file, label=phreeqc:output]
@@ -151,11 +149,11 @@ C(4)         2.257e-003
 \end{minipage}
 
 \subsection{User Interaction}
-\emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interaction features will be done separately.
+\emph{PHREEQC}'s distribution differs drastically according to the environment (\emph{Windows} or \emph{UNIX}). By this reason, the analysis of user interaction features will be reported separately.
 
 \begin{itemize}
 \item \emph{PHREEQC} for Windows: Due to the need of a geochemical modeling software and the lack of interface for \emph{PHREEQC} in the first versions of the software, many efforts were made to create an interface to \emph{PHREEQC}. The program \emph{PhreeqcI} is a graphical user interface to \emph{PHREEQC} that provides data entry screens for the keyword data blocks with a description of each input data item. It organizes the input file by using some \emph{project tree} which facilitates viewing, selecting, editing and running the \emph{PHREEQC} simulations. It is critical to mention that \emph{PhreeqcI} does not implement all the keyword blocks. Subsequently, \emph{PHREEQC} version 2 with a graphical interface was launched, and the interface was extended to version 3. This graphical interface was named \emph{PfW} (\emph{Phreeqc for Windows}), but it has not been updated since 2011 (see Figure~\ref{fig:phreeqc-pfw}). The last effort in this sense was the development of an adaptation of the popular general-purpose text editor \emph{Notepad++}. This modification comes with the following capabilities: syntax highlighting; autocompletion of keywords and identifiers; tips; colored numbers; parenthesis matching; commenting and uncommenting multiple lines at once; column editor; few shortcuts; and file recognition (see Figure~\ref{fig:phreeqc-notepad++}). When running \emph{PHREEQC} from the \emph{Notepad++} adaptation, the command prompt is called and the simulation is executed, as in Figure~\ref{fig:phreeqc-notepad++2}. There are some options and shortcuts available from the \emph{Notepad++}'s interface, which is shown in detail in Figure~\ref{fig:phreeqc-notepad++3}.
-\item \emph{PHREEQC} for \emph{UNIX}: Under \emph{UNIX}'s distribution, \emph{PHREEQC} runs from the command prompt. It can be launched by using the command shown in code~\ref{phreeqc:run}
+\item \emph{PHREEQC} for \emph{UNIX}: Under \emph{UNIX}'s distribution, \emph{PHREEQC} runs from the command prompt. It can be launched by using the command shown in Code~\ref{phreeqc:run}
 \begin{lstlisting}[frame=single, caption=Command to run UNIX's \emph{PHREEQC}, label=phreeqc:run]
 phreeqc input output database screen_output
 \end{lstlisting}
@@ -224,7 +222,7 @@ Among the input file's options, there are four levels of configuration. Each lev
 \item Deals with utility functions (output file details, for example);
 \end{enumerate}
 
-If database, algorithm and output files are not specified, default options are used. Code ~\ref{minteqa2:input}  brings the \emph{MINTEQA2}'s input file used in the study case discussed in chapter~\ref{chapter:validation} and presented here as an example. The beginning of the file (first and second lines) contains a description of the simulation or input file; the third, fourth and fifth lines set configurations, such as temperature, unit chosen, eH, ionic strength, number of iterations, precipitation options. After that, the components that take part in the simulation, organized by internal id, concentration details and log of concentration are specified.
+If database, algorithm and output files are not specified, default options are used. Code ~\ref{minteqa2:input}  shows the \emph{MINTEQA2}'s input file used in the study case discussed in chapter~\ref{chapter:validation} and presented here as an example. The beginning of the file (first and second lines) contains a description of the simulation or input file; the third, fourth and fifth lines set configurations, such as temperature, unit chosen, eH, ionic strength, number of iterations, precipitation options. After that, the components that take part in the simulation, organized by internal id, concentration details and log of concentration are specified.
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{MINTEQA2}'s input file, label=minteqa2:input]
@@ -246,14 +244,14 @@ Comparative study
 
 
 
-An excerpt of \emph{MINTEQA2}'s output is presented in Code ~\ref{minteqa2:output} - shows important parameters of the solution's components. The whole output file is divided into six parts:
+An excerpt of \emph{MINTEQA2}'s output is presented in Code ~\ref{minteqa2:output}, which shows important parameters of the solution's components. The whole output file is divided into six parts:
 \begin{enumerate}
 \item Reproduction and interpretation of the input file;
 \item Detailed listing of species read from the database files;
 \item Iteration information and detailed information for each species;
 \item Percentage distribution of components among dissolved and adsorbed species;
 \item Provisional or equilibrated mass distribution, provisional or equilibrium ionic strength, equilibrium pH and pE, electrostatic surface potential and charge for electrostatic adsorption models;
-\item Saturation indices for all database solids with respect to the solution;
+\item Saturation indices for all database solids with respect to the solution.
 \end{enumerate}
 
 
@@ -289,7 +287,7 @@ ITER      NAME       TOTAL mol/L   DIFF FXN   LOG ACTVTY    RESIDUAL
 \subsection{User Interaction}\label{minteq:interactions}
 \emph{MINTEQA2} and \emph{PRODEFA2} interactions are completely independent programs and \emph{PRODEFA2} is used before \emph{MINTEQA2} in order to generate the input file that will be consumed by the latter. Everything is done through the command prompt, as explained below. \emph{PRODEFA2} provides a "walk-through" to generate an input file for \emph{MINTEQA2}.
 
-After opening the software and providing a valid name, it asks which part of the input file the user wants to create or edit (Figure~\ref{minteq:init}). We will follow the suggested order and go through 4 levels, as previously discussed in this section. Figure~\ref{minteq:level0} shows the main menu, which shows the organization of all the levels and works as a central hub of information. Figure ~\ref{minteq:level1} displays the necessary information about level 1. To change any of the entries on this screen, the user must enter the number to the left of the entry and respond to the questions presented. All four levels carry out this type of interactions. Through these interactions, the user has access to the information in the database and can choose the data to be used for the model.
+After starting the software and providing a valid name, it asks which part of the input file the user wants to create or edit (Figure~\ref{minteq:init}). We will follow the suggested order and go through 4 levels, as previously discussed in this section. Figure~\ref{minteq:level0} presents the main menu, which shows the organization of all the levels, and works as a central hub of information. Figure ~\ref{minteq:level1} displays the necessary information about level 1. To change any of the entries on this screen, the user must enter the number to the left of the entry and respond to the questions presented. All four levels are based on this type of interaction. Through these interactions, the user has access to the information in the database and can choose the data to be used for the model.
 
 \begin{figure}[ht!]
 \centering
@@ -308,7 +306,7 @@ After opening the software and providing a valid name, it asks which part of the
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=100mm]{figures/minteq-level1.png}
-\caption{\emph{MINTEQA2} Level 1 informations}
+\caption{\emph{MINTEQA2} Level 1 information}
 \label{minteq:level1}
 \end{figure}
 
@@ -331,7 +329,7 @@ For example, we chose to add a specific aqueous species to show the \emph{PRODEF
 \label{minteq:Na+}
 \end{figure}
 
-There is also a software called \emph{Visual Minteq} that tries to "humanize" \emph{MINTEQ} and was maintained by the KTH Royal Institute of Technology, located in Stockholm, Sweden. The latest release date of \emph{Visual Minteq} latest is December 2013 at the version 3.0 and is available only for \emph{Windows} operating systems since it was developed in Visual Basic. 
+There is also a software called \emph{Visual Minteq} that tries to "humanize" \emph{MINTEQ} and was maintained by the KTH Royal Institute of Technology (Stockholm, Sweden). The latest release  (version 3.0) of \emph{Visual Minteq} dates back to December 2013, and it is available only for \emph{Windows} operating systems, since it was developed in Visual Basic. 
 
 \subsection{File formats}
 All the files follow a regular text format (\emph{ASCII}) and their purpose is defined in the extension of the file. 
@@ -346,12 +344,12 @@ All the files follow a regular text format (\emph{ASCII}) and their purpose is d
 
 % Juntei as duas partes como tu sugeriu.. deixei a parte de installation procedures .. qualquer coisa posso tirar depois se decidirmos nao utilizar.
 \subsection{Software Environment and Installation Procedures}
-It is currently at the version 4.03 (Windows only), and this release dates back to May 2006. The latest \emph{UNIX} distribution is version 3.12 (which was also called BETA for UNIX) and dates back to August 1996.
+\emph{MINTEQA2} is currently at the version 4.03 (Windows only), and this release dates back to May 2006. The latest \emph{UNIX} distribution is version 3.12 (which was also called BETA for UNIX) and dates back to August 1996.
 \emph{MINTEQA2} is easily installed by a self-extractor installer that can be downloaded from \emph{EPA}'s website \cite{minteq:website} and \cite{minteq:unix}. Included in the distribution package are also some important documentation, \emph{PRODEFA2} software and several input/output template files.
 The UNIX version distribution comes with the source files and must be compiled and linked to run.
 
 \section{\emph{SOLMINEQ.88}}
-\emph{SOLMINEQ.88} is a geochemical modeling program written in FORTRAN 77 and based on SOLMNEQ \cite{Kharaka:73} with improved algorithms that resulted in a faster program execution and tighter convergence. The software has a database with the focus on organics aqueous species. It calculates the distribution of mass among aqueous species and complexes and calculates saturation indexes of minerals at different temperatures and pressures. It includes options as boiling, mixing of solutions, and partitioning of gases between water, oil and vapor phases. \emph{SOLMINEQ.88} also contemplates mass transfer with the effects of dissolution and precipitation of minerals and options to calculate activity coefficients \cite{Kharaka:88}. The original version has no UI, but there were further studies with the intention of creating a user-friendly program that can be used to generate, edit and analyze input and output files - \emph{SOLINPUT}.
+\emph{SOLMINEQ.88}  is a geochemical modeling program written in FORTRAN77 and based on SOLMNEQ \cite{Kharaka:73} with improved algorithms that resulted in a faster program execution and tighter convergence. The software has a database with the focus on organics aqueous species. It calculates the distribution of mass among aqueous species and complexes, and calculates saturation indices of minerals at different temperatures and pressures. It includes options as boiling, mixing of solutions, and partitioning of gases between water, oil and vapor phases. \emph{SOLMINEQ.88} also provides for mass transfer with the effects of dissolution and precipitation of minerals and options to calculate activity coefficients \cite{Kharaka:88}. The original version has no UI, but there were further studies with the intention of creating a user-friendly program that can be used to generate, edit and analyze input and output files - \emph{SOLINPUT}.
 \emph{SOLMINEQ.88} model has not been developed any further nor improved since its first release.
 
 \subsection{Input/Output Options}
@@ -367,7 +365,14 @@ The input file consists of six parts, and \emph{SOLINPUT} guides the user throug
 \item Additional ions and minerals: temporarily adds user defined ions and minerals to a particular simulation;
 \end{enumerate}
 
-The output file contains the results produced by \emph{SOLMINEQ.88}, and consists of six parts: An input data echo that shows the values and options selected for each sample; A table listing the calculated tolerance factor for successive iterations on the anions; A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and so on; A table showing the distribution of species in solution; Ratios of a number of important cations and anions ; and the last one contains a table indicating the states of reactions for minerals considered:
+The output file contains the results produced by \emph{SOLMINEQ.88}, and also consists of six parts: 
+\begin{enumerate}
+\item An input data echo that shows the values and options selected for each sample; 
+\item A table listing the calculated tolerance factor for successive iterations on the anions; 
+\item A list of input to \emph{SOLMINEQ.88} including sample description, pH, Eh, temperature and so on; 
+\item A table showing the distribution of species in solution; 
+\item Ratios of a number of important cations and anions ; and 
+\item A table indicating the states of reactions for minerals considered.
 
 \begin{minipage}[c]{0.92\textwidth}
 \begin{lstlisting}[frame=single, caption=\emph{SOLMINEQ.88}'s excerpt from the output file, label=solmineq:output]
@@ -417,63 +422,15 @@ As mentioned, \emph{SOLMINEQ.88} had only one release and has been discontinued 
 
 \emph{SOLMINEQ.88} distribution requires knowledge of compiling and linking \emph{FORTRAN77} programs. It also comes with the software \emph{SOLINPUT}.
 
-%GEOCHEMICAL SPECIATION ANALYSIS
-\section{Discussion}
-In this section some important aspects and issues of each one of the software presented earlier are compared, analyzed, and discussed. Regarding geochemical features, table~\ref{tab:comparativeTable} brings certain aspects and features of the software.
-
-\begin{table}
-\caption{Geochemical comparison between speciation softwares}
-\label{tab:comparativeTable}
-\centering
-\begin{tabular}{r|cccccccc}
-SOFTWARE &
-\rot{Aqueous Complexation} &
-\rot{Precipitation and Dissolution Mass Balancing} & 
-\rot{Reaction path} &
-\rot{Kinetics} &
-\rot{Multi-Activity Coefficient methods} 
-    \\ \hline
-EQ3/6        	&  \OK &  \OK & \OK & \OK & \OK    \\ 
-PHREEQC        &  \OK &  \OK  & \OK & \OK &  \\
-MINTEQA2        &  \OK  &  \OK & & &    \\ 
-SOLMINEQ.88	& \OK& \OK&\OK & \OK & \OK\\
-\hline
-\end{tabular}
-\end{table}
-
-From the perspective of computer science, we analysed and evaluated the software for the software engineering aspect taking into account all of the features described and extensively discussed in chapter ~\ref{chapter:basic}.
-
-Following points were taken into consideration:
-\begin{itemize}
-\item The costs: Costs are probably the most important thing that people look first when choosing software; however, it should not be the deciding factor. Different solutions use different pricing models and according to the purpose and utilization of the software.
-
-\item Setup and versioning: The installation of software is the act of making it ready for execution. Depending on the software different options are used to copy/generate files from the installation files to the local computer to be accessed by the operating system (\emph{OS}). The \emph{OS} also influences how this process is done. Each software has a different distribution package for different \emph{OS}. Commonly software are distributed only to specific \emph{OS}. Also common are software with disparate versions according to the \emph{OS}, resulting in divergent features available on the same software defined by the \emph{OS} types.
-
-\item Customization and Integration: Is the software a standard solution, and its supplier interested in making changes? This is the typical scenario where the user has great chances of finding problems ahead. Therefore, an interesting exercise is to think of how this software communicates with others. Options like  ``import'' and ``export'' are vital when working with a large amount of data. With the advances in software, different software can be used to analyse the output and to be able to reach deeper insights about the information available. 
-
-\item Security and Control: Security is one of the main issues one faces when considering a software. Data privacy is an important criteria. Ensuring that the software can guarantee no data loss or data leakage is important. The solutions that provide direct control to the database, details, and processes are most likely to require data privacy.
-
-\item Infrastructure: When choosing a software, the infrastructure it requires need to be carefully analyzed. Does it require Internet access? How much space on disk and memory does it use? Extra costs may be incurred if this is not addressed.
-
-\item Core functionality: This is one of the most important points to be analyzed. How good is the software focus on the needs of the user, and how good is the value the software brings to its users?
-
-\item Graphical User Interface (\emph{GUI}) and visualization: This feature handles the interaction between the users and the software. When the software has a complex domain, such as geochemical modeling, the \emph{GUI} is even more important. It is responsible for allowing the user to consider all necessary possible options. The perfect \emph{GUI} takes into consideration the necessary human behavior, senses, and how we interact with our world (from electronic devices to human relationships).
-
-\item Support and Maintenance: If the software, for some unknown reason, goes down, is the user able to reach someone for troubleshooting? Will the user be able to find a users' community to debate and share knowledge? If the software has a support team working to fix bugs, improve the performance, add new features and sharpen some of the old features, it means that the user will have a better infrastructure to work with.
-
-\item Database: All the data manipulated inside a software is stored and organized in a database. There are multiple ways of doing this. Many important things must be taken into account to decide which database fits best to the software. Since the 80's the relational database model represented by the \emph{SQL} language has been the most popular. A conceptual database model is strongly recommended to produce a schema that considers all the structure and information needed by this software. Along the database schema, the security of this database must be addressed properly, for consistency and privacy. A good database design avoids redundant data (unnecessarily duplicated data). Poorly designed database generates inconsistent data (inaccurate data), which will lead to wrong decisions and, therefore, can result in failure of the software.
-\end{itemize}
-
-
-\subsection{Existing Thermodynamic datasets}
-The contents of the databases are extracted from the \emph{Lawrence Livermore National Laboratory (LLNL)} thermodynamic datasets that are used in \emph{EQ3/6}, \emph{PHREEQC} and others. The data sets are contributions from many authors that had measured thermodynamical and kinetic parameters of the minerals and reactions minerals over the years. Flat file databases' interactions are difficult and, if necessary, must be done carefully - the format of the file is composed of a series of rules and very often is not recommended that the user alters anything inside the flat file database due to the complexity and the errors that it might result. The following is a small excerpt that illustrates the structure that the information is organized in the \emph{LLNL}'s flat file:
+\section{Existing Thermodynamic datasets}
+The contents of the databases are extracted from the \emph{Lawrence Livermore National Laboratory (LLNL)} thermodynamic datasets that are used in \emph{EQ3/6}, \emph{PHREEQC} and others. The data sets are contributions from many authors that had measured thermodynamical and kinetic parameters of the minerals and reactions minerals over the years. Interaction with flat file databases are difficult and, if necessary, must be done carefully - the format of the file is composed of a series of rules and very often is not recommended that the user alters anything inside the flat file database due to the complexity and the errors that it might result. The following is a small excerpt that illustrates the structure of information in the \emph{LLNL}'s flat file:
 
 \begin{itemize}
 \item Parameters: Many used parameters are stablished on this section, among them are temperatures, pressures, debye huckel coefficients, bdot coefficients...
 \begin{lstlisting}[frame=single, caption=Excerpt of the section Parameters]
 * temperatures
          0.0000   25.0000   60.0000  100.0000
-       150.0000  200.0000  250.0000  300.0000
+       150.0000  200.0000  2500000  300.0000
 * pressures
          1.0134    1.0134    1.0134    1.0134
          4.7600   15.5490   39.7760   85.9270
@@ -562,8 +519,34 @@ Al2O3
 \end{minipage}
 \end{itemize}
 
+%GEOCHEMICAL SPECIATION ANALYSIS
+\section{Discussion}
+In this section some important aspects and issues of each software presented earlier are compared and discussed. 
 
-To achieve an applicable comparison we give grades from 1 to 5 to each aspect (where 1 is the lowest and 5 the highest possible grade). This "grading system" is done with the intention of comparing and normalizing the attributes of the software (see table ~\ref{tab:comparativeSoftwareTable}\footnote{Source:Author}).
+
+From a computational point of view, we analysed and evaluated the software engineering aspects of current solutions.  The following aspects were taken into consideration:
+\begin{itemize}
+\item Costs: Costs are probably the most important thing that people look first when choosing software. However, it should not be the deciding factor. Different solutions use different pricing models, according to the purpose and utilization of the software.
+
+\item Setup and versioning: The installation of software is the act of making it ready for execution. Depending on the software different options are used to copy/generate files from the installation files to the local computer to be accessed by the operating system (OS). The OS also influences how this process is done. Each software has a different distribution package for different OS. Commonly software are distributed only to specific OS. Also common are software with disparate versions according to the OS, resulting in divergent features available on the same software defined by the OS types.
+
+\item Customization and Integration: Is the software a standard solution, and its supplier interested in making changes? This is the typical scenario where the user has high probability of finding problems ahead. Therefore, an interesting exercise is to think of how this software communicates with others. Options like  ``import'' and ``export'' are vital when working with a large amount of data, allowing different tools to be used to analyse the output, with the purpose of reaching deeper insights from the information available. 
+
+\item Security and Control: Security is one of the main issues one faces when considering a software. Data privacy is an important criteria. Ensuring that the software can guarantee no data loss or data leakage is important. The solutions that provide direct control to the database, details, and processes are most likely to require data privacy.
+
+\item Infrastructure: When choosing a software, the infrastructure it requires need to be carefully analyzed. Does it require Internet access? How much space on disk and memory does it use? Extra costs may be incurred if this is not addressed.
+
+\item Core functionality: This is one of the most important points to be analyzed. How good is the software focus on the needs of the user, and how good is the value the software brings to its users?
+
+\item Graphical User Interface (\emph{GUI}) and visualization: This feature handles the interaction between the users and the software. When the software is within a complex domain, such as geochemical modeling, the \emph{GUI} is even more important. It is responsible for allowing the user to consider all necessary possible options. 
+
+\item Support and Maintenance: If the software, for some unknown reason, goes down, is the user able to reach someone for troubleshooting? Will the user be able to find a users' community to debate and share knowledge? If the software has a support team working to fix bugs, improve the performance, add new features and sharpen some of the old features, it means that the user will have a better infrastructure to work with.
+
+\item Database: All the data manipulated inside a software is stored and organized in a database. There are multiple ways of doing this. Many important things must be taken into account to decide which database fits best to the software. Since the 80's the relational database model has been the most popular. A conceptual database model is strongly recommended to produce a schema that considers all the structure and information needed by this software. Along the database schema, the security of this database must be addressed properly, for consistency and privacy. A good database design avoids redundant data (unnecessarily duplicated data). Poorly designed database generates inconsistent data (inaccurate data), which will lead to wrong decisions and, therefore, can result in failure of the software. We have observed that current solutions are mostly based on text input and output files, without a proper database. 
+\end{itemize}
+
+
+To achieve an applicable comparison, we give grades from 1 to 5 to each aspect (where 1 is the lowest and 5 the highest possible grade). This "grading system" is done with the intention of comparing and normalizing the attributes of the software (see table ~\ref{tab:comparativeSoftwareTable}\footnote{Source:Author}).
 
 \begin{table}
 \caption{Qualitative analysis of the Geochemical Speciation Software}
@@ -592,10 +575,37 @@ SOLMINEQ.88	    & 3 & 1 & 1 & 1 & 1 & 5 & 1 & 1 & 1 & 1.66\\
 \end{table}
 
 
+
+
+
 \newpage
 
 %SUMMARY
 \section{Summary}
+
+Regarding geochemical features, Table~\ref{tab:comparativeTable} shows characteristics and features of the different software solutions.
+
+\begin{table}
+\caption{Geochemical comparison between the different speciation software}
+\label{tab:comparativeTable}
+\centering
+\begin{tabular}{r|cccccccc}
+SOFTWARE &
+\rot{Aqueous Complexation} &
+\rot{Precipitation and Dissolution Mass Balancing} & 
+\rot{Reaction path} &
+\rot{Kinetics} &
+\rot{Multi-Activity Coefficient methods} 
+    \\ \hline
+EQ3/6        	&  \OK &  \OK & \OK & \OK & \OK    \\ 
+PHREEQC        &  \OK &  \OK  & \OK & \OK &  \\
+MINTEQA2        &  \OK  &  \OK & & &    \\ 
+SOLMINEQ.88	& \OK& \OK&\OK & \OK & \OK\\
+\hline
+\end{tabular}
+\end{table}
+
+
 \begin{itemize}
 \item EQ3/6: It represents a landmark in Geochemical Modeling. Unfortunately, it is inaccessible due to the elevated cost of licensing. The vast amount of information available online about \emph{EQ3/6} makes it an excellent source of information.  It used the computing tools and options that were available in 1970’s and 80’s, until the latest known release date in 1992. Since then, computing has clearly evolved, making it an obsolete and difficult to use. It has a large database with many pieces of information, but the contents are not transparent. It is hard to understand what exactly is the software doing; verifying if that is what the users wants is even more difficult. It is also important to mention that in \emph{EQ3/6}  documentation it recommends the user to use operating system commands (i.e. \emph{ctrl+c}) to interact with the software - which is a highly risky procedure in modern computers.
 

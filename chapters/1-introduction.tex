@@ -4,42 +4,41 @@
 
 %PROBLEM
 
-Geochemical modelling describes the reactions that occur in a geological medium by representing the chemical reactions and composition of the water. The motivation of this study is to provide a better understanding of the diagenesis process of sediments during the burial process, especially the water-mineral chemical interaction. Applications of geochemical models are essential in several environmental problems, such as calculating the composition of natural waters, measuring flowing groundwater or surface water and the formation and dissolution of rocks and minerals in geologic formations. A geochemical speciation modelling software is responsible for calculating the distribution of dissolved species into solutes and aqueous complexes, and also for computing saturation indexes for different mineral species. 
+Geochemical speciation modeling describes the reactions that occur in a geological medium by representing the chemical reactions and composition of the water. Applications of geochemical models are essential in several environmental problems, such as calculating the composition of natural waters, measuring flowing groundwater or surface water and the formation and dissolution of rocks and minerals in geologic formations. The motivation of this work is to provide a better understanding of the diagenesis process of sediments during the burial process, especially the water-mineral chemical interaction, by means of a geochemical speciation modeling software. A geochemical speciation modeling software provides a way of calculating the distribution of dissolved species into solutes and aqueous complexes, and also computing saturation indexes for different mineral species. 
 
-%DEFINITION OF MODELLING
+%DEFINITION OF modeling
 
-A mathematical model, as described in \cite{Sarker:08}, requires three major components: decision variables (unknowns of the model); objective function (which needs to be optimized); and constraints (restrictions or limitation of the model). 
-The decision variables depend on the type of the problem considered.  The objective function represents the goal of the problem in term of decision variables. The constraints are the restrictions or limitations of the problem.
+A mathematical model, as described in \cite{Sarker:08}, requires three major components: decision variables (unknowns of the model); objective function (which needs to be optimized); and constraints (restrictions or limitations of the model). 
+The decision variables depend on the type of the problem considered.  The objective function represents the goal of the problem in terms of decision variables. The constraints are the restrictions or limitations of the problem.
 
-As stated in \cite{Drever:05}, a chemical model is a theoretical construct that permits the calculation of chemical properties and processes using thermodynamic properties of reactions between solutes. Following this idea, a geochemical model is a chemical model developed for geological systems. A set of mathematical expressions represents these natural processes. Thermodynamic data used to establish the reactions and mimic nature are directly responsible for the accuracy of the geochemical system modeled; while the numerical method and computational algorithms determines the precision of results obtained through the modeling.
+As stated by Drever \cite{Drever:05}, a chemical model is a theoretical construct that permits the calculation of chemical properties and processes using thermodynamic properties of reactions between solutes. Following this idea, a geochemical model is a chemical model developed for geological systems. A set of mathematical expressions represents these natural processes. Thermodynamic data used to establish the reactions and mimic nature are directly responsible for the accuracy of the geochemical system modeled by an expert. The numerical methods and computational algorithms determine the precision of results obtained through the modeling.
 
 
 %Review of existing solutions, gap and our approach
-Prior the start of this work we experimented, reviewed and compared the available existing solutions. We present a thorough analysis of them, which exposes several gaps in the geochemical modeling solutions. This review makes clear the uniqueness of our proposed computational approach for the geochemical modeling problem.
+Prior to the start of this work, we experimented, reviewed and compared the available existing solutions, and have found several gaps in these geochemical modeling solutions. This review makes clear the uniqueness of our proposed computational approach for the geochemical modeling problem.
 
 %THIS WORK - MOTIVATION/CONTRIBUTION
 
 In this work, a software system, named as \emph{SHPECK}, was developed for calculating the chemical equilibrium of a geochemical system using the mass-balance conditions, a  process known as \emph{chemical speciation}. The software system receives as input any general combination of chemical elements, species, and reactions, allowing the user to create several different environments, simulations and, therefore, and to fully control any aspect and configuration of the model. 
 
-\emph{SHPECK} provides an interactive user interface that allows the flexible setup of every parameter of the chemical simulation, as well as the support of a built-from-the-ground database structure that handles the management of the whole data used.  The flexibility of parameter configuration offered by the visual interface further extend the possibilities of experimentation with the software, and this is a unique characteristic among commercial software products for geochemical speciation. Limitations on the database structure and input capability strongly restrict the potential use of the known geochemical packages. Therefore, \emph{SHPECK} is unique by combining the modern computing technology with efficient numerical method.
+\emph{SHPECK} provides an interactive user interface that allows the flexible setup of every parameter of the chemical simulation, as well as the support of a built-from-the-ground database structure that handles the management of the whole data used.  The flexibility of parameter configuration offered by the visual interface further extends the possibilities of experimentation with the software, and this is a unique characteristic among commercial software products for geochemical speciation. Limitations on the database structure and input capability strongly restrict the potential use of the known geochemical packages. Therefore, \emph{SHPECK} is unique by combining modern computing technology with efficient numerical methods.
 
 %BASIC CONCEPTS USED
 
-The principles of chemical equilibrium calculation rely on the law of conservation of mass (also known as the principle of mass conservation), stated by Antoine Lavoisier, and chemical speciation, which was presented by Garrels in \cite{Garrels:65}. 
+The principles of chemical equilibrium calculation rely on the law of conservation of mass (also known as the principle of mass conservation), stated by Antoine Lavoisier, and chemical speciation, which was presented by Garrels \cite{Garrels:65}. 
 The law of conservation of mass establishes that the total mass of an isolated system will remain constant and is independent of any chemical and physical changes taking place within the system. Therefore, the challenge of chemical equilibrium calculations is finding the number of moles that satisfies a system of equilibrium constraints at the moment where forward and reverse reactions rates are the same (equilibrium state). 
-These constraints are organized in a form of linear conservation equations, which may be expressed in the form of either linear algebraic solute and charge balance equations or chemical equations \cite{SmithMissen83}. For the sake of simplicity, in this work I will only deal with chemical equilibrium and not with chemical kinetics calculations since the first one requires only the solution of algebraic equation. The kinetic aspect is planned for integration in the future.
+These constraints are organized in a form of linear conservation equations, which may be expressed in the form of either linear algebraic solute and charge balance equations or chemical equations \cite{SmithMissen83}. For the sake of simplicity, this work will only deal with chemical equilibrium and not with chemical kinetics calculations since the first one requires only the solution of algebraic equation. The kinetic aspect is planned for integration in the future.
 
 %SOLVING METHOD
 
-The system of equations drives and represents all the interactions between the components that make up the system, and is simulated by the program. By using the Newton-Raphson's solution method to that set of equations, it is possible to find a solution that satisfies the system of equations.  One must note that the initial guess is generated automatically and used as a seed for the iterations. 
-This method requires the usage of a Jacobian matrix and a residual vector during the algebraic calculations. 
+The system of equations drives and represents all the interactions between the components that make up the system, and is simulated by the program. By using the Newton-Raphson's solution method to that set of equations, it is possible to find a solution that satisfies the system of equations.  One must note that the initial guess is generated automatically and used as a seed for the iterations. This method requires the usage of a Jacobian matrix and a residual vector during the algebraic calculations. 
 
 
-%Geochemical modelling speciation has an important application in processes that occur in turbidite reservoirs. 
+%Geochemical modeling speciation as an important application in processes that occur in turbidite reservoirs. 
 %The process of the water coming from a salt dome contains a high concentration of salts as sodium (\ce{Na^+}), chlorine (\ce{Cl^-}) and potassium (\ce{K^+}). Compactation, cementation, dissolution or recrystalization can be observed inside turbidites when this process happens. These processes might change drastically, for example, the porosity of the rock and, therefore, the storage capacity of oil and gas.
 
 %OBJECTIVES OF THIS WORK
-\section{Objectives of this work}
+\section{Objectives}
 %This work has as purpose two main objetives:
 %This work has two objetives:
 %\begin{enumerate}
@@ -47,15 +46,15 @@ This method requires the usage of a Jacobian matrix and a residual vector during
 %\item Analysis, comparison, and evaluation of the accuracy of the model with available commercial options.
 %\end{enumerate}
 
-%\subsection{Emphasize the importance of geochemical speciation modelling}
+%\subsection{Emphasize the importance of geochemical speciation modeling}
 
 Soils and aquifers are heterogeneous, subsurface systems composed of a large number of components - dissolved salts, minerals, metals, gases, natural organics, and microorganisms. Geochemical modeling is an important tool for understanding processes occurring in such systems. 
 
-The main purpose of this work is to develop a geochemical speciation modelling software following a structured computational approach. The idea of our own geochemical speciation software has emerged as an application where it would be possible to add the benefits of smart user interface and efficient numerical method to the traditionally used method of speciation model development. The result is a compact and versatile tool with an intuitive and interactive user interface.
+The main purpose of this work is to develop a geochemical speciation modeling software following a structured computational approach. The idea of our own geochemical speciation software has emerged as an application where it would be possible to add the benefits of smart user interface and efficient numerical methods to the traditionally used method of speciation model development. The result is a compact and versatile tool, with an intuitive and interactive user interface.
 
-Therefore, I have made the necessary effort to understand and learn the complex aspects of a geochemical speciation model, and develop a software based on a solid knowledge in computer architecture, algorithms and software engineering. 
+% Therefore, I have made the necessary effort to understand and learn the complex aspects of a geochemical speciation model, and develop a software based on a solid knowledge in computer architecture, algorithms and software engineering. 
 
 A comparative study is presented to verify and evaluate \emph{SHPECK}'s results. The software is systematically analyzed across two different approaches: experimentally and computationally. The benefits and the consistent flow (input and output) of \emph{SHPECK} made it a singular tool. 
 
-\section{Structure of this work}
-The rest of this report is structured as follows. In chapter 2, I present an overview of the basic concepts needed and technical concepts involved. Chapter 3 shows a thorough analysis and review of the commercial software available. Chapter 4 presents the \emph{SHPECK} implementation with a detailed description of the whole system: design options; mathematical treatment; implementation and graphical user interface (\emph{GUI}); algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. Chapter 5 presents a study case that validates \emph{SHPECK}, and makes a broad observation of the approach used in this work. Chapter 6 brings the conclusion of this work.
+\section{Structure of the text}
+The rest of this report is structured as follows. Chapter 2 is an overview of the basic concepts and other technical concepts needed for understanding the work. Chapter 3 shows a thorough analysis and review of the commercial software available. Chapter 4 presents the \emph{SHPECK} implementation with a detailed description of the whole system: design options; mathematical treatment; implementation and graphical user interface (\emph{GUI}); algorithm validation and complexity; architecture and organization of the software as well as the database; data-flow; and iteration control. Chapter 5 presents a study case that validates \emph{SHPECK}, and makes a broad observation of the approach used in this work. Chapter 6 brings the conclusion and suggestions of future work.
